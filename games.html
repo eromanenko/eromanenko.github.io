@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" /><title>Настольные игры</title>
+	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<style>article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }</style>
+	<style>
+	html, body {
+		font-family: Geneva, Arial, Helvetica, sans-serif;
+		font-size: 14px;
+		color: #333;
+	}
+	#game-list {
+		margin: 0 auto;
+		padding: 0;
+		text-align: justify;
+		width: 90%
+	}
+	.game-list-item {
+		display: inline-block;
+		width: 250px;
+		border: 1px solid #dbdbdb;
+		padding: 5px;
+		background: #efefef;
+		color: #333;
+		margin: 6px;
+	}
+	.inline-helper {
+		display: inline-block;
+		width: 100%;
+		height: 0;
+		overflow: hidden;
+	}
+	h4 {
+		margin: 5px;
+	}
+	h4 a, h4 span {
+		display: block;
+	}
+	h4 a {
+		text-decoration: none;
+		color: #333;
+		font-size: 18px;
+		text-shadow: 0 1px rgba(255, 255,255,.5);
+	}
+	h4 span {
+		font-size: 11px;
+	}
+	.game-img {
+		width: 100%;
+	}
+	.game-img-wrap {
+		height: 150px;
+		overflow: hidden;
+	}
+	.about {
+		display: inline-block;
+		padding: 3px 3px 3px 3px;
+		width: 25%;
+		box-sizing: border-box;
+	}
+	.about.gamers,
+	.about.time {
+		padding-left: 20px;
+	}
+	.gamers {
+		background: url('http://tesera.ru/i/icons/ic1.gif') no-repeat;
+	}
+	.time {
+		background: url('http://tesera.ru/i/icons/ic4.gif') no-repeat;
+	}
+	a[href=''] {
+		color: #aaa;
+	}
+	.wish-list {
+		margin: 0;
+		padding: 0;
+	}
+	.wish-list li {
+		display: inline-block;
+		width: 33%;
+	}
+	.sort-link {
+		cursor: pointer;
+		border-bottom: 1px dashed blue;
+	}
+	.sort-block {
+		padding: 10px 20px;
+		background: #efefef;
+		margin: 10px 40px;
+	}
+	.sort-link:hover {
+		border-bottom: none;
+	}
+	</style>
+</head>
+<body>
+<div class="sort-block">
+Сортировка: 
+<span class="sort-link" onclick="sorter('year')">Год релиза</span> /
+<span class="sort-link" onclick="sorter('howManyTimes')">Количество партий</span> /
+<span class="sort-link" onclick="sorter('gamersMin')">Минимальное количество игроков</span> /
+<span class="sort-link" onclick="sorter('gamersMax')">Максимальное количество игроков</span> /
+<span class="sort-link" onclick="sorter('time')">Время партии</span> /
+<span class="sort-link" onclick="sorter('ruName')">Русское название</span> /
+<span class="sort-link" onclick="sorter('enName')">Английское название</span>
+</div>
+<ul id="game-list"></ul>
+
+<hr />
+
+<div id="itogo"></div>
+
+<hr />
+Wish-list:
+<ul class="wish-list">
+<li><a href="http://hobby-world.com.ua/nastolnaja-igra-hobbit-nezhdannoe-puteshestvie" target="_blank">Хоббит. Нежданное путешествие (578 грн)</a></li>
+<li><a href="http://hobby-world.com.ua/hobbit-pustosh-smauga" target="_blank">Хоббит. Пустошь Смауга (510 грн)</a></li>
+<li><a href="http://tesera.ru/game/steam_park/" target="_blank">Steam Park</a></li>
+</ul>
+
+<hr />
+
+<h3>Поиск на BoardGameGeek.com</h3>
+<form action="http://boardgamegeek.com/geeksearch.php" method="get">
+	<input type="hidden" value="search" name="action">
+	<input type="hidden" value="boardgame" name="objecttype">
+	<input type="text" autocapitalize="off" autocorrect="off" size="32" name="q">
+	<input type="submit" value="Go" name="B1">				
+</form>
+<h3>Поиск по настольным блогам</h3>
+<script>
+(function() {
+	var cx = '010713592061377387888:WMX672910519';
+	var gcse = document.createElement('script');
+	gcse.type = 'text/javascript';
+	gcse.async = true;
+	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	'//www.google.com/cse/cse.js?cx=' + cx;
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(gcse, s);
+})();
+</script>
+<gcse:search></gcse:search>
+
+<script>
+var items = [
+	{
+		ruName: 'Бэнг! (Бах!)',
+		enName: 'Bang!',
+		link: 'http://tesera.ru/game/bang/',
+		img: 'http://tesera.ru/images/items/14902/1600x1200xsxy/photo.jpg',
+		year: '2002',
+		gamersMin: 3,
+		gamersMax: 9,
+		howManyTimes: 50,
+		time: 25,
+		rulesLink: 'http://tesera.ru/images/items/5694/Bang!_rules_rus_1.5.pdf'
+	},
+	{
+		ruName: 'Меч самурая',
+		enName: 'Samurai Sword',
+		link: 'http://tesera.ru/game/Samurai_Sword/',
+		img: 'http://tesera.ru/images/items/253470/1600x1200xsxy/photo.jpg',
+		year: '2012',
+		gamersMin: 3,
+		gamersMax: 7,
+		howManyTimes: 0,
+		time: 25,
+		rulesLink: 'http://tesera.ru/images/items/256367/Samurai-Sword-RU_v1.pdf'
+	},
+	{
+		ruName: 'Эльфийский замок',
+		enName: 'Yelfijskij zamok',
+		link: 'http://tesera.ru/game/elf_zamok/',
+		img: 'http://tesera.ru/images/items/295158/1600x1200xsxy/photo.png',
+		year: '2013',
+		gamersMin: 2,
+		gamersMax: 4,
+		howManyTimes: 6,
+		time: 15,
+		rulesLink: 'http://tesera.ru/images/items/295161/8740_Elf-Zamok_Rules.pdf'
+	},
+	{
+		ruName: 'Прорицание вёльвы',
+		enName: 'Völuspá',
+		link: 'http://tesera.ru/game/Voluspa/',
+		img: 'http://tesera.ru/images/items/169805/1600x1200xsxy/photo.jpg',
+		year: '2012',
+		gamersMin: 2,
+		gamersMax: 5,
+		howManyTimes: 2,
+		time: 45,
+		rulesLink: 'http://www.igroved.ru/games/voluspa/rules_voluspa.pdf'
+	},
+	{
+		ruName: 'Повелитель Токио',
+		enName: 'King of Tokyo',
+		link: 'http://tesera.ru/game/king_of_tokyo/',
+		img: 'http://tesera.ru/images/items/22322/1600x1200xsxy/photo.jpg',
+		year: '2010',
+		gamersMin: 2,
+		gamersMax: 6,
+		howManyTimes: 2,
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/192438/%D0%9F%D0%BE%D0%B2%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%20%D0%A2%D0%BE%D0%BA%D0%B8%D0%BE.%20%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0.pdf'
+	},
+	{
+		ruName: 'Проект Манхэттен',
+		enName: 'The Manhattan Project',
+		link: 'http://tesera.ru/game/the_manhattan_project/',
+		img: 'http://tesera.ru/images/items/104516/1600x1200xsxy/photo.jpg',
+		year: '2011',
+		gamersMin: 2,
+		gamersMax: 5,
+		howManyTimes: 4,
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/250875/Binder1.pdf'
+	},
+	{
+		ruName: 'Герцог',
+		enName: 'The Duke',
+		link: 'http://tesera.ru/game/the_duke/',
+		img: 'http://tesera.ru/images/items/137484/1600x1200xsxy/photo.jpg',
+		year: '2012',
+		gamersMin: 1,
+		gamersMax: 2,
+		howManyTimes: 0,
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/166302/The%20Duke%20Rules%20RUS%20PF.pdf'
+	},
+	{
+		ruName: 'Suburbia',
+		enName: 'Suburbia',
+		link: 'http://tesera.ru/game/suburbia/',
+		img: 'http://tesera.ru/images/items/164757/1600x1200xsxy/photo.jpg',
+		year: '2012',
+		gamersMin: 1,
+		gamersMax: 4,
+		howManyTimes: 2,
+		time: 60,
+		rulesLink: 'http://tesera.ru/images/items/163776/Suburbia.PDF'
+	},
+	{
+		ruName: 'Голливуд',
+		enName: 'Hollywood',
+		link: 'http://tesera.ru/game/Hollywood/',
+		img: 'http://tesera.ru/images/items/292405/1600x1200xsxy/photo.png',
+		year: '2013',
+		gamersMin: 2,
+		gamersMax: 6,
+		howManyTimes: 5,
+		time: 45,
+		rulesLink: 'http://tesera.ru/images/items/292392/hollywood_rules_web.pdf'
+	},
+	{
+		ruName: 'Тикаль',
+		enName: 'Tikal',
+		link: 'http://tesera.ru/game/tikal/',
+		img: 'http://tesera.ru/images/items/377/1600x1200xsxy/photo.jpg',
+		year: '1999',
+		gamersMin: 2,
+		gamersMax: 4,
+		howManyTimes: 4,
+		time: 90,
+		rulesLink: 'http://tesera.ru/images/items/366/Tikal_gameRules.pdf'
+	},
+	{
+		ruName: 'Побег из Атлантиды',
+		enName: 'Survive: Escape from Atlantis!',
+		link: 'http://tesera.ru/game/survive/',
+		img: 'http://tesera.ru/images/items/10287/1600x1200xsxy/photo.jpg',
+		year: '1982',
+		gamersMin: 2,
+		gamersMax: 6,
+		howManyTimes: 15,
+		time: 60,
+		rulesLink: 'http://tesera.ru/images/items/44649/Survive!_Rules_Rus.doc'
+	},
+	{
+		ruName: 'Кельтис',
+		enName: 'Keltis',
+		link: 'http://tesera.ru/game/keltis/',
+		img: 'http://tesera.ru/images/items/1881/1600x1200xsxy/photo.jpg',
+		year: '2008',
+		gamersMin: 2,
+		gamersMax: 4,
+		howManyTimes: 10, 
+		time: 40,
+		rulesLink: 'http://tesera.ru/images/items/50539/keltis_ru.pdf'
+	},
+	{
+		ruName: 'Timeline: Изобретения',
+		enName: 'Timeline: Inventions',
+		link: 'http://tesera.ru/game/39121/',
+		img: 'http://tesera.ru/images/items/106267/1600x1200xsxy/photo.jpg',
+		year: '2010',
+		gamersMin: 2,
+		gamersMax: 8,
+		howManyTimes: 10, 
+		time: 15,
+		rulesLink: 'http://tesera.ru/images/items/92997/rules_timeline_rus.pdf'
+	},
+	{
+		ruName: 'Timeline: Открытия',
+		enName: 'Timeline: Discoveries',
+		link: 'http://tesera.ru/game/117801/',
+		img: 'http://tesera.ru/images/items/117805/1600x1200xsxy/photo.jpg',
+		year: '2010',
+		gamersMin: 2,
+		gamersMax: 8,
+		howManyTimes: 10, 
+		time: 15,
+		rulesLink: 'http://tesera.ru/images/items/92997/rules_timeline_rus.pdf'
+	},{
+		ruName: 'Сет + редизайн',
+		enName: 'Set',
+		link: 'http://tesera.ru/game/set/',
+		img: 'http://tesera.ru/images/items/5215/1600x1200xsxy/photo.jpg',
+		year: '1988',
+		gamersMin: 1,
+		gamersMax: 10,
+		howManyTimes: 10, 
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/197900/Set%20rules%20(rus,%20Igroved).pdf'
+	},{
+		ruName: 'Зельеварение. Практикум',
+		enName: 'Potion-Making: Practice',
+		link: 'http://tesera.ru/game/Potion-Making_Practice/',
+		img: 'http://tesera.ru/images/items/2868/1600x1200xsxy/photo.jpg',
+		year: '2005',
+		gamersMin: 2,
+		gamersMax: 6,
+		howManyTimes: 20, 
+		time: 60,
+		rulesLink: 'http://tesera.ru/images/items/2870/%D0%97%D0%B5%D0%BB%D1%8C%D0%B5%D0%B2%D0%B0%D1%80%D0%B5%D0%BD%D0%B8%D0%B5.%20%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D1%83%D0%BC.doc'
+	},{
+		ruName: 'Гномы-вредители',
+		enName: 'Saboteur 1, 2',
+		link: 'http://tesera.ru/game/saboteur_2/',
+		img: 'http://tesera.ru/images/items/22673/1600x1200xsxy/photo.jpg',
+		year: '2004',
+		gamersMin: 2,
+		gamersMax: 12,
+		howManyTimes: 30, 
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/86789/Saboteur2-Rules-RU_v1.1.pdf'
+	},{
+		ruName: 'Доббль',
+		enName: 'Spot It!, Dobble',
+		link: 'http://tesera.ru/game/Spot_It/',
+		img: 'http://tesera.ru/images/items/289676/1600x1200xsxy/photo.jpg',
+		year: '2009',
+		gamersMin: 2,
+		gamersMax: 8,
+		howManyTimes: 50, 
+		time: 15,
+		rulesLink: 'http://tesera.ru/images/items/93001/rules_dobble_rus.pdf'
+	},{
+		ruName: 'Разыскиваются',
+		enName: 'Wanted',
+		link: 'http://tesera.ru/game/25722/',
+		img: 'http://s2.cdnproductmain.mosigra.ru/501/357/Wanted_1500x1500.jpg',
+		year: '1988',
+		gamersMin: 3,
+		gamersMax: 5,
+		howManyTimes: 5, 
+		time: 15,
+		rulesLink: 'https://s3-eu-west-1.amazonaws.com/mosigra.product.other/414/139/Wanted.pdf'
+	},{
+		ruName: 'Барабашка',
+		enName: 'GeistesBlitz, Ghost Blitz',
+		link: 'http://tesera.ru/game/GeistesBlitz/',
+		img: 'http://tesera.ru/images/items/52153/1600x1200xsxy/photo.jpg',
+		year: '2010',
+		gamersMin: 2,
+		gamersMax: 8,
+		howManyTimes: 3, 
+		time: 15,
+		rulesLink: 'http://tesera.ru/images/items/52155/%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%20%D0%BD%D0%B0%D1%81%D1%82%D0%BE%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9%20%D0%B8%D0%B3%D1%80%D1%8B%20%D0%91%D0%B0%D1%80%D0%B0%D0%B1%D0%B0%D1%88%D0%BA%D0%B0%20(Geistesblitz).pdf'
+	},{
+		ruName: 'Истории с призраками',
+		enName: 'Ghost Stories',
+		link: 'http://tesera.ru/game/ghost_stories/',
+		img: 'http://tesera.ru/images/items/8477/1600x1200xsxy/photo.jpg',
+		year: '2008',
+		gamersMin: 1,
+		gamersMax: 4,
+		howManyTimes: 5, 
+		time: 60,
+		rulesLink: 'http://tesera.ru/images/items/24275/%D0%98%D1%81%D1%82%D0%BE%D1%80%D0%B8%D0%B8%20%D0%BE%20%D0%BF%D1%80%D0%B8%D0%B7%D1%80%D0%B0%D0%BA%D0%B0%D1%85.pdf'
+	},{
+		ruName: '7 чудес',
+		enName: '7 Wonders',
+		link: 'http://tesera.ru/game/7_wonders/',
+		img: 'http://tesera.ru/images/items/137561/1600x1200xsxy/photo.jpg',
+		year: '2010',
+		gamersMin: 2,
+		gamersMax: 7,
+		howManyTimes: 200, 
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/52049/7-Wonders-Rulebook-RU_v1_web.pdf'
+	},{
+		ruName: 'Билет на поезд: Европа',
+		enName: 'Ticket to Ride: Europe',
+		link: 'http://tesera.ru/game/ticket_to_ride_europe/',
+		img: 'http://tesera.ru/images/items/9952/1600x1200xsxy/photo.jpg',
+		year: '2005',
+		gamersMin: 2,
+		gamersMax: 5,
+		howManyTimes: 30, 
+		time: 60,
+		rulesLink: 'http://tesera.ru/images/items/9964/te_rules_en.pdf'
+	},{
+		ruName: 'Зоолоретто',
+		enName: 'Zooloretto',
+		link: 'http://tesera.ru/game/zooloretto/',
+		img: 'http://tesera.ru/images/items/152225/1600x1200xsxy/photo.jpg',
+		year: '2007',
+		gamersMin: 2,
+		gamersMax: 5,
+		howManyTimes: 1, 
+		time: 45,
+		rulesLink: 'http://tesera.ru/images/items/128470/Zooloretto.pdf'
+	},{
+		ruName: 'Колонизаторы на кубиках',
+		enName: 'Catan Dice Game',
+		link: 'http://tesera.ru/game/catan_dice/',
+		img: 'http://tesera.ru/images/items/45147/1600x1200xsxy/photo.jpg',
+		year: '2007',
+		gamersMin: 1,
+		gamersMax: 4,
+		howManyTimes: 10, 
+		time: 15,
+		rulesLink: 'http://tesera.ru/images/items/95721/%D0%9A%D0%BE%D0%BB%D0%BE%D0%BD%D0%B8%D0%B7%D0%B0%D1%82%D0%BE%D1%80%D1%8B%20%D0%BD%D0%B0%20%D0%BA%D1%83%D0%B1%D0%B8%D0%BA%D0%B0%D1%85.pdf'
+	},{
+		ruName: 'Колонизаторы',
+		enName: 'The Settlers of Catan',
+		link: 'http://tesera.ru/game/the_settlers_of_catan/',
+		img: 'http://tesera.ru/images/items/1072/1600x1200xsxy/photo.jpg',
+		year: '1995',
+		gamersMin: 3,
+		gamersMax: 5,
+		howManyTimes: 20, 
+		time: 60,
+		rulesLink: 'http://tesera.ru/images/items/1008/catan.PDF'
+	},{
+		ruName: 'Энергосеть',
+		enName: 'Power Grid',
+		link: 'http://tesera.ru/game/power_grid/',
+		img: 'http://tesera.ru/images/items/67302/1600x1200xsxy/photo.jpg',
+		year: '2004',
+		gamersMin: 2,
+		gamersMax: 6,
+		howManyTimes: 1, 
+		time: 90,
+		rulesLink: 'http://tesera.ru/images/items/11612/Power_Grid_Rules_RU.pdf'
+	},{
+		ruName: 'Дженга',
+		enName: 'Jenga',
+		link: 'http://tesera.ru/game/jenga/',
+		img: 'http://tesera.ru/images/items/1894/1600x1200xsxy/photo.jpg',
+		year: '1983',
+		gamersMin: 1,
+		gamersMax: 8,
+		howManyTimes: 20, 
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/94653/%D0%94%D0%B6%D0%B5%D0%BD%D0%B3%D0%B0.pdf'
+	},{
+		ruName: 'Волки и овцы',
+		enName: 'Волки и овцы',
+		link: 'http://tesera.ru/game/21262/',
+		img: 'http://tesera.ru/images/items/37948/1600x1200xsxy/photo.jpg',
+		year: '',
+		gamersMin: 2,
+		gamersMax: 4,
+		howManyTimes: 15, 
+		time: 60,
+		rulesLink: ''
+	},{
+		ruName: 'Картахена 2',
+		enName: 'Cartagena 2. The Pirate\'s Nest',
+		link: 'http://tesera.ru/game/5902/',
+		img: 'http://tesera.ru/images/items/41961/1600x1200xsxy/photo.jpg',
+		year: '2006',
+		gamersMin: 2,
+		gamersMax: 5,
+		howManyTimes: 5, 
+		time: 45,
+		rulesLink: 'http://tesera.ru/images/items/321335/Cartagena_2_English_Rules.pdf'
+	},{
+		ruName: 'Весела Ферма',
+		enName: 'My Happy Farm',
+		link: 'http://tesera.ru/game/My_Happy_Farm/',
+		img: 'http://tesera.ru/images/items/60773/1600x1200xsxy/photo.jpg',
+		year: '2011',
+		gamersMin: 2,
+		gamersMax: 4,
+		howManyTimes: 20, 
+		time: 45,
+		rulesLink: ''
+	},{
+		ruName: 'Мамма мия!',
+		enName: 'Мамма мия!',
+		link: 'http://tesera.ru/game/mamma_mia/',
+		img: 'http://tesera.ru/images/items/58842/1600x1200xsxy/photo.jpg',
+		year: '1999',
+		gamersMin: 2,
+		gamersMax: 5,
+		howManyTimes: 10, 
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/96105/MammaMia_rules_RU_web.pdf'
+	},{
+		ruName: 'Тараканий покер',
+		enName: 'Kakerlakenpoker',
+		link: 'http://tesera.ru/game/cockroach_poker/',
+		img: 'http://tesera.ru/images/items/41520/1600x1200xsxy/photo.jpg',
+		year: '2004',
+		gamersMin: 2,
+		gamersMax: 6,
+		howManyTimes: 10, 
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/96404/%D0%A2%D0%B0%D1%80%D0%B0%D0%BA%D0%B0%D0%BD%D0%B8%D0%B9%20%D0%BF%D0%BE%D0%BA%D0%B5%D1%80.pdf'
+	},{
+		ruName: 'Тараканий суп',
+		enName: 'Kakerlakensuppe',
+		link: 'http://2fishki.ru/obzory_igr/kaker_laken_salat_kogda_peretc_mozhet_stat_tomatom/',
+		img: 'http://tesera.ru/images/items/398332/1600x1200xsxy/photo.jpg',
+		year: '2008',
+		gamersMin: 2,
+		gamersMax: 6,
+		howManyTimes: 10, 
+		time: 30,
+		rulesLink: 'http://2fishki.ru/userfiles/kakerlaken_salat.pdf'
+	},{
+		ruName: 'Кот-за-Хвост Цап!',
+		enName: 'Rat-a-Tat Cat',
+		link: 'http://tesera.ru/game/201290/',
+		img: 'http://monopoly-game.ru/img/children/rat-a-tat-cat-deluxe/rat-a-tat-cat-deluxe-6.jpg',
+		year: '1997',
+		gamersMin: 2,
+		gamersMax: 6,
+		howManyTimes: 3, 
+		time: 15,
+		rulesLink: ''
+	},{
+		ruName: 'Бонанза',
+		enName: 'Bohnanza',
+		link: 'http://tesera.ru/game/bohnanza/',
+		img: 'http://tesera.ru/images/items/178/1600x1200xsxy/photo.jpg',
+		year: '1997',
+		gamersMin: 2,
+		gamersMax: 7,
+		howManyTimes: 20, 
+		time: 60,
+		rulesLink: 'http://tesera.ru/images/items/183/Bohnanza_Quick_Reference_ru.doc'
+	},{
+		ruName: 'Супер Фермер',
+		enName: 'Супер Фермер',
+		link: 'http://tesera.ru/game/21261/',
+		img: 'http://tesera.ru/images/items/331283/1600x1200xsxy/photo.jpg',
+		year: '',
+		gamersMin: 2,
+		gamersMax: 4,
+		howManyTimes: 20, 
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/96498/%D1%81%D1%83%D0%BF%D0%B5%D1%80%20%D1%84%D0%B5%D1%80%D0%BC%D0%B5%D1%80.pdf'
+	},{
+		ruName: 'Диксит Одиссея',
+		enName: 'Dixit Odyssey',
+		link: 'http://tesera.ru/game/21261/',
+		img: 'http://tesera.ru/images/items/109064/1600x1200xsxy/photo.jpg',
+		year: '2011',
+		gamersMin: 3,
+		gamersMax: 12,
+		howManyTimes: 15, 
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/63652/Dixit-Odyssey-Rules-RU_v1.pdf'
+	},{
+		ruName: 'Колоретто',
+		enName: 'Coloretto',
+		link: 'http://tesera.ru/game/coloretto/',
+		img: 'http://tesera.ru/images/items/3304/1600x1200xsxy/photo.jpg',
+		year: '2003',
+		gamersMin: 2,
+		gamersMax: 5,
+		howManyTimes: 3, 
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/3286/rules_coloretto.pdf'
+	},{
+		ruName: 'На абордаж!',
+		enName: 'Loot',
+		link: 'http://tesera.ru/game/Korsar/',
+		img: 'http://tesera.ru/images/items/323394/1600x1200xsxy/photo.jpg',
+		year: '1992',
+		gamersMin: 2,
+		gamersMax: 8,
+		howManyTimes: 15, 
+		time: 15,
+		rulesLink: 'http://tesera.ru/images/items/213038/rules_loot.pdf'
+	},{
+		ruName: 'Тайное послание',
+		enName: 'Love Letter',
+		link: 'http://tesera.ru/game/Love_Letter/',
+		img: 'http://tesera.ru/images/items/160820/1600x1200xsxy/photo.jpg',
+		year: '2012',
+		gamersMin: 2,
+		gamersMax: 4,
+		howManyTimes: 3, 
+		time: 15,
+		rulesLink: 'http://tesera.ru/images/items/174582/ll_short_rules_ru_v_1_0.pdf'
+	},{
+		ruName: 'Улей',
+		enName: 'Hive',
+		link: 'http://tesera.ru/game/hive/',
+		img: 'http://tesera.ru/images/items/26463/1600x1200xsxy/photo.jpg',
+		year: '2001',
+		gamersMin: 2,
+		gamersMax: 2,
+		howManyTimes: 0, 
+		time: 15,
+		rulesLink: 'http://tesera.ru/images/items/24933/Hive_ru.pdf'
+	},{
+		ruName: 'Эй! Это моя рыба!',
+		enName: 'Hey! That\'s My Fish!',
+		link: 'http://tesera.ru/game/hey_thats_my_fish/',
+		img: 'http://tesera.ru/images/items/39666/1600x1200xsxy/photo.png',
+		year: '2003',
+		gamersMin: 2,
+		gamersMax: 4,
+		howManyTimes: 3, 
+		time: 15,
+		rulesLink: 'http://tesera.ru/images/items/39661/01.pdf'
+	},{
+		ruName: 'Ётта',
+		enName: 'IOTA',
+		link: 'http://tesera.ru/game/IOTA/',
+		img: 'http://tesera.ru/images/items/256283/1600x1200xsxy/photo.jpg',
+		year: '2012',
+		gamersMin: 2,
+		gamersMax: 4,
+		howManyTimes: 3, 
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/204216/rules_iota.pdf'
+	},{
+		ruName: 'Ты робот',
+		enName: 'You Robot',
+		link: 'http://boardgamegeek.com/boardgame/41054/you-robot',
+		img: 'http://cf.geekdo-images.com/images/pic478030_md.jpg',
+		year: '2009',
+		gamersMin: 4,
+		gamersMax: 10,
+		howManyTimes: 0, 
+		time: 20,
+		rulesLink: ''
+	},{
+		ruName: 'Борьба за галактику',
+		enName: 'Race for the Galaxy',
+		link: 'http://tesera.ru/game/race_for_the_galaxy/',
+		img: 'http://tesera.ru/images/items/2259/1600x1200xsxy/photo.jpg',
+		year: '1988',
+		gamersMin: 1,
+		gamersMax: 4,
+		howManyTimes: 0, 
+		time: 60,
+		rulesLink: 'http://tesera.ru/images/items/2255/GoGamer-Rules-Race_for_the_galaxy-rus.pdf'
+	},{
+		ruName: 'Усадьба',
+		enName: 'Finca',
+		link: 'http://tesera.ru/game/finca/',
+		img: 'http://tesera.ru/images/items/26240/1600x1200xsxy/photo.jpg',
+		year: '2009',
+		gamersMin: 2,
+		gamersMax: 4,
+		howManyTimes: 20, 
+		time: 45,
+		rulesLink: 'http://tesera.ru/images/items/96658/Finca.pdf'
+	},{
+		ruName: '100000 лет до нашей эры',
+		enName: 'Stone Age',
+		link: 'http://tesera.ru/game/stone_age/',
+		img: 'http://tesera.ru/images/items/69411/1600x1200xsxy/photo.jpg',
+		year: '2009',
+		gamersMin: 2,
+		gamersMax: 4,
+		howManyTimes: 20, 
+		time: 60,
+		rulesLink: 'http://tesera.ru/images/items/11770/Stone_Age_Rules_RU.pdf'
+	},{
+		ruName: 'Путь',
+		enName: 'Tsuro',
+		link: 'http://tesera.ru/game/tsuro/',
+		img: 'http://tesera.ru/images/items/29407/1600x1200xsxy/photo.jpg',
+		year: '2005',
+		gamersMin: 2,
+		gamersMax: 8,
+		howManyTimes: 3, 
+		time: 15,
+		rulesLink: 'http://tesera.ru/images/items/19833/Tsuro_rules_ru_1_0.pdf'
+	},{
+		ruName: 'Марракеш',
+		enName: 'Marrakech',
+		link: 'http://tesera.ru/game/marrakech/',
+		img: 'http://tesera.ru/images/items/22006/1600x1200xsxy/photo.jpg',
+		year: '2007',
+		gamersMin: 2,
+		gamersMax: 4,
+		howManyTimes: 5, 
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/17121/rules_marrakech.jpg'
+	},{
+		ruName: 'Neuroshima Hex!',
+		enName: 'Neuroshima Hex!',
+		link: 'http://tesera.ru/game/neuroshima_hex/',
+		img: 'http://cf.geekdo-images.com/images/pic1844806_md.jpg',
+		year: '2006',
+		gamersMin: 2,
+		gamersMax: 4,
+		howManyTimes: 0, 
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/164494/Neuroshima%20Hex!%20Rules%20(Rus).pdf'
+	},{
+		ruName: 'Нахимичили',
+		enName: 'Wrong Chemistry',
+		link: 'http://tesera.ru/game/Wrong_Chemistry/',
+		img: 'http://cf.geekdo-images.com/images/pic1471759_md.jpg',
+		year: '2012',
+		gamersMin: 2,
+		gamersMax: 4,
+		howManyTimes: 0, 
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/122259/WC%20rules%20russian.pdf'
+	},{
+		ruName: 'Инновация',
+		enName: 'Innovation',
+		link: 'http://tesera.ru/game/innovation/',
+		img: 'http://tesera.ru/images/items/301274/1600x1200xsxy/photo.jpg',
+		year: '2010',
+		gamersMin: 2,
+		gamersMax: 4,
+		howManyTimes: 1, 
+		time: 45,
+		rulesLink: 'http://tesera.ru/images/items/98282/innovation_rules_rus_final.pdf'
+	},{
+		ruName: 'Черепашьи бега',
+		enName: 'Schildkrötenrennen',
+		link: 'http://tesera.ru/game/Ribbit/',
+		img: 'http://tesera.ru/images/items/84044/1600x1200xsxy/photo.jpg',
+		year: '2004',
+		gamersMin: 2,
+		gamersMax: 5,
+		howManyTimes: 10, 
+		time: 15,
+		rulesLink: 'http://tesera.ru/images/items/84302/turtle_run_rules_rus.pdf'
+	},{
+		ruName: 'Халли Галли',
+		enName: 'Halli Galli',
+		link: 'http://tesera.ru/game/Halli_Galli/',
+		img: 'http://tesera.ru/images/items/38873/1600x1200xsxy/photo.jpg',
+		year: '1992',
+		gamersMin: 2,
+		gamersMax: 6,
+		howManyTimes: 30, 
+		time: 15,
+		rulesLink: 'http://tesera.ru/images/items/78235/xal.pdf'
+	},{
+		ruName: 'Уно',
+		enName: 'Uno',
+		link: 'http://tesera.ru/game/uno/',
+		img: 'http://tesera.ru/images/items/25015/1600x1200xsxy/photo.jpg',
+		year: '1971',
+		gamersMin: 2,
+		gamersMax: 10,
+		howManyTimes: 50, 
+		time: 15,
+		rulesLink: 'http://tesera.ru/images/items/96408/UNO.pdf'
+	},{
+		ruName: 'Каркассон',
+		enName: 'Carcassonne',
+		link: 'http://tesera.ru/game/carcassonne/',
+		img: 'http://tesera.ru/images/items/716/1600x1200xsxy/photo.jpg',
+		year: '2000',
+		gamersMin: 2,
+		gamersMax: 5,
+		howManyTimes: 30, 
+		time: 60,
+		rulesLink: 'http://www.igroved.ru/games/carcasson/carcasson-classic/rules.html'
+	},{
+		ruName: 'К. Колесо фортуны',
+		enName: 'Carcassonne: Wheel of Fortune',
+		link: 'http://tesera.ru/game/Carcassonne_Wheel_of_Fortune/',
+		img: 'http://cf.geekdo-images.com/images/pic1491562_md.jpg',
+		year: '2009',
+		gamersMin: 2,
+		gamersMax: 5,
+		howManyTimes: 10, 
+		time: 60,
+		rulesLink: 'http://tesera.ru/images/items/170253/%D0%9A%D0%B0%D1%80%D0%BA%D0%B0%D1%81%D1%81%D0%BE%D0%BD%20-%20%D0%9A%D0%BE%D0%BB%D0%B5%D1%81%D0%BE%20%D1%84%D0%BE%D1%80%D1%82%D1%83%D0%BD%D1%8B.pdf'
+	},{
+		ruName: 'К. Таверны и Соборы',
+		enName: 'Carcassonne: Inns & Cathedrals',
+		link: 'http://tesera.ru/game/Carcassonne_Inns_and_Cathedrals/',
+		img: 'http://tesera.ru/images/items/42608/1600x1200xsxy/photo.jpg',
+		year: '2002',
+		gamersMin: 2,
+		gamersMax: 6,
+		howManyTimes: 30, 
+		time: 60,
+		rulesLink: 'http://tesera.ru/images/items/42725/CarcErw1Kathedrus.pdf'
+	},{
+		ruName: 'К. Река',
+		enName: 'Carcassonne: The River',
+		link: 'http://tesera.ru/game/carcassonne_river/',
+		img: 'http://cf.geekdo-images.com/images/pic1847847_md.jpg',
+		year: '2001',
+		gamersMin: 2,
+		gamersMax: 5,
+		howManyTimes: 30, 
+		time: 60,
+		rulesLink: 'http://www.boardgamer.ru/obzor-dopolnenij-reka-i-reka-ii-dlya-karkassona'
+	},{
+		ruName: 'К. Граф',
+		enName: 'The Count of Carcassonne',
+		link: 'http://tesera.ru/game/The_Count_of_Carcassonne/',
+		img: 'http://cf.geekdo-images.com/images/pic1801639_md.jpg',
+		year: '2004',
+		gamersMin: 2,
+		gamersMax: 6,
+		howManyTimes: 0, 
+		time: 60,
+		rulesLink: 'http://tesera.ru/images/items/191895/Carcassonne-Exp6-Rules-RU_v1.pdf'
+	},{
+		ruName: 'К. Король и разведчик',
+		enName: 'Carcassonne: King & Scout',
+		link: 'http://tesera.ru/game/carcassonne_graf_konig_und_konsorten/',
+		img: 'http://cf.geekdo-images.com/images/pic149946_md.jpg',
+		year: '2008',
+		gamersMin: 2,
+		gamersMax: 6,
+		howManyTimes: 0, 
+		time: 60,
+		rulesLink: 'http://tesera.ru/images/items/191895/Carcassonne-Exp6-Rules-RU_v1.pdf'
+	},{
+		ruName: 'К. Катапульта',
+		enName: 'Carcassonne: Catapult',
+		link: 'http://tesera.ru/game/Carcassonne_Catapult/',
+		img: 'http://cf.geekdo-images.com/images/pic1537694.png',
+		year: '2008',
+		gamersMin: 2,
+		gamersMax: 6,
+		howManyTimes: 0, 
+		time: 60,
+		rulesLink: 'http://tesera.ru/images/items/43053/Game_286_gameRules.pdf'
+	},{
+		ruName: 'К. Башня',
+		enName: 'Carcassonne: The Tower',
+		link: 'http://tesera.ru/game/Carcassonne_The_Tower/',
+		img: 'http://cf.geekdo-images.com/images/pic1649808_md.jpg',
+		year: '2008',
+		gamersMin: 2,
+		gamersMax: 6,
+		howManyTimes: 0, 
+		time: 60,
+		rulesLink: 'http://tesera.ru/images/items/43055/Game_58_gameRules.pdf'
+	},{
+		ruName: 'М-р Джек',
+		enName: 'Mr. Jack',
+		link: 'http://tesera.ru/game/mr_jack/',
+		img: 'http://tesera.ru/images/items/7495/1600x1200xsxy/photo.jpg',
+		year: '2006',
+		gamersMin: 2,
+		gamersMax: 2,
+		howManyTimes: 5, 
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/7639/MrJack.doc'
+	},{
+		ruName: 'М-р Джек. Расширение',
+		enName: 'Mr. Jack Extension',
+		link: 'http://tesera.ru/game/mr_jack_extension/',
+		img: 'http://cf.geekdo-images.com/images/pic387046_md.jpg',
+		year: '2007',
+		gamersMin: 2,
+		gamersMax: 2,
+		howManyTimes: 0, 
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/216952/rules_mr-jack-extension.pdf'
+	},{
+		ruName: 'М-р Джек в Нью-Йорке',
+		enName: 'Mr. Jack in New York',
+		link: 'http://tesera.ru/game/mr_jack_in_new_york/',
+		img: 'http://tesera.ru/images/items/8126/1600x1200xsxy/photo.jpg',
+		year: '2009',
+		gamersMin: 2,
+		gamersMax: 2,
+		howManyTimes: 3, 
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/30602/%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0.pdf'
+	},{
+		ruName: 'М-р Джек. Карманный',
+		enName: 'Mr. Jack Pocket',
+		link: 'http://tesera.ru/game/mr_jack_pocket/',
+		img: 'http://tesera.ru/images/items/66871/1600x1200xsxy/photo.jpg',
+		year: '2010',
+		gamersMin: 2,
+		gamersMax: 2,
+		howManyTimes: 0, 
+		time: 30,
+		rulesLink: 'http://tesera.ru/images/items/72284/rules_mr-jack-pocket_rus.pdf'
+	},{
+		ruName: 'Лорды подземелий',
+		enName: 'Dungeon Lords',
+		link: 'http://tesera.ru/game/dungeon_lords/',
+		img: 'http://tesera.ru/images/items/15774/1600x1200xsxy/photo.jpg',
+		year: '2009',
+		gamersMin: 2,
+		gamersMax: 4,
+		howManyTimes: 0,
+		time: 90,
+		rulesLink: 'http://tesera.ru/images/items/25548/dungeon%20lords%20rules_rus.doc'
+	},{
+		ruName: 'Дикие Джунгли',
+		enName: 'Jungle Speed',
+		link: 'http://tesera.ru/game/jungle_speed/',
+		img: 'http://tesera.ru/images/items/14103/1600x1200xsxy/photo.jpg',
+		year: '1997',
+		gamersMin: 2,
+		gamersMax: 8,
+		howManyTimes: 10,
+		time: 15,
+		rulesLink: 'http://tesera.ru/images/items/14108/%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%20%D0%BD%D0%B0%D1%81%D1%82%D0%BE%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9%20%D0%B8%D0%B3%D1%80%D1%8B%20%D0%94%D0%B8%D0%BA%D0%B8%D0%B5%20%D0%94%D0%B6%D1%83%D0%BD%D0%B3%D0%BB%D0%B8%20(Jungle%20Speed).pdf'
+	}
+];
+</script>
+<script>
+function sorter(opt) {
+	var itemsCopy = JSON.stringify(items);
+	items.sort(function(a,b){
+//		return b[opt] - a[opt]
+		return b[opt] > a[opt] ? 1 : b[opt] < a[opt] ? -1 : 0;
+	});
+	if (JSON.stringify(items) == itemsCopy) items.sort(function(b,a){
+//		return a[opt] - b[opt]
+		return b[opt] > a[opt] ? 1 : b[opt] < a[opt] ? -1 : 0;
+	});
+	drowList();
+}
+function drowList() {
+	var str = '';
+	for (var i = 0; i < items.length; i++) {
+		str += '<li class="game-list-item">'
+		+ '<h4 class="game-title">'
+		+ '<a href="' + items[i].link + '">' + items[i].ruName + '</a>'
+		+ '<span>' + items[i].enName + '</span>'
+		+ '</h4>'
+		+ '<div class="game-img-wrap"><img class="game-img" src="' + items[i].img + '" onclick="window.open(\'' + items[i].img + '\')" alt="" /></div>'
+		+ '<span class="about year">' + items[i].year + '</span>'
+		+ '<span class="about gamers">' + items[i].gamersMin + ' - ' + items[i].gamersMax + '</span>'
+		+ '<span class="about time">' + items[i].time + '</span>'
+		+ '<span class="about"><a class="rules" href="' + items[i].rulesLink + '">Правила</a></span>'
+		+ '</li> '
+	}
+	str += '<div class="inline-helper"></div>';
+	document.getElementById('game-list').innerHTML = str;
+	document.getElementById('itogo').innerHTML = 'Всего игр: ' + items.length + ' шт.';
+};
+drowList();
+</script>
+</body>
+</html>

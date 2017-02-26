@@ -1,0 +1,15 @@
+<li class="col-lg-3 col-md-4 col-sm-6">
+	<div class="games_item">
+		<div class="games_title">
+			<a href="#/games/{{game.id}}">{{ game.ruName }}</a>
+			<div class="games_title--en">{{ game.enName }}</div>
+		</div>
+		<a href="#/games/{{game.id}}" class="games_img" style="background-image:url({{game.img}})"></a>
+		<div class="games_about clearfix">
+			<span class="games_about_year">{{ game.year }}</span>
+			<span class="games_about_gamers">{{ game.gamersMin }} - {{ game.gamersMax }}</span>
+			<span class="games_about_time">{{ game.time }}</span>
+			<span class="games_about_rules"><a class="rules" href="{{ game.ruleslink }}">Правила</a></span>
+		</div>
+	</div>
+</li>

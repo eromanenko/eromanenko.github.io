@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Front-end Developer Portfolio</title>
+	<style>/* fonts */
+            @font-face{font-family:'Exo 2';font-style:normal;font-weight:400;src:local('Exo 2'),local(Exo2-Regular),url(http://fonts.gstatic.com/s/exo2/v3/W4IAweRTlhKE0KN1t814DA.woff) format("woff")}@font-face{font-family:'Exo 2';font-style:normal;font-weight:600;src:local('Exo 2 Semi Bold'),local(Exo2-SemiBold),url(http://fonts.gstatic.com/s/exo2/v3/f0hHk_ds7TVzNRk1BrjGO_esZW2xOQ-xsNqO47m55DA.woff) format("woff")}@font-face{font-family:'Exo 2';font-style:italic;font-weight:400;src:local('Exo 2 Italic'),local(Exo2-Italic),url(http://fonts.gstatic.com/s/exo2/v3/fp3xmqvXDwAKWuAQUwdeZg.woff) format("woff")}@font-face{font-family:'Exo 2';font-style:italic;font-weight:600;src:local('Exo 2 Semi Bold Italic'),local(Exo2-SemiBoldItalic),url(http://fonts.gstatic.com/s/exo2/v3/AbE2HdC08fDM25clla7d4xsxEYwM7FgeyaSgU71cLG0.woff) format("woff")}
+        </style>
+	<style>
+	*{margin:0;padding:0;outline:0;border:0;}
+body{
+background: #a3a8ad;
+background: linear-gradient(to bottom, #3D75A7 0px, #2F597F 367px, #1B3349 368px, #BFC4CA 369px, #A3A8AD 370px, #A3A8AD 100%) repeat fixed 0% 0%;
+font:14px/24px Arial,Helvetica,sans-serif;color:#333;
+}
+#main{width:1020px;margin:auto;position:relative;top:20px;}
+h1, h2, h3, h4, h5, h6{margin:0 10px 10px 0;color:#333;}
+h1{font-size:32px;padding-top:5px;}
+h2{font-size:25px;color:#333;}
+h3{font-size:20px;font-style:italic;margin-top:0;color:#173D5F;}
+h4{font-size:16px;font-weight:normal;}
+h5{font-size:14px;margin-left:10px;display:inline;background:#2F597F;color:#fff;width:150px;text-align:center;padding:3px 10px 3px 10px;font-weight:normal;line-height:26px;clear:right;}
+h5:hover{background:#173D5E;}
+h6{line-height:1em;clear:both;font-size:13px;font-weight:bold;font-weight:bold;text-align:left;margin:0;padding:0;}
+a{color:#333;text-decoration:none;}
+.hr{
+margin-top:0;
+padding-top:0;
+border-top: 1px solid #464646;
+border-bottom: 1px solid #fff;
+height:0px;
+margin-bottom:32px;
+}
+#middle-content h2{cursor:pointer;}
+#top-content{
+	background: #F7F7F7;
+	background: linear-gradient(to bottom, #FEFEFE 0%, #F1F1F1 100%);
+	min-height: 270px;
+	width: 886px;
+	padding: 67px 67px 9px 67px;
+	margin-bottom:0;
+	display:inline-block;
+	border-radius: 5px;
+	}
+#top-content .photo-holder{padding:10px 10px 4px 10px;background:#f6f6f6;border:solid 1px #d5d5d5;margin-bottom:18px;}
+*:first-child+html #top-content .photo-holder{padding-bottom:10px;}
+#top-content .photo-shaddow{background:url(img/shaddow.png) no-repeat scroll -2px 100% transparent;width:auto;height:auto;float:left;margin:0 35px 12px 0;overflow:visible;}
+#top-content .top-description{font-family:Arial, Helvetica, sans-serif;font-size:19px;font-weight:normal;margin-top:10px;margin-bottom:15px;}
+#top-content .address{background:url(img/sprite.png) 0 -94px no-repeat;display:block;overflow:hidden;padding:4px 0 0 35px;margin:0;}
+#top-content .phone{background:url(img/sprite.png) 4px -2px no-repeat;display:block;overflow:hidden;padding:4px 0 0 35px;margin:0;}
+#top-content .mail{background:url(img/sprite.png) 0 -34px no-repeat;display:block;overflow:hidden;padding:4px 0 0 35px;margin:0;}
+#top-content .skype{background:url(img/sprite.png) 0 -124px no-repeat;display:block;overflow:hidden;padding:4px 0 0 35px;margin:0;}
+#top-content .controls{display:none;position:absolute;top:60px;right:69px;list-style:none;margin-top:0;padding-top:0;height:35px;}
+#top-content .controls a{padding:13px;}
+#top-content .save{background:url(img/icons-sprite.png) 0 0 no-repeat;height:35px;margin-left:10px;display:inline;line-height:35px;padding:9px 1px 9px 1px;background-position:-1px -240px;width:29px;}
+*:first-child+html #top-content .save{background-position:0 -225px;}
+#middle-content{
+background:#F1F1F1;
+height:auto;width:885px;padding:0 67px 25px 68px;margin-top:0}
+#middle-content h3{margin-top:0;float:left;margin-bottom:0;padding-bottom:0;}
+#middle-content .description{clear:both;padding-top:10px;padding-bottom:0;margin-bottom:0;}
+#middle-content ul.list{clear:both;margin:30px 0 45px 45px;list-style:none;position:relative;border-bottom:1px dashed #afafaf;}
+#middle-content ul.list > li{padding:25px 25px 20px 25px;display:block;border:1px dashed #afafaf;border-bottom:0;}
+#middle-content ul.list:after{top:-17px;background:transparent url(img/arrow-up.png) 0 2px no-repeat;left:30px;width:100px;height:18px;padding:0;border:0;overflow:visible;position:absolute;content:'';}
+#middle-content ul.list > li:nth-child(odd){background:#E6E6E6}
+#middle-content ul.list ul, #middle-content ul.list ol{margin-top:15px;}
+#middle-content ul.list ul li{margin-left:17px;}
+#middle-content ul.list ol li{margin-left:20px;}
+#bottom-content{background:url(img/bottom-content.png) 0 0 no-repeat;height:45px;width:1020px;}
+#middle-content ul.list > li{position:relative;*zoom:1;}
+#middle-content ul.list > li:after{display:table;clear:both;content:"";}
+	</style>
+</head>
+<body>
+<div id="main">
+	<div id="top-content">
+		<div class="photo-shaddow">
+			<div class="photo-holder"><img src="img/photo_js.jpg" alt=""></div>
+		</div>
+		<h1>Романенко Евгений</h1>
+		<h3>Front-end Developer</h3>
+		<p class="top-description">
+			Готов поменять своё свободное время на некоторое количество денежных знаков. В качестве бонуса прилагаю навыки верстальщика и JavaScript-программиста.
+		</p>
+
+		<h4 class="address"><a href="http://goo.gl/maps/6zRCv">Киев, м. Позняки</a></h4>
+		<h4 class="phone">+38 (097) 738-5870</h4>
+		<h4 class="mail"><a href="mailto:eromanenko@gmail.com">eromanenko@gmail.com</a></h4>
+		<h4 class="skype"><a href="skype:betepahko">betepahko</a></h4>
+
+		<ul class="controls">
+			<li class="save" title="загрузить PDF-версию"><a  id="save" href="RomanenkoCV_JS.pdf">&nbsp;</a></li>
+		</ul>  
+	</div>
+
+	<div id="middle-content">
+	
+		<div class="hr">&nbsp;</div>
+		
+		<!-- Начало навыков -->
+		<h2>Навыки</h2>
+		<ul class="list">
+			<li>
+				<h3>HTML &amp; CSS</h3> <h5> продвинутый, 13 лет </h5>
+				<p class="description">
+					Работа с сайтами компаний и с личными проектами позволили освоить профессию верстальщика и выработать следующие принципы:
+				</p>
+				<ul>
+					<li>идентичность макету</li>
+					<li>бестабличная вёрстка</li>
+					<li>кроссбраузерность (IE 8+, Opera, FireFox, Safari, Chrome)</li>
+					<li>чистота и логичность кода</li>
+				</ul>
+			</li>
+			<li>
+				<h3>JAVASCRIPT &amp; jQuery </h3>  <h5> начальный, 3 года </h5>
+				<p class="description">
+					Необходимость освоить JavaScript возникла после основания чата, клиенская часть которого написана полностью на этом языке. Впоследствии эти навыки нашли применение для решения задач на других проектах:
+				</p>
+				<ul>
+					<li>веб-приложение</li>
+					<li>интерактивность страниц</li>
+					<li>визуальные эффекты</li>
+					<li>валидация форм</li>
+					<li>работа с куки</li>
+				</ul>
+			</li>
+			<li>
+				<h3>Графика </h3>  <h5> продвинутый, 10 лет </h5>
+				<p class="description">
+					Работа в графических пакетах является скорее хобби, чем должностными обязанностями
+				</p>
+				<ul>
+					<li>Adobe PhotoShop</li>
+					<li>Corel Draw</li>
+					<li>Flash</li>
+				</ul>
+			</li>
+		</ul>
+		<!-- конец навыков -->
+		
+		<div class="hr">&nbsp;</div>
+		
+		<!-- Начало портфолио -->
+		<h2>Портфолио</h2>
+		<ul class="list">
+			<li>
+				<h3>Bombezno</h3>  <h5> 2013 </h5>
+				<h6>Посадочная страница</h6>
+				<div class="cv-screen">
+					<a href="http://nd.bombezno.com/" target="_blank"><img src="img/screen_nicer.jpg" alt="" />nd.bombezno.com</a>
+				</div>
+				<ul>
+					<li>Таймер срока действия акции (jQuery);</li>
+					<li>Отправка форм заказа, отзыва и обратного звонка через ajax (jQuery)</li>
+					<li>Модальные окна (подключение плагина Simple modal</li>
+					<li>Верстка по PSD-макету</li>
+					<li>Прижатый к низу футер на страницах форм</li>
+				</ul>
+			</li>
+			<li>
+				<h3>A-Development</h3>  <h5> 2013 </h5>
+				<h6>Сайт разработчиков программного обеспечения</h6>
+				<div class="cv-screen">
+					<a href="http://a-devs.ru/" target="_blank"><img src="img/screen_ad.jpg" alt="" />a-devs.ru</a>
+				</div>
+				<ul>
+					<li>Верстка по PSD-макету</li>
+				</ul>
+			</li>
+			<li>
+				<h3>Bombezno</h3>  <h5> 2013 </h5>
+				<h6>Посадочная страница</h6>
+				<div class="cv-screen">
+					<a href="http://mop.bombezno.com/" target="_blank"><img src="img/screen_h2o.jpg" alt="" />mop.bombezno.com</a>
+				</div>
+				<ul>
+					<li>Верстка по PSD-макету</li>
+				</ul>
+			</li>
+			<li>
+				<h3>Market-Logic</h3>  <h5> 2013 </h5>
+				<h6>Страница комментариев к статье</h6>
+				<div class="cv-screen">
+					<a href="http://www.designchat.ru/cv/tz/marketlogic/index.html" target="_blank"><img src="img/screen_marketlogic.png" alt="" /></a>
+				</div>
+				<ul>
+					<li>Переключение фона комментариев (jQuery);</li>
+					<li>Верстка по PSD-макету, кроссбраузерная, бестабличная, гибкая (адаптивная, @media-запросы)</li>
+					<li>Появляющееся окно с контактными данными при наведении на ник комментатора (CSS)</li>
+				</ul>
+			</li>
+			<li>
+				<h3>Speroteck</h3>  <h5> 2013 </h5>
+				<h6>Страница выбора тарифного плана</h6>
+				<div class="cv-screen">
+					<a href="http://www.designchat.ru/cv/tz/speroteck/index.html" target="_blank"><img src="img/screen_speroteck.png" alt="" /></a>
+				</div>
+				<ul>
+					<li>Верстка по PSD-макету, кроссбраузерная, бестабличная</li>
+					<li>Переключение активных пунктов меню ("Home Page", "Buy credit", "My account"). Содержимое "Home Page" и "Buy credit" сделано пустым;</li>
+					<li>Переключение табов формы "Personal Preferences" и валидация введенных данных (JavaScript);</li>
+					<li>"Billing Information" - реализовано переключение тарифного плана (активный пункт - CSS, пересчет цены - JavaScript);</li>
+					<li>Футер прижат к низу окна браузера, при пустом контенте (CSS).</li>
+				</ul>
+			</li>
+			<li>
+				<h3>Мобильные приложения и сервисы Правительства Москвы</h3>  <h5> 2013 </h5>
+				<h6>Подведение итогов конкурса</h6>
+				<div class="cv-screen">
+					<a href="http://dit.mos.ru/apps/contest" target="_blank"><img src="img/screen_moskow.png" alt="" />dit.mos.ru</a>
+				</div>
+				<ul>
+					<li>Верстка страницы согласно PSD макета.</li>
+				</ul>
+			</li>
+			<li>
+				<h3>StarLadder</h3>  <h5> 2013 </h5>
+				<h6>Страница новости</h6>
+				<div class="cv-screen">
+					<a href="http://www.designchat.ru/cv/tz/starladder/news-view0509.html" target="_blank"><img src="img/screen_starladder.png" alt="" /></a>
+				</div>
+				<ul>
+					<li>Верстка с ипользованием Bootstrap 2.3.2;</li>
+					<li>Выравнивание высоты колонок (JavaScript);</li>
+					<li>Адаптация под ширину браузера (@media-запросы);</li>
+					<li>Использование спрайтов изображений.</li>
+				</ul>
+			</li>
+			<li>
+				<h3>FIBO Group</h3>  <h5> 2012 </h5>
+				<h6>Верстка страницы акций</h6>
+				<div class="cv-screen">
+					<a href="http://www.fibo-forex.ru/fibogroup/action.html" target="_blank"><img src="img/screen_fibo.png" alt="" />fibo-forex.ru</a>
+				</div>
+				<ul>
+					<li>Верстка согласно guideline;</li>
+					<li>Спойлеры списка акций (jQuery).</li>
+				</ul>
+			</li>
+			<li>
+				<h3>Designchat</h3>  <h5> 2012 </h5>
+				<h6>Чат дизайнеров</h6>
+				<div class="cv-screen">
+					<a href="http://www.designchat.ru/" target="_blank"><img src="img/screen_designchat.png" alt="" />designchat.ru</a>
+				</div>
+				<ul>
+					<li>Верстка с ипользованием Bootstrap;</li>
+					<li>Рефакторинг клиентского интерфейса (JavaScript, jQuery);</li>
+					<li>Использование HTML5-технологий (Audio, File API);</li>
+					<li>Использование CSS3;</li>
+					<li>Адаптация под touch-интерфейсы.</li>
+				</ul>
+			</li>
+			<li>
+				<h3>&laquo;Любимый Сад&raquo;</h3>  <h5> 2008 </h5>
+				<h6>Интернет-магазин</h6>
+				<div class="cv-screen">
+					<a href="http://rassada.net/" target="_blank"><img src="img/screen_rassada.png" alt="" /> rassada.net</a>
+				</div>
+				<ul>
+					<li>Использован движок от ucoz.</li>
+				</ul>
+			</li>
+		</ul> 
+		<!-- конец портфолио -->	
+		
+		<div class="hr">&nbsp;</div>
+		
+		<!-- Начало образования -->
+		<h2>Образование</h2>
+		<ul class="list hidden">
+			<li>
+				<h3>Днепропетровский национальный университет им. О. Гончара</h3>  <h5> 1992&nbsp;&ndash; 1998 </h5>
+				<div class="description">
+					<p>Специальность: двигатели летательных аппаратов.</p> 
+					<p>Квалификация: инженер-механик.</p>
+				</div>
+			</li>
+			<li>
+				<h3>Институт технического творчества и патентоведения</h3>  <h5> 1994&nbsp;&ndash; 1996 </h5>
+				<p class="description">
+					Специальность: маркетинг. <br />
+					Квалификация: экономист.
+				</p>
+			</li>
+		</ul> 
+		<!-- конец образования -->		
+
+		<div class="hr">&nbsp;</div>
+		
+		<!-- Начало опыта -->
+		<h2>Опыт работы</h2>
+		<ul class="list hidden">
+			<li>
+				<h3> Front-end Developer </h3>  <h5> 2013&nbsp;&ndash; сейчас </h5>
+				<h6> TravelTipz.ru </h6>
+				<p class="description">
+					Сайт компании
+				</p>
+			</li>
+			<li>
+				<h3> Контент-менеджер </h3>  <h5> 2008&nbsp;&ndash; 2013 </h5>
+				<h6> ООО «ФИБО Украина» </h6>
+				<p class="description">
+					Наполнял сайты компании статьями, новостями, информацией о продуктах компании и прочее; верстал тексты; программировал интерактивность.<br />
+					Консультировал по вопросам заключения договоров, регистрации счетов, ввода и вывода средств, работы торговой платформы и др. 
+				</p>
+			</li>
+			<li>
+				<h3> Контент-менеджер </h3>  <h5> 1998&nbsp;&ndash; 2008 </h5>
+				<h6> ОАО «Мелитопольский компрессор» </h6>
+				<p class="description">
+					Создал и поддерживал сайт предприятия.<br />
+					Организовывал и проводил маркетинговые исследования; разрабатывал комплексные рекламные кампании и отдельные виды рекламы товаров; работал с исследовательскими, креативными, рекламными и другими сторонними организациями; организовывал участие в выставках и презентациях; подготавливл пресс-релизы и информационные материалы о деятельности компании.
+				</p>
+			</li>
+			<li>
+				<h3> Персональные проекты </h3><h5>2008&nbsp;&ndash; 2013</h5>
+				<h6> сайты, которыми занимался в свободное время </h6>
+				<ul>
+					<li>Чат дизайнеров&nbsp;&mdash; <a href="http://www.designchat.ru/">designchat.ru</a></li>
+					<li>Магазин цветов&nbsp;&mdash; <a href="http://rassada.net/">rassada.net</a></li>
+				</ul>
+			</li>
+		</ul>       		   
+		<!-- конец опыта -->    
+
+		<div class="hr">&nbsp;</div>
+		
+		<!-- Начало пожеланий -->   
+		<h2>Компенсационные ожидания</h2>
+		<ul class="list">
+			<li>
+				<ul>
+					<li>Час &ndash; $20</li>
+					<li>Неделя &ndash; $500</li>
+					<li>Месяц &ndash; $1500</li>
+				</ul>
+			</li>
+		</ul>
+		<!-- Конец пожеланий -->
+	</div>
+	
+	<div id="bottom-content">&nbsp;</div>
+</div>
+<script>var l=document.createElement("link");l.rel="stylesheet";l.href="css/style.css";document.getElementsByTagName("head")[0].appendChild(l);</script>
+<script>
+var loader = (function (src, callback) {
+    var doc = window.document, cache = {};
+    return function (src, callback) {
+        if (cache.hasOwnProperty(src)) {
+            callback && (callback());
+        } else {
+            var el = doc.createElement('script'), loaded = 0;
+            el.src = src, doc.body.appendChild(el), cache[src] = 1;
+            if (callback) {
+                el.onload = el.onreadystatechange = function (e) {
+                    if ((el.readyState && el.readyState !== 'complete' && el.readyState !== 'loaded') || loaded)
+                        return false;
+                    el.onload = el.onreadystatechange = null, loaded = 1, callback();
+                };
+            }
+        }
+    };
+}());
+loader('http://code.jquery.com/jquery-1.11.0.min.js', on_ready);
+function on_ready() {
+    $('.hidden').hide();
+	$('h2').on('click', function() {
+		$(this).next('.list').slideToggle('medium');
+	});
+}
+</script>
+</body>
+</html>

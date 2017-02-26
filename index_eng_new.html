@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Front-end Developer Portfolio</title>
+	<style>/* fonts */
+            @font-face{font-family:'Exo 2';font-style:normal;font-weight:400;src:local('Exo 2'),local(Exo2-Regular),url(http://fonts.gstatic.com/s/exo2/v3/W4IAweRTlhKE0KN1t814DA.woff) format("woff")}@font-face{font-family:'Exo 2';font-style:normal;font-weight:600;src:local('Exo 2 Semi Bold'),local(Exo2-SemiBold),url(http://fonts.gstatic.com/s/exo2/v3/f0hHk_ds7TVzNRk1BrjGO_esZW2xOQ-xsNqO47m55DA.woff) format("woff")}@font-face{font-family:'Exo 2';font-style:italic;font-weight:400;src:local('Exo 2 Italic'),local(Exo2-Italic),url(http://fonts.gstatic.com/s/exo2/v3/fp3xmqvXDwAKWuAQUwdeZg.woff) format("woff")}@font-face{font-family:'Exo 2';font-style:italic;font-weight:600;src:local('Exo 2 Semi Bold Italic'),local(Exo2-SemiBoldItalic),url(http://fonts.gstatic.com/s/exo2/v3/AbE2HdC08fDM25clla7d4xsxEYwM7FgeyaSgU71cLG0.woff) format("woff")}
+        </style>
+	<style>
+*
+{
+    margin: 0;padding: 0;border: 0;outline: 0;
+}
+html
+{
+    font-size: 62.5%;
+}
+body
+{
+    font: 1.4rem/1.5 Arial,Helvetica,sans-serif;color: #333;
+    background: #a3a8ad;
+    background: linear-gradient(to bottom, #3d75a7 0px, #2f597f 367px, #1b3349 368px, #bfc4ca 369px, #a3a8ad 370px, #a3a8ad 100%) repeat fixed 0 0;
+}
+.container
+{
+    box-sizing: border-box;
+    width: 90%;
+    max-width: 940px;
+    margin: 40px auto;
+    padding: 60px;
+	box-shadow: 4px 4px 8px;
+
+    border-radius: 12px;
+    background-color: #f1f1f1;
+}
+a
+{
+    text-decoration: none;
+
+    color: #0a6eb4;
+}
+a:hover
+{
+    color: #013351;
+}
+.hr
+{
+    height: 0;
+    margin-bottom: 32px;
+
+    border-top: 1px solid #464646;
+    border-bottom: 1px solid #fff;
+}
+.mt45
+{
+    margin-top: 45px;
+}
+.header
+{
+    position: relative;
+
+    min-height: 270px;
+}
+.lang
+{
+	position: absolute;
+    right: 0;
+    top: -12px;
+}
+.photo
+{
+    position: absolute;
+    top: 0;
+
+    margin: 10px 18px 10px 0;
+    padding: 10px;
+
+    border: 1px solid #d5d5d5;
+    background-color: #f6f6f6;
+}
+.name
+{
+    font: 600 normal 3.2rem 'Exo 2',sans-serif;
+
+    margin-left: 200px;
+}
+.position
+{
+    font: 400 italic 2rem 'Exo 2',sans-serif;
+
+    margin-left: 200px;
+
+    color: #173d5f;
+}
+.top-description
+{
+    font-size: 1.6rem;
+    font-weight: normal;
+
+    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: 200px;
+}
+.contacts
+{
+    margin-bottom: 20px;
+    margin-left: 200px;
+}
+.address,
+.phone,
+.mail,
+.skype
+{
+    font-size: 1.6rem;
+
+    display: block;
+    overflow: hidden;
+
+    padding: 4px 0 0 30px;
+
+    background: url(img/sprite.png) no-repeat;
+}
+.address
+{
+    background-position: -13px -94px;
+}
+.phone
+{
+    background-position: -9px -2px;
+}
+.mail
+{
+    background-position: -9px -34px;
+}
+.skype
+{
+    background-position: -13px -124px;
+}
+
+.subtitle
+{
+    font-family: 'Exo 2',sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    font-style: italic;
+}
+.badge
+{
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    font-style: normal;
+
+    display: inline-block;
+
+    margin-left: 10px;
+    padding: 0 10px;
+
+    color: #fff;
+    background-color: #2f597f;
+}
+.spoil-link
+{
+    font-family: 'Exo 2',sans-serif;
+    font-size: 2.6rem;
+
+    cursor: pointer;
+}
+.work-name
+{
+    font-size: 1.4rem;
+    font-weight: bold;
+
+    margin-top: 20px;
+}
+.description
+{
+    margin-top: 20px;
+}
+ul.list
+{
+    position: relative;
+
+    clear: both;
+
+    margin: 30px 0 0 45px;
+
+    list-style: none;
+
+    border-bottom: 1px dashed #afafaf;
+}
+ul.list > li
+{
+    display: block;
+
+    padding: 10px 25px 20px;
+
+    border: 1px dashed #afafaf;
+    border-bottom: 0;
+}
+ul.list:after
+{
+    position: absolute;
+    top: -10px;
+    left: 30px;
+
+    width: 20px;
+    height: 20px;
+
+    content: '';
+    transform: rotate(45deg);
+
+    border-top: 1px dashed #afafaf;
+    border-left: 1px dashed #afafaf;
+    background-color: #e6e6e6;
+}
+ul.list > li:nth-child(odd)
+{
+    background: #e6e6e6;
+}
+
+ul.list > li:after
+{
+    display: table;clear: both;content: '';
+}
+
+ul.list ul li
+{
+    margin-left: 17px;
+}
+
+
+
+
+@media screen and (max-width: 940px)
+{
+    ul.list
+    {
+        margin-left: 0;
+    }
+}
+@media screen and (max-width: 760px)
+{
+    .container
+    {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 10px;
+
+        border-radius: 0;
+    }
+}
+@media screen and (max-width: 560px)
+{
+    .photo
+    {
+        position: static;
+    }
+    .name,
+    .position,
+    .top-description,
+    .contacts
+    {
+        margin-left: 0;
+    }
+    .contacts
+    {
+        position: absolute;
+        top: 80px;
+        left: 200px;
+    }
+}
+@media screen and (max-width: 440px)
+{
+    .contacts
+    {
+        position: static;
+    }
+}
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="header">
+		<a class="lang" href="index.php">русская версия</a>
+		<h2 class="name">Eugene Romanenko</h2>
+		<h1 class="position">Front-end Developer</h1>
+		<img class="photo" src="img/photo_js.jpg" alt="Романенко Евгений, фотография">
+		<p class="top-description">
+			Ready to exchange my free time on a certain amount of money. I add my coder and JavaScript-programmer skills as a bonus.
+		</p>
+		<div class="contacts">
+			<a class="address" href="http://goo.gl/maps/6zRCv">Kyiv</a>
+			<div class="phone">+38 (097) 738-5870</div>
+			<a class="mail" href="mailto:eromanenko@gmail.com">eromanenko@gmail.com</a>
+			<div class="skype">betepahko</div>
+		</div>
+	</div>
+
+	<div class="middle-content">
+		<div class="hr">&nbsp;</div>
+
+		<!-- Начало навыков -->
+		<h2 class="spoil-link">Skills</h2>
+		<div class="spoil-content">
+		<ul class="list">
+			<li>
+				<h3 class="subtitle">HTML &amp; CSS <span class="badge">advanced, 15 years</span></h3>
+				<p class="description">
+					Working under some companies' websites as well as various volunteer and personal projects taught my to code and to follow the principles:
+				</p>
+				<ul>
+					<li>Identity layout</li>
+					<li>The purity and logic of code</li>
+					<li>Graceful Degradation & Progressive Enhancement</li>
+					<li>Cross-browser compatibility</li>
+				</ul>
+				<p class="description">
+					Got accustomed with BEM-methodology, CSS-preprocessors (scss), vector graphics. Know what adaptive layout means. Used the following HTML5 API's:
+				</p>
+				<ul>
+					<li>Audio</li>
+					<li>History</li>
+					<li>Fullscreen</li>
+					<li>FileReader</li>
+					<li>Web Storage</li>
+					<li>getUserMedia</li>
+					<li>Notifications</li>
+				</ul>
+			</li>
+			<li>
+				<h3 class="subtitle">JavaScript &amp; jQuery <span class="badge">strong, 5 years</span></h3>
+				<p class="description">
+					I understand code written by someone else and carefully code myself. When I comment I ask myself not "What does the code do?" but "What is this code for?". I used to patch plug-ins and to create my own ones:
+				</p>
+				<ul>
+					<li>Rotators</li>
+					<li>Sliders</li>
+					<li>Date-pickers</li>
+				</ul>
+				<p class="description">
+					If the project does not use jQuery, I can write on pure JavaScript. Familiar with asynchronous code, closures.
+				</p>
+			</li>
+			<li>
+				<h3 class="subtitle">Graphics <span class="badge">advanced, 12 years</span></h3>
+				<p class="description">
+					Graphics packages were more of a hobby than direct duties, but still:
+				</p>
+				<ul>
+					<li>Sketch</li>
+					<li>Adobe PhotoShop</li>
+					<li>Corel Draw</li>
+					<li>Flash</li>
+				</ul>
+			</li>
+			<li>
+				<h3 class="subtitle">Other</h3>
+				<ul>
+					<li>Code Editors: Atom, PHP Storm, Notepad++</li>
+					<li>System Versions Control: Github, SVN</li>
+					<li>Possible form of cooperation: I have a valid legal entity (Individual entrepreneur)</li>
+				</ul>
+			</li>
+		</ul>
+		</div>
+
+		<!-- конец навыков -->
+
+		<div class="hr mt45">&nbsp;</div>
+
+		<!-- Начало портфолио -->
+		<h2 class="spoil-link">Portfolio</h2>
+		<div class="spoil-content">
+		<ul class="list">
+			<li>
+				<h3 class="subtitle">Bkstg. Public<span class="badge">2017</span></h3>
+				<div class="work-name">Celebrity focused social network</div>
+				<div class="cv-screen">
+					<a href="https://bkstg.com" target="_blank"><img src="img/screen_bkstg_public.png" alt="" />bkstg.com</a>
+				</div>
+				<ul>
+					<li>Single page application</li>
+					<li>Angular 2</li>
+					<li>Npm</li>
+					<li>RESTful API</li>
+					<li>WebSockets</li>
+				</ul>
+			</li>
+			<li>
+				<h3 class="subtitle">Bkstg. Admin<span class="badge">2016</span></h3>
+				<div class="work-name">Celebrity focused social network</div>
+				<div class="cv-screen">
+					<a href="https://admin.bkstg.com" target="_blank"><img src="img/screen_bkstg_admin.png" alt="" />admin.bkstg.com</a>
+				</div>
+				<ul>
+					<li>Single page application</li>
+					<li>AngularJs</li>
+					<li>Gulp</li>
+					<li>Cloud Storage with Amazon S3</li>
+					<li>RESTful API</li>
+				</ul>
+			</li>
+			<li>
+				<h3 class="subtitle">TravelTipz <span class="badge">2015</span></h3>
+				<div class="work-name">Service for travellers: hotels, restaurants and attractions reviews</div>
+				<div class="cv-screen">
+					<a href="http://traveltipz.ru/" target="_blank"><img src="img/screen_traveltipz.png" alt="" />traveltipz.ru</a>
+				</div>
+				<ul>
+					<li>Redesign</li>
+					<li>The slider on the front page</li>
+					<li>Date-picker plug-in</li>
+					<li>Adaptive layout for 2 widths (1200 and 960 pixels). They plan to add break-points for the mobile layout.</li>
+					<li>Non-system font Exo 2</li>
+					<li>Optimizing page rendering, lazy loading of scripts and styles</li>
+				</ul>
+			</li>
+			<li>
+				<h3 class="subtitle">Bombezno <span class="badge">2013</span></h3>
+				<div class="work-name">Landing page</div>
+				<div class="cv-screen">
+					<a href="http://nd.bombezno.com/" target="_blank"><img src="img/screen_nicer.jpg" alt="" />nd.bombezno.com</a>
+				</div>
+				<ul>
+					<li>The timer of promo action validity</li>
+					<li>Order form, recall and callback via ajax</li>
+					<li>Modal windows</li>
+					<li>Markings on the PSD-layout</li>
+					<li>Footer fixed at the bottom of the page</li>
+				</ul>
+			</li>
+			<li>
+				<h3 class="subtitle">A-Development <span class="badge">2013</span></h3>
+				<div class="work-name">Software Developers site</div>
+				<div class="cv-screen">
+					<a href="http://a-devs.ru/" target="_blank"><img src="img/screen_ad.jpg" alt="" />a-devs.ru</a>
+				</div>
+				<ul>
+					<li>Markings on the PSD-layout</li>
+				</ul>
+			</li>
+			<li>
+				<h3 class="subtitle">Bombezno <span class="badge">2013</span></h3>
+				<div class="work-name">Landing page</div>
+				<div class="cv-screen">
+					<a href="http://mop.bombezno.com/" target="_blank"><img src="img/screen_h2o.jpg" alt="" />mop.bombezno.com</a>
+				</div>
+				<ul>
+					<li>Markings on the PSD-layout</li>
+				</ul>
+			</li>
+			<li>
+				<h3>Market-Logic <span class="badge">2013</span></h3>
+				<div class="work-name">Page of comments to the article</div>
+				<div class="cv-screen">
+					<a href="http://www.designchat.ru/cv/tz/marketlogic/index.html" target="_blank"><img src="img/screen_marketlogic.png" alt="" /></a>
+				</div>
+				<ul>
+					<li>Switching the comments background</li>
+					<li>Markings of PSD-layout, cross-browser, tableless, flexible (adaptive, @media-queries)</li>
+					<li>A window with contact information appearing after moving cursor to a commentator's nick (CSS)</li>
+				</ul>
+			</li>
+			<li>
+				<h3 class="subtitle">Speroteck <span class="badge">2013</span></h3>
+				<div class="work-name">The page for selecting a tariff</div>
+				<div class="cv-screen">
+					<a href="http://www.designchat.ru/cv/tz/speroteck/index.html" target="_blank"><img src="img/screen_speroteck.png" alt="" /></a>
+				</div>
+				<ul>
+					<li>Markings of PSD-layout, cross-browser, tableless</li>
+					<li>Switching tabs form "Personal Preferences" and validation of the data entered (JavaScript)</li>
+					<li>As for "Billing Information" - switching the tariff plan (active point - CSS, conversion rates - JavaScript)</li>
+					<li>Footer is at the bottom of the browser window when the content is empty (CSS)</li>
+				</ul>
+			</li>
+			<li>
+				<h3 class="subtitle">Mobile applications and services of the website of Government of Moscow <span class="badge">2013</span></h3>
+				<div class="work-name">Results of the competition</div>
+				<div class="cv-screen">
+					<a href="http://dit.mos.ru/apps/contest" target="_blank"><img src="img/screen_moskow.png" alt="" />dit.mos.ru</a>
+				</div>
+				<ul>
+					<li>Markings on the PSD-layout</li>
+				</ul>
+			</li>
+			<li>
+				<h3 class="subtitle">StarLadder <span class="badge">2013</span></h3>
+				<div class="work-name">News Page</div>
+				<div class="cv-screen">
+					<a href="http://www.designchat.ru/cv/tz/starladder/news-view0509.html" target="_blank"><img src="img/screen_starladder.png" alt="" /></a>
+				</div>
+				<ul>
+					<li>Layout using Bootstrap</li>
+					<li>Aligning the height of the columns (JavaScript)</li>
+					<li>Adapting to the width of the browser (@media-queries)</li>
+					<li>Using image sprites</li>
+				</ul>
+			</li>
+			<li>
+				<h3 class="subtitle">FIBO Group <span class="badge">2012</span></h3>
+				<div class="work-name">Page of actions layout</div>
+				<div class="cv-screen">
+					<a href="http://www.fibo-forex.ru/fibogroup/action.html" target="_blank"><img src="img/screen_fibo.png" alt="" />fibo-forex.ru</a>
+				</div>
+				<ul>
+					<li>Layout according to the guideline</li>
+					<li>Spoilers of actions list</li>
+				</ul>
+			</li>
+			<li>
+				<h3>Designchat <span class="badge">2012</span></h3>
+				<div class="work-name">Designers chat</div>
+				<div class="cv-screen">
+					<a href="http://www.designchat.ru/" target="_blank"><img src="img/screen_designchat.png" alt="" />designchat.ru</a>
+				</div>
+				<ul>
+					<li>Layout using Bootstrap</li>
+					<li>Refactoring client`s interface (JavaScript, jQuery)</li>
+					<li>Using HTML5-technology (Audio, FileReader API)</li>
+					<li>Using CSS3</li>
+					<li>Adaptation for touch-interfaces</li>
+				</ul>
+			</li>
+			<li>
+				<h3 class="subtitle">Favorite Garden <span class="badge">2008</span></h3>
+				<div class="work-name">Online Store</div>
+				<div class="cv-screen">
+					<a href="http://rassada.net/" target="_blank"><img src="img/screen_rassada.png" alt="" /> rassada.net</a>
+				</div>
+				<ul>
+					<li>Built on ucoz engine</li>
+				</ul>
+			</li>
+		</ul>
+		</div>
+
+		<!-- конец портфолио -->
+
+		<div class="hr mt45">&nbsp;</div>
+
+		<!-- Начало образования -->
+		<h2 class="spoil-link">Education</h2>
+		<div class="spoil-content hidden">
+		<ul class="list">
+			<li>
+				<h3 class="subtitle">National University named after O.Honchar, Dnepropetrovsk, Ukraine <span class="badge">1992&nbsp;&ndash; 1998</span></h3>
+				<div class="description">
+					<p>Specialist in Aircraft Engines</p>
+				</div>
+			</li>
+			<li>
+				<h3 class="subtitle">Institute of Technical Creativity and Patenting, Dnepropetrovsk, Ukraine <span class="badge">1994&nbsp;&ndash; 1996</span></h3>
+				<div class="description">
+					<p>Specialist in Marketing</p>
+				</div>
+			</li>
+		</ul>
+		</div>
+
+		<!-- конец образования -->
+
+		<div class="hr mt45">&nbsp;</div>
+
+		<!-- Начало опыта -->
+		<h2 class="spoil-link">Experience</h2>
+		<div class="spoil-content hidden">
+		<ul class="list">
+			<li>
+				<h3 class="subtitle">Sr. Front-end Developer <span class="badge">2015&nbsp;&ndash; Present</span></h3>
+				<div class="work-name">Bkstg.com</div>
+			</li>
+			<li>
+				<h3 class="subtitle">Front-end Developer <span class="badge">2013&nbsp;&ndash; 2015</span></h3>
+				<div class="work-name">TravelTipz.ru</div>
+			</li>
+			<li>
+				<h3 class="subtitle">Content manager <span class="badge">2008&nbsp;&ndash; 2013</span></h3>
+				<div class="work-name">LLC "FIBO Ukraine"</div>
+			</li>
+			<li>
+				<h3 class="subtitle">Content manager <span class="badge">1998&nbsp;&ndash; 2008</span></h3>
+				<div class="work-name">JSC "Melitopol Compressor"</div>
+			</li>
+			<li>
+				<h3 class="subtitle">Personal projects <span class="badge">2008&nbsp;&ndash; 2014</span></h3>
+				<div class="work-name">websites I worked under in my free time</div>
+				<ul>
+					<li>Designers chat&nbsp;&mdash; <a href="http://www.designchat.ru/">designchat.ru</a></li>
+					<li>Flower shop&nbsp;&mdash; <a href="http://rassada.net/">rassada.net</a></li>
+				</ul>
+			</li>
+		</ul>
+</div>
+		<!-- конец опыта -->
+
+		<div class="hr mt45">&nbsp;</div>
+
+		<!-- Начало рекомендаций -->
+		<h2 class="spoil-link">References</h2>
+		<div class="spoil-content">
+		<ul class="list">
+			<li>
+				<h3 class="subtitle">CSS Validation</h3>
+				<div class="work-name"><a href="http://jigsaw.w3.org/css-validator/validator?uri=eromanenko.pp.ua&profile=css3&usermedium=all&warning=1&vextwarning=&lang=ru">W3C</a></div>
+			</li>
+			<li>
+				<h3 class="subtitle">PageSpeed Insights</h3>
+				<div class="work-name"><a href="https://developers.google.com/speed/pagespeed/insights/?url=eromanenko.pp.ua&tab=mobile">Google</a></div>
+			</li>
+			<li>
+				<h3 class="subtitle">Mobile-Friendly Test</h3>
+				<div class="work-name"><a href="https://search.google.com/search-console/mobile-friendly?id=nheDw1z1Z-b7IroNOFoZ1w">Google</a></div>
+			</li>
+			<li>
+				<h3 class="subtitle">Technology used on this page:</h3>
+				<ul>
+					<li>Adaptive layout (media-queries)</li>
+					<li>Delayed loading of scripts and non-critical style</li>
+					<li>Non-system font for headers</li>
+					<li>Graphic sprite</li>
+					<li>CSS3 rules (shadows, rounded corners, gradients ...)</li>
+				</ul>
+			</li>
+		</ul>
+</div>
+		<!-- конец рекомендаций -->
+
+		<div class="hr mt45">&nbsp;</div>
+
+
+		<!-- Начало пожеланий -->
+		<h2 class="spoil-link" style="display: none">Compensation expectations</h2>
+		<div class="spoil-content" style="display: none">
+		<ul class="list">
+			<li>
+				<ul>
+					<li>Hour &ndash; $30</li>
+					<li>Week &ndash; $1000</li>
+					<li>Month &ndash; $3500</li>
+				</ul>
+			</li>
+		</ul>
+		</div>
+		<!-- Конец пожеланий -->
+	</div>
+
+</div>
+<script>var l=document.createElement("link");l.rel="stylesheet";l.href="css/style2015.css";document.getElementsByTagName("head")[0].appendChild(l);</script>
+<script>
+var loader = (function (src, callback) {
+    var doc = window.document, cache = {};
+    return function (src, callback) {
+        if (cache.hasOwnProperty(src)) {
+            callback && (callback());
+        } else {
+            var el = doc.createElement('script'), loaded = 0;
+            el.src = src, doc.body.appendChild(el), cache[src] = 1;
+            if (callback) {
+                el.onload = el.onreadystatechange = function (e) {
+                    if ((el.readyState && el.readyState !== 'complete' && el.readyState !== 'loaded') || loaded)
+                        return false;
+                    el.onload = el.onreadystatechange = null, loaded = 1, callback();
+                };
+            }
+        }
+    };
+}());
+loader('http://code.jquery.com/jquery-1.11.0.min.js', on_ready);
+function on_ready() {
+    $('.hidden').hide();
+	$('.spoil-link').on('click', function() {
+		$(this).next('.spoil-content').slideToggle('medium');
+	});
+}
+</script>
+</body>
+</html>

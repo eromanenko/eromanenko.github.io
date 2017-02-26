@@ -1,0 +1,97 @@
+html, body {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #333;
+	margin: 20px 0;
+}
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.clearfix:after {
+	clear: both;
+	display: table;
+	content: '';
+}
+.mt20 {
+	margin-top: 20px;
+}
+.games_item {
+	border: 1px solid #dbdbdb;
+	padding: 5px;
+	margin: 5px 0;
+	background: #efefef;
+}
+.games_title {
+	text-decoration: none;
+	color: #333;
+	font-size: 18px;
+	text-shadow: 0 1px rgba(255, 255,255,.5);
+}
+.games_title--en {
+	font-size: 11px;
+}
+.games_img {
+	display: block;
+	height: 150px;
+	margin: 10px 0;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.games_about_year {
+	float: left;
+	margin-right: 5px;
+}
+.games_about_gamers {
+	float: left;
+	margin-right: 5px;
+	padding-left: 24px;
+	background: url('http://tesera.ru/i/icons/ic1.gif') no-repeat;
+}
+.games_about_time {
+	float: left;
+	padding-left: 20px;
+	background: url('http://tesera.ru/i/icons/ic4.gif') no-repeat;
+}
+.games_about_rules {
+	float: right;
+}
+a[href='#'] {
+	color: #aaa;
+}
+.triangles {
+	vertical-align: middle;
+    font-size: 8px;
+    font-weight: normal;
+}
+.game_img {
+	height: 300px;
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.game_description {
+	margin-top: 20px;
+}
+.game_btn_description {
+	width: 100%;
+}
+.game_btn_rules {
+	width: 100%;
+	margin-top: 20px;
+}
+.game_thumbs {
+	margin-left: -10px;
+}
+.game_thumbs li {
+	border: 1px solid #ccc;
+	float: left;
+	height: 100px;
+	width: 100px;
+	margin: 20px 10px 0;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}

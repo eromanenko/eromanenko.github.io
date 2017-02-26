@@ -1,0 +1,72 @@
+<div class="container" 
+        ng-controller="GameListCtrl"
+        ng-switch on="view">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="input-group">
+                  <span class="input-group-addon">filter</span>
+                  <input type="text" class="form-control" ng-model="query" placeholder="name game">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-default"
+                        ng-click="view='list'">
+                    <span class="glyphicon glyphicon-th-large"></span>
+                    </button>
+                    <button type="button" class="btn btn-default"
+                        ng-click="view='table'">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                  </button>
+                </div>
+            </div>
+        </div>
+        <div ng-switch-when="list" class="mt20">
+			<ul class="row">
+				<gl-game-card 
+					ng-repeat="game in games | filter: autosearch "
+					game="game"></gl-game-card>  
+			</ul>
+			<div class="mt20">Всего игр: <b>{{ games.length }}</b> шт.</div>
+        </div>
+        <table class="table mt20" ng-switch-when="table">
+          <thead>
+            <tr>
+				<th>#</th>
+				<th ng-click="sortType = 'ruName'; sortReverse = !sortReverse">Name 
+					<span ng-show="sortType == 'ruName' && !sortReverse" class="glyphicon glyphicon-triangle-bottom triangles"></span>
+					<span ng-show="sortType == 'ruName' && sortReverse" class="glyphicon glyphicon-triangle-top triangles"></span>
+				</th>
+				<th ng-click="sortType = 'year'; sortReverse = !sortReverse">Year
+					<span ng-show="sortType == 'year' && !sortReverse" class="glyphicon glyphicon-triangle-bottom triangles"></span>
+					<span ng-show="sortType == 'year' && sortReverse" class="glyphicon glyphicon-triangle-top triangles"></span>
+				</th>
+				<th ng-click="sortType = 'gamersMax'; sortReverse = !sortReverse">Gamers
+					<span ng-show="sortType == 'gamersMax' && !sortReverse" class="glyphicon glyphicon-triangle-bottom triangles"></span>
+					<span ng-show="sortType == 'gamersMax' && sortReverse" class="glyphicon glyphicon-triangle-top triangles"></span>
+				</th>
+				<th>Rules</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="game in games | orderBy:sortType:sortReverse | filter: autosearch">
+              <td>{{ $index + 1 }}</td>
+              <td><a href="#/games/{{game.id}}">{{ game.ruName }}</a> ({{ game.enName }})</td>
+              <td>{{ game.year }}</td>
+              <td>{{ game.gamersMin + ' - ' + game.gamersMax }}</td>
+			  <td><a href="{{ game.link }}">description</a> | <a href="{{ game.ruleslink }}">rules</a></td>
+            </tr>
+          </tbody>
+        </table>
+		
+		<form action="http://boardgamegeek.com/geeksearch.php" method="get" class="mt20">
+			<input type="hidden" value="search" name="action">
+			<input type="hidden" value="boardgame" name="objecttype">
+			<div class="input-group">
+				<input class="form-control" type="text" autocapitalize="off" autocorrect="off" size="32" name="q" placeholder="Поиск на BoardGameGeek.com">
+				<span class="input-group-btn">	
+					<button class="btn btn-default" type="submit">Go!</button>
+				</span>				
+			</div>
+		</form>
+    </div>

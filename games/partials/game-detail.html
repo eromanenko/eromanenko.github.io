@@ -1,0 +1,45 @@
+<div class="container">
+
+	<a class="btn btn-default" href="/games"><span class="glyphicon glyphicon-arrow-left"></span> Back to catalog</a>
+	
+	<h1>{{game.ruName}} <small>{{game.enName}}</small></h1>
+	
+	<div class="game_img" style="background-image: url('{{mainImageUrl}}')"></div>
+
+	<ul class="game_thumbs clearfix">
+	  <li ng-repeat="img in game.imgs" ng-click="setImage(img)" style="background-image: url('{{img}}')"></li>
+	</ul>
+
+	<div ng-bind-html="description" class="game_description"></div>
+	
+	<div class="row">
+		<div class="col-lg-6">
+			<div>
+				<a href="{{game.link}}" class="btn btn-primary game_btn_description">Описание</a>
+			</div>
+			<div>
+				<a href="{{game.ruleslink}}" class="btn btn-success game_btn_rules">Правила</a>
+			</div>
+		</div>
+		<div class="col-lg-6">
+			<ul class="list-group">
+			  <li class="list-group-item">
+				<span class="badge">{{game.time}}</span>
+				Год выпуска
+			  </li>
+			  <li class="list-group-item">
+				<span class="badge">{{game.gamersMin}} - {{game.gamersMax}}</span>
+				Игроков
+			  </li>
+			  <li class="list-group-item">
+				<span class="badge">{{game.time}} мин</span>
+				Время игры
+			  </li>
+			  <li class="list-group-item">
+				<span class="badge">{{game.howManyTimes}} раз</span>
+				Сыграно
+			  </li>
+			</ul>
+		</div>
+	</div>
+</div>
