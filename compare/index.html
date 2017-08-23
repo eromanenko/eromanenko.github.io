@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Compare Duplicates</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./bundle.min.js"></script>
+  </head>
+  <body>
+
+    <label class="imgInpLabel">
+     <input type='file' class="imgInp" data-id="1">
+    </label>
+    <label class="imgInpLabel imgInpLabel--2">
+     <input type='file' class="imgInp" data-id="2">
+    </label>
+
+    <div class="container">
+
+      <div class="compare-slider-wrapper">
+       	<div class="compare-slider">
+          <div class="title" id="title2">unselected</div>
+          <img id="imgOut2" src="http://egegorgulu.com/assets/img/beforeafter/after.jpg" alt="Photo 2">
+          <div class="resize">
+      	    <div class="title" id="title1">unselected</div>
+      	    <img id="imgOut1" src="http://egegorgulu.com/assets/img/beforeafter/before.jpg" alt="Photo 1">
+          </div>
+          <div class="divider"></div>
+      	</div>
+
+      </div>
+
+      <div class="compare-zoom">
+        <div class="imgBg imgBg--1"></div>
+        <div class="imgBg imgBg--2"></div>
+      </div>
+
+    </div>
+  </body>
+</html>
