@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Front-end Developer Portfolio</title>
-	<style>/* fonts */
-            @font-face{font-family:'Exo 2';font-style:normal;font-weight:400;src:local('Exo 2'),local(Exo2-Regular),url(http://fonts.gstatic.com/s/exo2/v3/W4IAweRTlhKE0KN1t814DA.woff) format("woff")}
-			@font-face{font-family:'Exo 2';font-style:normal;font-weight:600;src:local('Exo 2 Semi Bold'),local(Exo2-SemiBold),url(http://fonts.gstatic.com/s/exo2/v3/f0hHk_ds7TVzNRk1BrjGO_esZW2xOQ-xsNqO47m55DA.woff) format("woff")}
-			@font-face{font-family:'Exo 2';font-style:italic;font-weight:400;src:local('Exo 2 Italic'),local(Exo2-Italic),url(http://fonts.gstatic.com/s/exo2/v3/fp3xmqvXDwAKWuAQUwdeZg.woff) format("woff")}
-			@font-face{font-family:'Exo 2';font-style:italic;font-weight:600;src:local('Exo 2 Semi Bold Italic'),local(Exo2-SemiBoldItalic),url(http://fonts.gstatic.com/s/exo2/v3/AbE2HdC08fDM25clla7d4xsxEYwM7FgeyaSgU71cLG0.woff) format("woff")}
-        </style>
+	<meta property="og:title" content="Front-end Developer Portfolio">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="http://eromanenko.pp.ua">
+	<meta property="og:image" content="http://eromanenko.pp.ua/img/avatar.jpg">
+	<meta property="og:description" content="Skilled Front-end developer with 10+ years experience in site's building">
 	<style>
 *
 {
@@ -20,7 +19,9 @@ html
 }
 body
 {
-    font: 1.4rem/1.5 Arial,Helvetica,sans-serif;color: #333;
+
+    font: 1.4rem/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+		color: #333;
     background: #a3a8ad;
     background: linear-gradient(to bottom, #3d75a7 0px, #2f597f 367px, #1b3349 368px, #bfc4ca 369px, #a3a8ad 370px, #a3a8ad 100%) repeat fixed 0 0;
 }
@@ -31,7 +32,7 @@ body
     max-width: 940px;
     margin: 40px auto;
     padding: 60px;
-	box-shadow: 4px 4px 8px;
+		box-shadow: 4px 4px 8px;
 
     border-radius: 12px;
     background-color: #f1f1f1;
@@ -46,33 +47,16 @@ a:hover
 {
     color: #013351;
 }
-.hr
-{
-    height: 0;
-    margin-bottom: 32px;
-
-    border-top: 1px solid #464646;
-    border-bottom: 1px solid #fff;
-}
-.mt45
-{
-    margin-top: 45px;
-}
 .header
 {
     position: relative;
 
     min-height: 270px;
 }
-.lang
-{
-	position: absolute;
-    right: 0;
-    top: -12px;
-}
 .photo
 {
     position: absolute;
+		width: 160px;
     top: 0;
 
     margin: 10px 18px 10px 0;
@@ -286,16 +270,17 @@ ul.list ul li
 <body>
 <div class="container">
 	<div class="header">
-		<a class="lang" href="index_eng.html">engish version</a>
-		<h2 class="name">Романенко Евгений</h2>
+		<h2 class="name">Romanenko Eugene</h2>
 		<h1 class="position">Front-end Developer</h1>
-		<img class="photo" src="img/photo_js.jpg" alt="Романенко Евгений, фотография">
+		<img class="photo" src="img/avatar.jpg" alt="Romanenko Eugene, photo">
 		<p class="top-description">
-			Готов поменять своё свободное время на некоторое количество денежных знаков. В качестве бонуса прилагаю навыки верстальщика и JavaScript-программиста.
+			A person whose hobby had grown into a job.<br>
+			Skilled Front-end developer with 10+ years experience in site's building.<br>
+			Proficiency in engineering industry, online shopping, financial services, web chat creating, travel services, creating web applications for social network, etc.
 		</p>
 		<div class="contacts">
-			<a class="address" href="http://goo.gl/maps/6zRCv">Киев, м. Позняки</a>
-			<div class="phone">+38 (097) 738-5870</div>
+			<div class="address">Kyiv, Ukraine</div>
+			<a class="phone" href="tel:+380977385870">+380977385870</a>
 			<a class="mail" href="mailto:eromanenko@gmail.com">eromanenko@gmail.com</a>
 			<div class="skype">betepahko</div>
 		</div>
@@ -305,24 +290,17 @@ ul.list ul li
 		<div class="hr">&nbsp;</div>
 
 		<!-- Начало навыков -->
-		<h2 class="spoil-link">Навыки</h2>
+		<h2 class="spoil-link">Skills</h2>
 		<div class="spoil-content">
 		<ul class="list">
 			<li>
-				<h3 class="subtitle">HTML &amp; CSS <span class="badge">продвинутый, 15 лет</span></h3>
-				<p class="description">
-					Работа с сайтами компаний, волонтерскими и личными проектами позволили освоить профессию верстальщика и выработать следующие принципы:
-				</p>
-				<ul>
-					<li>Идентичность макету</li>
-					<li>Чистота и логичность кода</li>
-					<li>Graceful Degradation & Progressive Enhancement</li>
-					<li>Кроссбраузерность</li>
-				</ul>
+				<h3 class="subtitle">HTML &amp; CSS <span class="badge">продвинутый, 17 лет</span></h3>
 				<p class="description">
 					Знаком с BEM-методологией, CSS-препроцессорами (scss), векторной графикой. Работал с адаптивной версткой. Использовал HTML5 API's:
 				</p>
 				<ul>
+					<li>HTML5</li>
+					<li>CSS3</li>
 					<li>Audio</li>
 					<li>History</li>
 					<li>Fullscreen</li>
@@ -333,29 +311,19 @@ ul.list ul li
 				</ul>
 			</li>
 			<li>
-				<h3 class="subtitle">JavaScript &amp; jQuery <span class="badge">уверенный, 5 лет</span></h3>
+				<h3 class="subtitle">JavaScript <span class="badge">продвинутый, 8 лет</span></h3>
 				<p class="description">
 					Умею разбираться в чужом коде и аккуратно пишу свой. Комментирую по принципу не "что делает этот код", а "зачем этот код необходим". Приходилось патчить существующие плагины и писать собственные:
 				</p>
 				<ul>
-					<li>Ротаторы</li>
-					<li>Слайдеры</li>
-					<li>Календарь</li>
-				</ul>
-				<p class="description">
-					Если в проекте не используется jQuery, не составляет труда писать на чистом JavaScript. Хорошо знаком с асинхронным кодом, замыканиями.
-				</p>
-			</li>
-			<li>
-				<h3 class="subtitle">Графика <span class="badge">продвинутый, 10 лет</span></h3>
-				<p class="description">
-					Работа с графическими пакетами является скорее хобби, чем должностной обязанностью.
-				</p>
-				<ul>
-					<li>Sketch</li>
-					<li>Adobe PhotoShop</li>
-					<li>Corel Draw</li>
-					<li>Flash</li>
+					<li>ES 2015</li>
+					<li>AngularJs</li>
+					<li>Angular 2</li>
+					<li>Redux</li>
+					<li>TypeScript</li>
+					<li>RxJS</li>
+					<li>jQuery</li>
+					<li>regexp</li>
 				</ul>
 			</li>
 			<li>
@@ -370,8 +338,6 @@ ul.list ul li
 		</div>
 
 		<!-- конец навыков -->
-
-		<div class="hr mt45">&nbsp;</div>
 
 		<!-- Начало портфолио -->
 		<h2 class="spoil-link">Портфолио</h2>
@@ -542,8 +508,6 @@ ul.list ul li
 
 		<!-- конец портфолио -->
 
-		<div class="hr mt45">&nbsp;</div>
-
 		<!-- Начало образования -->
 		<h2 class="spoil-link">Образование</h2>
 		<div class="spoil-content hidden">
@@ -565,7 +529,6 @@ ul.list ul li
 
 		<!-- конец образования -->
 
-		<div class="hr mt45">&nbsp;</div>
 
 		<!-- Начало опыта -->
 		<h2 class="spoil-link">Опыт работы</h2>
@@ -598,60 +561,10 @@ ul.list ul li
 		</ul>
 </div>
 		<!-- конец опыта -->
-
-		<div class="hr mt45">&nbsp;</div>
-
-		<!-- Начало рекомендаций -->
-		<h2 class="spoil-link">Рекомендации</h2>
-		<div class="spoil-content">
-		<ul class="list">
-			<li>
-				<h3 class="subtitle">Валидация CSS</h3>
-				<div class="work-name"><a href="http://jigsaw.w3.org/css-validator/validator?uri=eromanenko.pp.ua&profile=css3&usermedium=all&warning=1&vextwarning=&lang=ru">W3C</a></div>
-			</li>
-			<li>
-				<h3 class="subtitle">PageSpeed Insights</h3>
-				<div class="work-name"><a href="https://developers.google.com/speed/pagespeed/insights/?url=eromanenko.pp.ua&tab=mobile">Google</a></div>
-			</li>
-			<li>
-				<h3 class="subtitle">Mobile-Friendly Test</h3>
-				<div class="work-name"><a href="https://search.google.com/search-console/mobile-friendly?id=nheDw1z1Z-b7IroNOFoZ1w">Google</a></div>
-			</li>
-			<li>
-				<h3 class="subtitle">Технологии, использованные на этой странице</h3>
-				<ul>
-					<li>Адаптивная верстка (media-запросы)</li>
-					<li>Отложенная загрузка скриптов и некритичных стилей</li>
-					<li>Несистемный шрифт для заголовков</li>
-					<li>Графический спрайт</li>
-					<li>CSS3 правила (тени, скругленные углы, градиенты...)</li>
-				</ul>
-			</li>
-		</ul>
-</div>
-		<!-- конец рекомендаций -->
-
-		<div class="hr mt45">&nbsp;</div>
-
-
-		<!-- Начало пожеланий -->
-		<h2 class="spoil-link" style="display: none">Компенсационные ожидания</h2>
-		<div class="spoil-content" style="display: none">
-		<ul class="list">
-			<li>
-				<ul>
-					<li>Час &ndash; $30</li>
-					<li>Неделя &ndash; $1000</li>
-					<li>Месяц &ndash; $3500</li>
-				</ul>
-			</li>
-		</ul>
-		</div>
-		<!-- Конец пожеланий -->
 	</div>
 
 </div>
-<script>var l=document.createElement("link");l.rel="stylesheet";l.href="css/style2015.css";document.getElementsByTagName("head")[0].appendChild(l);</script>
+<script>var l=document.createElement("link");l.rel="stylesheet";l.href="css/style.css";document.getElementsByTagName("head")[0].appendChild(l);</script>
 <script>
 var loader = (function (src, callback) {
     var doc = window.document, cache = {};
