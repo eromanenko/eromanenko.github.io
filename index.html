@@ -3,11 +3,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Front-end Developer Portfolio</title>
-	<meta property="og:title" content="Front-end Developer Portfolio">
+	<meta property="og:title" content="Eugene Romanenko">
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="http://eromanenko.pp.ua">
 	<meta property="og:image" content="http://eromanenko.pp.ua/img/avatar.jpg">
-	<meta property="og:description" content="Skilled Front-end developer with 10+ years experience in site's building">
+	<meta property="og:description" content="A person whose hobby had grown into a job. Skilled Front-end developer with 10+ years experience in site's building. Proficiency in engineering industry, online shopping, financial services, web chat creating, travel services, creating web applications for social network, etc.">
 	<style>
 *
 {
@@ -24,6 +24,14 @@ body
 		color: #333;
     background: #a3a8ad;
     background: linear-gradient(to bottom, #3d75a7 0px, #2f597f 367px, #1b3349 368px, #bfc4ca 369px, #a3a8ad 370px, #a3a8ad 100%) repeat fixed 0 0;
+}
+.hr
+{
+    height: 0;
+    margin-bottom: 32px;
+
+    border-top: 1px solid #464646;
+    border-bottom: 1px solid #fff;
 }
 .container
 {
@@ -52,31 +60,25 @@ a:hover
     position: relative;
 
     min-height: 270px;
+		padding-left: 250px;
 }
 .photo
 {
     position: absolute;
-		width: 160px;
+		width: 220px;
     top: 0;
-
-    margin: 10px 18px 10px 0;
-    padding: 10px;
-
+		left: 0;
+    padding: 1px;
     border: 1px solid #d5d5d5;
     background-color: #f6f6f6;
 }
 .name
 {
     font: 600 normal 3.2rem 'Exo 2',sans-serif;
-
-    margin-left: 200px;
 }
 .position
 {
     font: 400 italic 2rem 'Exo 2',sans-serif;
-
-    margin-left: 200px;
-
     color: #173d5f;
 }
 .top-description
@@ -86,12 +88,10 @@ a:hover
 
     margin-top: 10px;
     margin-bottom: 15px;
-    margin-left: 200px;
 }
 .contacts
 {
     margin-bottom: 20px;
-    margin-left: 200px;
 }
 .address,
 .phone,
@@ -244,6 +244,9 @@ ul.list ul li
     {
         position: static;
     }
+		.header {
+			padding-left: 0;
+		}
     .name,
     .position,
     .top-description,
@@ -255,7 +258,7 @@ ul.list ul li
     {
         position: absolute;
         top: 80px;
-        left: 200px;
+        left: 250px;
     }
 }
 @media screen and (max-width: 440px)
@@ -289,14 +292,14 @@ ul.list ul li
 	<div class="middle-content">
 		<div class="hr">&nbsp;</div>
 
-		<!-- Начало навыков -->
+
 		<h2 class="spoil-link">Skills</h2>
 		<div class="spoil-content">
 		<ul class="list">
 			<li>
-				<h3 class="subtitle">HTML &amp; CSS <span class="badge">продвинутый, 17 лет</span></h3>
+				<h3 class="subtitle">HTML &amp; CSS <span class="badge">advanced, 17 years</span></h3>
 				<p class="description">
-					Знаком с BEM-методологией, CSS-препроцессорами (scss), векторной графикой. Работал с адаптивной версткой. Использовал HTML5 API's:
+					Got accustomed with BEM-methodology, CSS-preprocessors (scss), vector graphics. Know what adaptive layout means. Used the following HTML5 API's:
 				</p>
 				<ul>
 					<li>HTML5</li>
@@ -311,9 +314,9 @@ ul.list ul li
 				</ul>
 			</li>
 			<li>
-				<h3 class="subtitle">JavaScript <span class="badge">продвинутый, 8 лет</span></h3>
+				<h3 class="subtitle">JavaScript <span class="badge">advanced, 8 years</span></h3>
 				<p class="description">
-					Умею разбираться в чужом коде и аккуратно пишу свой. Комментирую по принципу не "что делает этот код", а "зачем этот код необходим". Приходилось патчить существующие плагины и писать собственные:
+					I understand code written by someone else and carefully code myself. When I comment I ask myself not "What does the code do?" but "What is this code for?". I used to patch plug-ins and to create my own ones:
 				</p>
 				<ul>
 					<li>ES 2015</li>
@@ -327,215 +330,210 @@ ul.list ul li
 				</ul>
 			</li>
 			<li>
-				<h3 class="subtitle">Организационное</h3>
+				<h3 class="subtitle">Other</h3>
 				<ul>
-					<li>Редакторы кода: Atom, PHP Storm, Notepad++</li>
-					<li>Cистема контроля версий: Github, SVN</li>
-					<li>Форма сотрудничества: имею действующий ФОП</li>
+					<li>Grafics: Sketch, Photoshop, CorelDrow</li>
+					<li>Code Editors: Atom, PHP Storm, Notepad++</li>
+					<li>System Versions Control: Github, SVN</li>
+					<li>Possible form of cooperation: I have a valid legal entity (Individual entrepreneur)</li>
+					<li>Languages: Russian - native, Ukranian - advanced, English - intermediate</li>
 				</ul>
 			</li>
 		</ul>
 		</div>
 
-		<!-- конец навыков -->
 
-		<!-- Начало портфолио -->
-		<h2 class="spoil-link">Портфолио</h2>
+		<h2 class="spoil-link">Portfolio</h2>
 		<div class="spoil-content">
+			<ul class="list">
+				<li>
+					<h3 class="subtitle">Bkstg. Public<span class="badge">2017</span></h3>
+					<div class="work-name">Celebrity focused social network</div>
+					<div class="cv-screen">
+						<a href="https://bkstg.com" target="_blank"><img src="img/screen_bkstg_public.png" alt="" />bkstg.com</a>
+					</div>
+					<ul>
+						<li>Single page application</li>
+						<li>Angular 2</li>
+						<li>Npm</li>
+						<li>RESTful API</li>
+						<li>WebSockets</li>
+					</ul>
+				</li>
+				<li>
+					<h3 class="subtitle">Bkstg. Admin<span class="badge">2016</span></h3>
+					<div class="work-name">Celebrity focused social network</div>
+					<div class="cv-screen">
+						<a href="https://admin.bkstg.com" target="_blank"><img src="img/screen_bkstg_admin.png" alt="" />admin.bkstg.com</a>
+					</div>
+					<ul>
+						<li>Single page application</li>
+						<li>AngularJs</li>
+						<li>Gulp</li>
+						<li>Cloud Storage with Amazon S3</li>
+						<li>RESTful API</li>
+					</ul>
+				</li>
+				<li>
+					<h3 class="subtitle">TravelTipz <span class="badge">2015</span></h3>
+					<div class="work-name">Service for travellers: hotels, restaurants and attractions reviews</div>
+					<div class="cv-screen">
+						<a href="http://traveltipz.ru/" target="_blank"><img src="img/screen_traveltipz.png" alt="" />traveltipz.ru</a>
+					</div>
+					<ul>
+						<li>Redesign</li>
+						<li>The slider on the front page</li>
+						<li>Date-picker plug-in</li>
+						<li>Adaptive layout for 2 widths (1200 and 960 pixels). They plan to add break-points for the mobile layout.</li>
+						<li>Non-system font Exo 2</li>
+						<li>Optimizing page rendering, lazy loading of scripts and styles</li>
+					</ul>
+				</li>
+				<li>
+					<h3 class="subtitle">Bombezno <span class="badge">2013</span></h3>
+					<div class="work-name">Landing page</div>
+					<div class="cv-screen">
+						<a href="http://nd.bombezno.com/" target="_blank"><img src="img/screen_nicer.jpg" alt="" />nd.bombezno.com</a>
+					</div>
+					<ul>
+						<li>The timer of promo action validity</li>
+						<li>Order form, recall and callback via ajax</li>
+						<li>Modal windows</li>
+						<li>Markings on the PSD-layout</li>
+						<li>Footer fixed at the bottom of the page</li>
+					</ul>
+				</li>
+				<li>
+					<h3 class="subtitle">A-Development <span class="badge">2013</span></h3>
+					<div class="work-name">Software Developers site</div>
+					<div class="cv-screen">
+						<a href="http://a-devs.ru/" target="_blank"><img src="img/screen_ad.jpg" alt="" />a-devs.ru</a>
+					</div>
+					<ul>
+						<li>Markings on the PSD-layout</li>
+					</ul>
+				</li>
+				<li>
+					<h3 class="subtitle">Bombezno <span class="badge">2013</span></h3>
+					<div class="work-name">Landing page</div>
+					<div class="cv-screen">
+						<a href="http://mop.bombezno.com/" target="_blank"><img src="img/screen_h2o.jpg" alt="" />mop.bombezno.com</a>
+					</div>
+					<ul>
+						<li>Markings on the PSD-layout</li>
+					</ul>
+				</li>
+				<li>
+					<h3>Market-Logic <span class="badge">2013</span></h3>
+					<div class="work-name">Page of comments to the article</div>
+					<div class="cv-screen">
+						<a href="http://www.designchat.ru/cv/tz/marketlogic/index.html" target="_blank"><img src="img/screen_marketlogic.png" alt="" /></a>
+					</div>
+					<ul>
+						<li>Switching the comments background</li>
+						<li>Markings of PSD-layout, cross-browser, tableless, flexible (adaptive, @media-queries)</li>
+						<li>A window with contact information appearing after moving cursor to a commentator's nick (CSS)</li>
+					</ul>
+				</li>
+				<li>
+					<h3 class="subtitle">Speroteck <span class="badge">2013</span></h3>
+					<div class="work-name">The page for selecting a tariff</div>
+					<div class="cv-screen">
+						<a href="http://www.designchat.ru/cv/tz/speroteck/index.html" target="_blank"><img src="img/screen_speroteck.png" alt="" /></a>
+					</div>
+					<ul>
+						<li>Markings of PSD-layout, cross-browser, tableless</li>
+						<li>Switching tabs form "Personal Preferences" and validation of the data entered (JavaScript)</li>
+						<li>As for "Billing Information" - switching the tariff plan (active point - CSS, conversion rates - JavaScript)</li>
+						<li>Footer is at the bottom of the browser window when the content is empty (CSS)</li>
+					</ul>
+				</li>
+				<li>
+					<h3 class="subtitle">Mobile applications and services of the website of Government of Moscow <span class="badge">2013</span></h3>
+					<div class="work-name">Results of the competition</div>
+					<div class="cv-screen">
+						<a href="http://dit.mos.ru/apps/contest" target="_blank"><img src="img/screen_moskow.png" alt="" />dit.mos.ru</a>
+					</div>
+					<ul>
+						<li>Markings on the PSD-layout</li>
+					</ul>
+				</li>
+				<li>
+					<h3 class="subtitle">StarLadder <span class="badge">2013</span></h3>
+					<div class="work-name">News Page</div>
+					<div class="cv-screen">
+						<a href="http://www.designchat.ru/cv/tz/starladder/news-view0509.html" target="_blank"><img src="img/screen_starladder.png" alt="" /></a>
+					</div>
+					<ul>
+						<li>Layout using Bootstrap</li>
+						<li>Aligning the height of the columns (JavaScript)</li>
+						<li>Adapting to the width of the browser (@media-queries)</li>
+						<li>Using image sprites</li>
+					</ul>
+				</li>
+				<li>
+					<h3 class="subtitle">FIBO Group <span class="badge">2012</span></h3>
+					<div class="work-name">Page of actions layout</div>
+					<div class="cv-screen">
+						<a href="http://www.fibo-forex.ru/fibogroup/action.html" target="_blank"><img src="img/screen_fibo.png" alt="" />fibo-forex.ru</a>
+					</div>
+					<ul>
+						<li>Layout according to the guideline</li>
+						<li>Spoilers of actions list</li>
+					</ul>
+				</li>
+				<li>
+					<h3>Designchat <span class="badge">2012</span></h3>
+					<div class="work-name">Designers chat</div>
+					<div class="cv-screen">
+						<a href="http://www.designchat.ru/" target="_blank"><img src="img/screen_designchat.png" alt="" />designchat.ru</a>
+					</div>
+					<ul>
+						<li>Layout using Bootstrap</li>
+						<li>Refactoring client`s interface (JavaScript, jQuery)</li>
+						<li>Using HTML5-technology (Audio, FileReader API)</li>
+						<li>Using CSS3</li>
+						<li>Adaptation for touch-interfaces</li>
+					</ul>
+				</li>
+				<li>
+					<h3 class="subtitle">Favorite Garden <span class="badge">2008</span></h3>
+					<div class="work-name">Online Store</div>
+					<div class="cv-screen">
+						<a href="http://rassada.net/" target="_blank"><img src="img/screen_rassada.png" alt="" /> rassada.net</a>
+					</div>
+					<ul>
+						<li>Built on ucoz engine</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+
+		<h2 class="spoil-link">Education</h2>
+		<div class="spoil-content hidden">
 		<ul class="list">
 			<li>
-				<h3 class="subtitle">Bkstg. Публичная часть<span class="badge">2017</span></h3>
-				<div class="work-name">Соцсеть, ориентированная на общение музыкальных звезд с фанатами</div>
-				<div class="cv-screen">
-					<a href="https://bkstg.com" target="_blank"><img src="img/screen_bkstg_public.png" alt="" />bkstg.com</a>
+				<h3 class="subtitle">National University named after O.Honchar, Dnepropetrovsk, Ukraine <span class="badge">1992&nbsp;&ndash; 1998</span></h3>
+				<div class="description">
+					<p>Specialist in Aircraft Engines</p>
 				</div>
-				<ul>
-					<li>Single page application</li>
-					<li>Angular 2</li>
-					<li>Npm</li>
-					<li>RESTful API</li>
-					<li>WebSockets</li>
-				</ul>
 			</li>
 			<li>
-				<h3 class="subtitle">Bkstg. Админская часть<span class="badge">2016</span></h3>
-				<div class="work-name">Соцсеть, ориентированная на общение музыкальных звезд с фанатами</div>
-				<div class="cv-screen">
-					<a href="https://admin.bkstg.com" target="_blank"><img src="img/screen_bkstg_admin.png" alt="" />admin.bkstg.com</a>
+				<h3 class="subtitle">Institute of Technical Creativity and Patenting, Dnepropetrovsk, Ukraine <span class="badge">1994&nbsp;&ndash; 1996</span></h3>
+				<div class="description">
+					<p>Specialist in Marketing</p>
 				</div>
-				<ul>
-					<li>Single page application</li>
-					<li>AngularJs</li>
-					<li>Gulp</li>
-					<li>Cloud Storage with Amazon S3</li>
-					<li>RESTful API</li>
-				</ul>
-			</li>
-			<li>
-				<h3 class="subtitle">TravelTipz <span class="badge">2015</span></h3>
-				<div class="work-name">Сервис отзывов об отелях, ресторанах и развлечениях</div>
-				<div class="cv-screen">
-					<a href="http://traveltipz.ru/" target="_blank"><img src="img/screen_traveltipz.png" alt="" />traveltipz.ru</a>
-				</div>
-				<ul>
-					<li>Редизайн сервиса</li>
-					<li>Слайдер на титульной странице</li>
-					<li>Date-picker плагин</li>
-					<li>Адаптивная верстка на 2 ширины (1200 и 960 пикселей). Планируется добавление брейк-пойнтов для мобильной верстки.</li>
-					<li>Несистемный шрифт Exo 2</li>
-					<li>Оптимизация отрисовки страницы, отложенная загрузка скриптов и стилей</li>
-				</ul>
-			</li>
-			<li>
-				<h3 class="subtitle">Bombezno <span class="badge">2013</span></h3>
-				<div class="work-name">Посадочная страница</div>
-				<div class="cv-screen">
-					<a href="http://nd.bombezno.com/" target="_blank"><img src="img/screen_nicer.jpg" alt="" />nd.bombezno.com</a>
-				</div>
-				<ul>
-					<li>Таймер срока действия акции</li>
-					<li>Отправка форм заказа, отзыва и обратного звонка через ajax</li>
-					<li>Модальные окна</li>
-					<li>Разметка по PSD-макету</li>
-					<li>Прижатый к низу футер</li>
-				</ul>
-			</li>
-			<li>
-				<h3 class="subtitle">A-Development <span class="badge">2013</span></h3>
-				<div class="work-name">Сайт разработчиков программного обеспечения</div>
-				<div class="cv-screen">
-					<a href="http://a-devs.ru/" target="_blank"><img src="img/screen_ad.jpg" alt="" />a-devs.ru</a>
-				</div>
-				<ul>
-					<li>Верстка по PSD-макету</li>
-				</ul>
-			</li>
-			<li>
-				<h3 class="subtitle">Bombezno <span class="badge">2013</span></h3>
-				<div class="work-name">Посадочная страница</div>
-				<div class="cv-screen">
-					<a href="http://mop.bombezno.com/" target="_blank"><img src="img/screen_h2o.jpg" alt="" />mop.bombezno.com</a>
-				</div>
-				<ul>
-					<li>Верстка по PSD-макету</li>
-				</ul>
-			</li>
-			<li>
-				<h3>Market-Logic <span class="badge">2013</span></h3>
-				<div class="work-name">Страница комментариев к статье</div>
-				<div class="cv-screen">
-					<a href="http://www.designchat.ru/cv/tz/marketlogic/index.html" target="_blank"><img src="img/screen_marketlogic.png" alt="" /></a>
-				</div>
-				<ul>
-					<li>Переключение фона комментариев</li>
-					<li>Верстка по PSD-макету, кроссбраузерная, бестабличная, гибкая (адаптивная, @media-запросы)</li>
-					<li>Появляющееся окно с контактными данными при наведении на ник комментатора (CSS)</li>
-				</ul>
-			</li>
-			<li>
-				<h3 class="subtitle">Speroteck <span class="badge">2013</span></h3>
-				<div class="work-name">Страница выбора тарифного плана</div>
-				<div class="cv-screen">
-					<a href="http://www.designchat.ru/cv/tz/speroteck/index.html" target="_blank"><img src="img/screen_speroteck.png" alt="" /></a>
-				</div>
-				<ul>
-					<li>Верстка по PSD-макету, кроссбраузерная, бестабличная</li>
-					<li>Переключение табов формы "Personal Preferences" и валидация введенных данных (JavaScript)</li>
-					<li>"Billing Information" - реализовано переключение тарифного плана (активный пункт - CSS, пересчет цены - JavaScript)</li>
-					<li>Футер прижат к низу окна браузера, при пустом контенте (CSS)</li>
-				</ul>
-			</li>
-			<li>
-				<h3 class="subtitle">Мобильные приложения и сервисы Правительства Москвы <span class="badge">2013</span></h3>
-				<div class="work-name">Подведение итогов конкурса</div>
-				<div class="cv-screen">
-					<a href="http://dit.mos.ru/apps/contest" target="_blank"><img src="img/screen_moskow.png" alt="" />dit.mos.ru</a>
-				</div>
-				<ul>
-					<li>Верстка страницы согласно PSD макета.</li>
-				</ul>
-			</li>
-			<li>
-				<h3 class="subtitle">StarLadder <span class="badge">2013</span></h3>
-				<div class="work-name">Страница новости</div>
-				<div class="cv-screen">
-					<a href="http://www.designchat.ru/cv/tz/starladder/news-view0509.html" target="_blank"><img src="img/screen_starladder.png" alt="" /></a>
-				</div>
-				<ul>
-					<li>Верстка с ипользованием Bootstrap 2.3.2;</li>
-					<li>Выравнивание высоты колонок (JavaScript);</li>
-					<li>Адаптация под ширину браузера (@media-запросы);</li>
-					<li>Использование спрайтов изображений.</li>
-				</ul>
-			</li>
-			<li>
-				<h3 class="subtitle">FIBO Group <span class="badge">2012</span></h3>
-				<div class="work-name">Верстка страницы акций</div>
-				<div class="cv-screen">
-					<a href="http://www.fibo-forex.ru/fibogroup/action.html" target="_blank"><img src="img/screen_fibo.png" alt="" />fibo-forex.ru</a>
-				</div>
-				<ul>
-					<li>Верстка согласно guideline;</li>
-					<li>Спойлеры списка акций (jQuery).</li>
-				</ul>
-			</li>
-			<li>
-				<h3>Designchat <span class="badge">2012</span></h3>
-				<div class="work-name">Чат дизайнеров</div>
-				<div class="cv-screen">
-					<a href="http://www.designchat.ru/" target="_blank"><img src="img/screen_designchat.png" alt="" />designchat.ru</a>
-				</div>
-				<ul>
-					<li>Верстка с ипользованием Bootstrap;</li>
-					<li>Рефакторинг клиентского интерфейса (JavaScript, jQuery);</li>
-					<li>Использование HTML5-технологий (Audio, File API);</li>
-					<li>Использование CSS3;</li>
-					<li>Адаптация под touch-интерфейсы.</li>
-				</ul>
-			</li>
-			<li>
-				<h3 class="subtitle">&laquo;Любимый Сад&raquo; <span class="badge">2008</span></h3>
-				<div class="work-name">Интернет-магазин</div>
-				<div class="cv-screen">
-					<a href="http://rassada.net/" target="_blank"><img src="img/screen_rassada.png" alt="" /> rassada.net</a>
-				</div>
-				<ul>
-					<li>Использован движок от ucoz.</li>
-				</ul>
 			</li>
 		</ul>
 		</div>
 
-		<!-- конец портфолио -->
 
-		<!-- Начало образования -->
-		<h2 class="spoil-link">Образование</h2>
+		<h2 class="spoil-link">Experience</h2>
 		<div class="spoil-content hidden">
 		<ul class="list">
 			<li>
-				<h3 class="subtitle">Днепропетровский нац. университет им. О. Гончара <span class="badge">1992&nbsp;&ndash; 1998</span></h3>
-				<div class="description">
-					<p>Специальность: двигатели летательных аппаратов</p>
-				</div>
-			</li>
-			<li>
-				<h3 class="subtitle">Институт технического творчества и патентоведения <span class="badge">1994&nbsp;&ndash; 1996</span></h3>
-				<div class="description">
-					<p>Специальность: маркетинг</p>
-				</div>
-			</li>
-		</ul>
-		</div>
-
-		<!-- конец образования -->
-
-
-		<!-- Начало опыта -->
-		<h2 class="spoil-link">Опыт работы</h2>
-		<div class="spoil-content hidden">
-		<ul class="list">
-			<li>
-				<h3 class="subtitle">Sr. Front-end Developer <span class="badge">2015&nbsp;&ndash; сейчас</span></h3>
+				<h3 class="subtitle">Sr. Front-end Developer <span class="badge">2015&nbsp;&ndash; Present</span></h3>
 				<div class="work-name">Bkstg.com</div>
 			</li>
 			<li>
@@ -543,24 +541,31 @@ ul.list ul li
 				<div class="work-name">TravelTipz.ru</div>
 			</li>
 			<li>
-				<h3 class="subtitle">Контент-менеджер <span class="badge">2008&nbsp;&ndash; 2013</span></h3>
-				<div class="work-name">ООО «ФИБО Украина»</div>
+				<h3 class="subtitle">Content manager <span class="badge">2008&nbsp;&ndash; 2013</span></h3>
+				<div class="work-name">LLC "FIBO Ukraine"</div>
 			</li>
 			<li>
-				<h3 class="subtitle">Контент-менеджер <span class="badge">1998&nbsp;&ndash; 2008</span></h3>
-				<div class="work-name">ОАО «Мелитопольский компрессор»</div>
+				<h3 class="subtitle">Content manager <span class="badge">1998&nbsp;&ndash; 2008</span></h3>
+				<div class="work-name">JSC "Melitopol Compressor"</div>
 			</li>
 			<li>
-				<h3 class="subtitle">Персональные проекты <span class="badge">2008&nbsp;&ndash; 2013</span></h3>
-				<div class="work-name">сайты, которыми занимался в свободное время</div>
+				<h3 class="subtitle">Personal projects <span class="badge">2008&nbsp;&ndash; 2014</span></h3>
+				<div class="work-name">websites I worked under in my free time</div>
 				<ul>
-					<li>Чат дизайнеров&nbsp;&mdash; <a href="http://www.designchat.ru/">designchat.ru</a></li>
-					<li>Магазин цветов&nbsp;&mdash; <a href="http://rassada.net/">rassada.net</a></li>
+					<li>Designers chat&nbsp;&mdash; <a href="http://www.designchat.ru/">designchat.ru</a></li>
+					<li>Flower shop&nbsp;&mdash; <a href="http://rassada.net/">rassada.net</a></li>
 				</ul>
 			</li>
 		</ul>
-</div>
-		<!-- конец опыта -->
+	</div>
+
+ 		<h2 class="spoil-link">Personal data</h2>
+		<div class="spoil-content hidden">
+			<p>Born: March 24, 1975</p>
+			<p>Marital status: married with 2 sons</p>
+			<p>Qualities: careful, sociable, inclined to self-education, well-bred speech</p>
+		</div>
+
 	</div>
 
 </div>
