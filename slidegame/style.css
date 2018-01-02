@@ -1,0 +1,111 @@
+html, body{
+	width:100%;
+	min-width:960px;
+	-ms-user-select:none;
+	-moz-user-select:none;
+	-khtml-user-select:none;
+	-webkit-user-select:none;
+	-user-select:none;
+}
+html, body, div, p, img, a, span, input, text-area, h1, h2, h3, h4, h5, h6, ul, ol, li{
+	margin:0;
+	padding:0;
+	border:0;
+}
+.contcar{
+	position:relative;
+	top:50px;
+	width:900px;
+	height:600px;
+	margin:0 auto;
+}
+#container{
+	position:relative;
+	width:900px;
+	height:600px;
+	overflow:hidden;
+}
+#container div{
+	display:block;
+	position:absolute;
+	height:200px;
+	width:300px;
+}
+#lt{
+	top:0px;
+	left:0px;
+}
+#ct{
+	top:0px;
+	left:300px;
+}
+#rt{
+	top:0px;
+	left:600px;
+}
+#lm{
+	top:200px;
+	left:0px;
+}
+#cm{
+	top:200px;
+	left:300px;
+}
+#rm{
+	top:200px;
+	left:600px;
+}
+#lb{
+	top:400px;
+	left:0px;
+}
+#cb{
+	top:400px;
+	left:300px;
+}
+#rb{
+	top:400px;
+	left:600px;
+}
+#lu, #cu, #ru, #ld, #cd, #rd, #tr, #mr, #br, #tl, #ml, #bl{
+	position:absolute;
+	cursor:pointer;
+}
+#lu, #cu, #ru, #ld, #cd, #rd{
+	height:30px;
+	width:300px;
+}
+#tr, #mr, #br, #tl, #ml, #bl{
+	height:300px;
+	width:30px;
+}
+#lu, #cu, #ru{
+	top:-30px;
+}
+#ld, #cd, #rd{
+	top:600px;
+}
+#tr, #mr, #br{
+	left:900px;
+}
+#tl, #ml, #bl{
+	left:-30px;
+}
+#lu, #ld{
+	left:0px;
+}
+#cu, #cd{
+	left:300px;
+}
+#ru, #rd{
+	left:600px;
+}
+#tr, #tl{
+	top:0px;
+}
+#mr, #ml{
+	top:200px;
+}
+#br, #bl{
+	top:400px;
+}
