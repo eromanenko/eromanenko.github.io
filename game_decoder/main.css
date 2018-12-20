@@ -14,3 +14,13 @@
     background-color: #4b2020;
     text-align: center;
 }
+
+.list {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+.list > li {
+    list-style: none;
+    border: 1px solid gray; 
+}
