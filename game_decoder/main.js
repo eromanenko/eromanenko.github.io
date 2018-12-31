@@ -27,8 +27,10 @@ function initApp() {
 }
 
 function initList() {
-    const words = getDictionary().join('</li><li>');
-    document.body.innerHTML = `<ul class=list><li>${words}</li></ul>`
+    const words = getDictionary();
+    const shuffledWords = shuffle(words);
+    shuffledWords.length = 4;
+    document.body.innerHTML = `<ol class=list><li>${shuffledWords.join('</li><li>')}</li></ol>`
 }
 
 function getDictionary() {
