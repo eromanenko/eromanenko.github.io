@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alias</title>
+    <link rel="stylesheet" type="text/css" href="./main.css">
+</head>
+<body>
+    <button id="successButton" class="button" type="button">зачет</button>
+    <button id="failButton" class="button" type="button">штраф</button>
+    <div id=words class="alias__words"></div>
+    <script src="./main.js"></script>
+    <script>
+        const app = initAlias();
+        const html = app.html();
+        document.querySelector('#words').innerHTML = html;
+
+        document.querySelector('#successButton').addEventListener('click', _ => {
+            const html = app.success();
+            document.querySelector('#words').innerHTML = html;
+        })
+
+        document.querySelector('#failButton').addEventListener('click', _ => {
+            const html = app.fail();
+            document.querySelector('#words').innerHTML = html;
+        })
+    </script>
+</body>
+</html>

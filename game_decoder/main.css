@@ -23,6 +23,7 @@ body {
     text-decoration: none;
 
     color: #ea5a5a;
+    background-color: transparent;
     border: 1px solid;
     border-radius: 10px;
 }
@@ -60,4 +61,27 @@ body {
 
     transform: translate(-50%,-50%);
     margin: 0;
+}
+
+.alias__words {
+    max-width: 100%;
+    padding: 10px 20px;
+
+    text-align: center;
+
+    border-radius: 10px;
+    background-color: #4b2020;
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, .2);
+}
+.alias__words .success {
+    font-size: 3rem;
+    color: #367d57;
+}
+.alias__words .failed {
+    font-size: 3rem;
+    color: #961c1c;
+}
+.alias__words .current {
+    font-size: 6rem;
+    color: #ea5a5a;
 }
