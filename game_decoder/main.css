@@ -63,6 +63,44 @@ body {
     margin: 0;
 }
 
+.alias__header {
+    display: flex;
+    padding: 0 20px;
+}
+.alias__timer {
+    flex-grow: 1;
+    font-size: 2rem;
+    text-align: center;
+}
+.alias__button {
+    padding: 4px 20px;
+
+    text-decoration: none;
+
+    color: #ffffff;
+    border: 1px solid;
+    border-radius: 10px;
+    text-shadow: 1px 1px 1px #000;
+    font-size: 2rem;
+}
+.alias__button.button--success {
+    background-color: #367d57;
+}
+.alias__button.button--fail {
+    background-color: #961c1c;
+}
+.alias__cnt {
+    margin: 0 20px;
+    font-size: 2rem;
+}
+.alias__cnt.cnt--fail {
+    color: #961c1c;
+}
+.alias__cnt.cnt--success {
+    text-align: right;
+    color: #367d57;
+}
+
 .alias__words {
     max-width: 100%;
     padding: 10px 20px;

@@ -7,24 +7,26 @@
     <link rel="stylesheet" type="text/css" href="./main.css">
 </head>
 <body>
-    <button id="successButton" class="button" type="button">зачет</button>
-    <button id="failButton" class="button" type="button">штраф</button>
+    <div class="alias__header">
+        <button id="failedButton" class="alias__button button--fail" type="button">штраф</button>
+        <span id="failedCnt" class="alias__cnt cnt--fail"></span>
+        <span id="timer" class="alias__timer">00:00</span>
+        <span id="successCnt" class="alias__cnt cnt--success"></span>
+        <button id="successButton" class="alias__button button--success" type="button">зачет</button>
+    </div>
+    
     <div id=words class="alias__words"></div>
     <script src="./main.js"></script>
     <script>
-        const app = initAlias();
-        const html = app.html();
-        document.querySelector('#words').innerHTML = html;
-
-        document.querySelector('#successButton').addEventListener('click', _ => {
-            const html = app.success();
-            document.querySelector('#words').innerHTML = html;
-        })
-
-        document.querySelector('#failButton').addEventListener('click', _ => {
-            const html = app.fail();
-            document.querySelector('#words').innerHTML = html;
-        })
+        const wordsElm = document.querySelector('#words');
+        const successBtn = document.querySelector('#successButton');
+        const failedBtn = document.querySelector('#failedButton');
+        const successCntElm = document.querySelector('#successCnt');
+        const failedCntElm = document.querySelector('#failedCnt');
+        const timerElm = document.querySelector('#timer');
+        const app = initAlias(
+            {wordsElm, successBtn, failedBtn, failedCntElm, successCntElm, timerElm}
+        );
     </script>
 </body>
 </html>

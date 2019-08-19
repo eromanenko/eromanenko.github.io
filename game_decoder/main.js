@@ -47,26 +47,56 @@ function aliasAdd(word) {
     element.innerHTML = [element.innerHTML, word].filter(Boolean).join('<br>');
 }
 
-function initAlias() {
+function initAlias(config) {
     let currentWord;
     let words = shuffle(getDictionary());
     let usedWords = [];
-    return {
-        html: function() {
-            currentWord = words.splice(0, 1);
-            const usedWordsHTML = usedWords.map(word => `<span class="previous ${word.result}">${word.text}</span>`).join(', ');
-            const newWordHTML = `<div class="current">${currentWord}</div>`;
-            return newWordHTML + usedWordsHTML;
-        },
-        fail: function () {
-            usedWords.push({text: currentWord, result: 'failed'});
-            return this.html();
-        },
-        success: function () {
-            usedWords.push({text: currentWord, result: 'success'});
-            return this.html();
+    let startTimestamp;
+    const {wordsElm, successBtn, failedBtn, successCntElm, failedCntElm, timerElm} = config;
+
+    const renderWords = () => {
+        currentWord = words.splice(0, 1);
+        const successCnt = usedWords.filter(word => word.result === 'success').length;
+        const failedCnt = usedWords.filter(word => word.result === 'failed').length;
+        const usedWordsHTML = usedWords.map(word => `<span class="previous ${word.result}">${word.text}</span>`).join(', ');
+        const newWordHTML = `<div class="current">${currentWord}</div>`;
+        wordsElm.innerHTML = newWordHTML + usedWordsHTML;
+        successCntElm.textContent = successCnt;
+        failedCntElm.textContent = failedCnt;
+    }
+    const renderTimer = (timerElm, startTimestamp) => {
+        const timestamp = new Date().getTime();
+        let seconds = Math.floor((timestamp - startTimestamp)/1000);
+        let minutes = Math.floor(seconds/60);
+        seconds = seconds - (minutes * 60);
+        if (minutes < 10) minutes = `0${minutes}`;
+        if (seconds < 10) seconds = `0${seconds}`;
+        timerElm.textContent = `${minutes}:${seconds}`;
+
+        setTimeout(() => {renderTimer(timerElm, startTimestamp)}, 1000);
+    }
+
+    const initTimer = () => {
+        if (!startTimestamp) {
+            startTimestamp = new Date().getTime();
+            renderTimer(timerElm, startTimestamp);
         }
     }
+    
+    renderWords();
+
+    successBtn.addEventListener('click', _ => {
+        usedWords.push({text: currentWord, result: 'success'});
+        initTimer();
+        renderWords();
+    })
+
+    failedBtn.addEventListener('click', _ => {
+        usedWords.push({text: currentWord, result: 'failed'});
+        initTimer();
+        renderWords();
+    })
+
 }
 
 function getDictionary() {
