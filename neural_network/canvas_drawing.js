@@ -121,4 +121,35 @@ function DCanvas(el) {
             ctx.moveTo(e.offsetX, e.offsetY);
         }
     })
+
+    
+    el.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        is_mouse_down = true;
+        ctx.beginPath();
+    })
+
+    el.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        is_mouse_down = false;
+    })
+
+    el.addEventListener('touchmove', function(e) {
+        //e.preventDefault();
+        if( is_mouse_down ) {
+            ctx.fillStyle = 'red';
+            ctx.strokeStyle = 'red';
+            ctx.lineWidth = pixel;
+
+            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(e.offsetX, e.offsetY, pixel / 2, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(e.offsetX, e.offsetY);
+        }
+    })
 }
