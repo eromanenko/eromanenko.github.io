@@ -4,12 +4,23 @@
 	<meta charset="UTF-8">
 	<title>НС</title>
 
-    <!-- <script src="http://unpkg.com/brain.js"></script> -->
-    <script src="//unpkg.com/brain.js"></script>
+    <script src="http://unpkg.com/brain.js"></script>
+    <!-- <script src="//unpkg.com/brain.js"></script> -->
 
 	<style>
 		body {
 			background-color: #333;
+		}
+
+		.result {
+			display: inline-block;
+			background-color: wheat;
+			padding: 10px 20px;
+			font-size: 55px;
+			font-weight: bold;
+			height: 55px;
+			width: 100%;
+			margin: 10px 0;
 		}
 
 		.canvas {
@@ -37,6 +48,7 @@
 	</div>
 
 	<div class="canvas">
+		<div id="result" class="result"></div>
 		<canvas id="canv" style="display: block;">Ваш браузер устарел, обновитесь.</canvas>
 
 		<div class="buttons">
@@ -49,6 +61,7 @@
 	<script src="./canvas_drawing.js"></script>
 	<script>
 		const d = new DCanvas(document.getElementById('canv'));
+		const resultEl = document.getElementById('result');
 		const train_data = [];
 
 		const pushData = (param) => {
@@ -103,11 +116,13 @@
 
 		const braining = () => {
 			const result = recognize(train_data);
-			alert(result);
+			resultEl.textContent = result;
+			//alert(result);
 		};
 
 		const clearing = () => {
 			d.clear();
+			resultEl.textContent = ' ';
 		}
 
 	</script>

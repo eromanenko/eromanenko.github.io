@@ -1,6 +1,7 @@
 function DCanvas(el) {
     const ctx = el.getContext('2d');
     const pixel = 20;
+    const m_rectCv = el.getBoundingClientRect();
 
     let is_mouse_down = false;
 
@@ -94,6 +95,53 @@ function DCanvas(el) {
         return vector;
     }
 
+    // this.fnTouch = function(a) {
+    //     a.preventDefault();
+    //     if (1 == "ontouchend"in document) {
+    //         var b = Math.floor(a.touches[0].clientX);
+    //         var e = Math.floor(a.touches[0].clientY);
+    //     } else
+    //         b = a.clientX,
+    //             e = a.clientY;
+    //     e -= m_rectCv.top;
+    //     e += window.scrollY;
+    //     switch (a.type) {
+    //         case "mousedown":
+    //         case "touchstart":
+    //             is_mouse_down = true;
+    //             ctx.beginPath();
+    //             break;
+    //         case "mouseup":
+    //         case "touchend":
+    //             is_mouse_down = false;
+    //             break;
+    //         case "mousemove":
+    //         case "touchmove":
+    //             if( is_mouse_down ) {
+    //                 ctx.fillStyle = 'red';
+    //                 ctx.strokeStyle = 'red';
+    //                 ctx.lineWidth = pixel;
+        
+    //                 ctx.lineTo(b, e);
+    //                 ctx.stroke();
+        
+    //                 ctx.beginPath();
+    //                 ctx.arc(b, e, pixel / 2, 0, Math.PI * 2);
+    //                 ctx.fill();
+        
+    //                 ctx.beginPath();
+    //                 ctx.moveTo(b, e);
+    //             }
+    //     }
+    // }
+    // el.addEventListener("mouseup", this.fnTouch, !0);
+    // el.addEventListener("mousedown", this.fnTouch, !0);
+    // el.addEventListener("mousemove", this.fnTouch, !0);
+    // el.addEventListener("touchstart", this.fnTouch, !0);
+    // el.addEventListener("touchend", this.fnTouch, !0);
+    // el.addEventListener("touchmove", this.fnTouch, !0);
+    // //https://premyia.top/penint.js?1
+
     el.addEventListener('mousedown', function(e) {
         is_mouse_down = true;
         ctx.beginPath();
@@ -122,34 +170,4 @@ function DCanvas(el) {
         }
     })
 
-    
-    el.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        is_mouse_down = true;
-        ctx.beginPath();
-    })
-
-    el.addEventListener('touchend', function(e) {
-        e.preventDefault();
-        is_mouse_down = false;
-    })
-
-    el.addEventListener('touchmove', function(e) {
-        //e.preventDefault();
-        if( is_mouse_down ) {
-            ctx.fillStyle = 'red';
-            ctx.strokeStyle = 'red';
-            ctx.lineWidth = pixel;
-
-            ctx.lineTo(e.offsetX, e.offsetY);
-            ctx.stroke();
-
-            ctx.beginPath();
-            ctx.arc(e.offsetX, e.offsetY, pixel / 2, 0, Math.PI * 2);
-            ctx.fill();
-
-            ctx.beginPath();
-            ctx.moveTo(e.offsetX, e.offsetY);
-        }
-    })
 }
