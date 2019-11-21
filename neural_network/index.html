@@ -15,7 +15,7 @@
 		.result {
 			display: inline-block;
 			background-color: wheat;
-			padding: 10px 20px;
+			padding: 10px 0;
 			font-size: 55px;
 			font-weight: bold;
 			height: 55px;
@@ -52,15 +52,19 @@
 		<canvas id="canv" style="display: block;">Ваш браузер устарел, обновитесь.</canvas>
 
 		<div class="buttons">
+			<button type="button" onclick="correct()">Correct (->)</button>
+			<button type="button" onclick="incorrect()">Incorrect (<-)</button>
 			<button type="button" onclick="training()">Train (t)</button>
 			<button type="button" onclick="braining()">Brain (b)</button>
 			<button type="button" onclick="clearing()">Clear (Esc)</button>
+			<button type="button" onclick="undoLast()">Undo</button>
 		</div>
 	</div>
 
 	<script src="./canvas_drawing.js"></script>
 	<script>
 		const d = new DCanvas(document.getElementById('canv'));
+		let result = '';
 		const resultEl = document.getElementById('result');
 		const train_data = [];
 
@@ -70,7 +74,7 @@
 				input: vector,
 				output: {[param]: 1}
 			});
-			d.clear();
+			clearing();
 		}
 
 		const recognize = (data) => {
@@ -98,9 +102,18 @@
 		});
 
 		document.addEventListener('keydown', function(e) {
+			console.log(e.key);
 			switch (e.key) {
 				case 'Escape':
-				clearing();
+					clearing();
+					break;
+
+				case 'ArrowRight':
+					correct();
+					break;
+
+				case 'ArrowLeft':
+					incorrect();
 					break;
 
 				default: 
@@ -115,14 +128,41 @@
 		};
 
 		const braining = () => {
-			const result = recognize(train_data);
+			resultEl.textContent = ' ';
+			result = recognize(train_data);
 			resultEl.textContent = result;
 			//alert(result);
 		};
 
 		const clearing = () => {
 			d.clear();
-			resultEl.textContent = ' ';
+			result = '';
+			resultEl.textContent = '';
+		}
+
+		const correct = () => {
+			if (!result) return;
+			console.log(`pushing - ${result}`)
+			pushData(result);
+		}
+
+		const incorrect = () => {
+			if (!result) return;
+			if (result === 'positive') {
+				pushData('negative');
+				console.log('pushing - negative');
+			} else if (result === 'negative') {
+				pushData('positive');
+				console.log('pushing - positive');
+			} else {
+				console.log('clearing');
+				clearing();
+			}
+		}
+
+		const undoLast = () => {
+			const last = train_data.pop();
+			console.log(`undo - `, last.output)
 		}
 
 	</script>
