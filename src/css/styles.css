@@ -139,6 +139,7 @@ a:hover
 {
     font-family: 'Exo 2',sans-serif;
     font-size: 2.6rem;
+    margin-top: 30px;
 
     cursor: pointer;
 }
@@ -195,6 +196,10 @@ ul.list > li:nth-child(odd)
     background: #e6e6e6;
 }
 
+ul.list.show-more-off > li:nth-child(1n + 4) {
+    display: none;
+}
+
 ul.list > li:after
 {
     display: table;clear: both;content: '';
@@ -205,6 +210,12 @@ ul.list ul li
     margin-left: 17px;
 }
 
+.show-more__btn {
+    color: #0a6eb4;
+    cursor: pointer;
+    border-bottom: 1px dashed #0a6eb4;
+    margin-left: 45px;
+}
 
 
 

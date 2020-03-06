@@ -8,8 +8,6 @@
 	<meta property="og:url" content="http://eromanenko.pp.ua">
 	<meta property="og:image" content="http://eromanenko.pp.ua/img/avatar.jpg">
 	<meta property="og:description" content="A person whose hobby had grown into a job. Skilled Front-end developer with 10+ years experience in site's building. Proficiency in engineering industry, online shopping, financial services, web chat creating, travel services, creating web applications for social network, etc.">
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="./dist/bundle.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -19,13 +17,13 @@
 		<img class="photo" src="img/avatar.jpg" alt="Romanenko Eugene, photo">
 		<p class="top-description">
 			A person whose hobby had grown into a job.<br>
-			Skilled Front-end developer with 10+ years experience in site's building.<br>
+			Skilled Front-end developer with <span class="js--years-production">7</span>+ years experience in site's building.<br>
 			Proficiency in engineering industry, online shopping, financial services, web chat creating, travel services, creating web applications for social network, etc.
 		</p>
 		<div class="contacts">
 			<div class="address">Kyiv, Ukraine</div>
-			<a class="phone" href="tel:+380977385870">+380977385870</a>
-			<a class="mail" href="mailto:eromanenko@gmail.com">eromanenko@gmail.com</a>
+			<a class="phone" href="tel:+380977385870">+380977385870</a> (viber, telegram)
+			<a class="mail" href="mailto:feromanenko@gmail.com">feromanenko@gmail.com</a>
 			<div class="skype">betepahko</div>
 		</div>
 	</div>
@@ -38,7 +36,18 @@
 		<div class="spoil-content">
 		<ul class="list">
 			<li>
-				<h3 class="subtitle">HTML &amp; CSS <span class="badge">advanced, 17 years</span></h3>
+				<h3 class="subtitle">JavaScript <span class="badge">advanced, <span class="js--years-js">9</span> years</span></h3>
+				<ul>
+					<li>AngularJS - Angular 8</li>
+					<li>Redux</li>
+					<li>TypeScript</li>
+					<li>RxJS</li>
+					<li>ES 2015</li>
+					<li>regexp</li>
+				</ul>
+			</li>
+			<li>
+				<h3 class="subtitle">HTML &amp; CSS <span class="badge">advanced, <span class="js--years-html">12</span> years</span></h3>
 				<ul>
 					<li>HTML5</li>
 					<li>CSS3</li>
@@ -53,24 +62,11 @@
 				</ul>
 			</li>
 			<li>
-				<h3 class="subtitle">JavaScript <span class="badge">advanced, 8 years</span></h3>
-				<ul>
-					<li>ES 2015</li>
-					<li>AngularJs</li>
-					<li>Angular 2</li>
-					<li>Redux</li>
-					<li>TypeScript</li>
-					<li>RxJS</li>
-					<li>jQuery</li>
-					<li>regexp</li>
-				</ul>
-			</li>
-			<li>
 				<h3 class="subtitle">Other</h3>
 				<ul>
-					<li>Grafics: Sketch, Photoshop, CorelDrow</li>
-					<li>Code Editors: Atom, PHP Storm, Notepad++</li>
 					<li>System Versions Control: Github, SVN</li>
+					<li>Grafics: Sketch, Photoshop, CorelDrow</li>
+					<li>Code Editors: Visual Studio, VS Code, Atom, PHP Storm, Notepad++</li>
 					<li>Possible form of cooperation: I have a valid legal entity (Individual entrepreneur)</li>
 					<li>Languages: Russian - native, Ukranian - advanced, English - intermediate</li>
 				</ul>
@@ -81,7 +77,15 @@
 
 		<h2 class="spoil-link">Portfolio</h2>
 		<div class="spoil-content">
-			<ul class="list">
+			<ul class="list show-more-off">
+				<li>
+					<h3 class="subtitle">Censored by NDA<span class="badge">2017</span></h3>
+					<div class="work-name">Audit tools</div>
+					<ul>
+						<li>AngularJS - Angular 8</li>
+						<li>nrwl/nx</li>
+					</ul>
+				</li>
 				<li>
 					<h3 class="subtitle">Bkstg. Public<span class="badge">2017</span></h3>
 					<div class="work-name">Celebrity focused social network</div>
@@ -243,60 +247,70 @@
 					</ul>
 				</li>
 			</ul>
+			<button class="show-more__btn" data-max-li="3" hidden>Show more</button>
 		</div>
 
 
 		<h2 class="spoil-link">Education</h2>
-		<div class="spoil-content hidden">
-		<ul class="list">
-			<li>
-				<h3 class="subtitle">National University named after O.Honchar, Dnepropetrovsk, Ukraine <span class="badge">1992&nbsp;&ndash; 1998</span></h3>
-				<div class="description">
-					<p>Specialist in Aircraft Engines</p>
-				</div>
-			</li>
-			<li>
-				<h3 class="subtitle">Institute of Technical Creativity and Patenting, Dnepropetrovsk, Ukraine <span class="badge">1994&nbsp;&ndash; 1996</span></h3>
-				<div class="description">
-					<p>Specialist in Marketing</p>
-				</div>
-			</li>
-		</ul>
+		<div class="spoil-content" hidden>
+			<ul class="list">
+				<li>
+					<h3 class="subtitle">National University named after O.Honchar, Dnepropetrovsk, Ukraine <span class="badge">1992&nbsp;&ndash; 1998</span></h3>
+					<div class="description">
+						<p>Specialist in Aircraft Engines</p>
+					</div>
+				</li>
+				<li>
+					<h3 class="subtitle">Institute of Technical Creativity and Patenting, Dnepropetrovsk, Ukraine <span class="badge">1994&nbsp;&ndash; 1996</span></h3>
+					<div class="description">
+						<p>Specialist in Marketing</p>
+					</div>
+				</li>
+			</ul>
 		</div>
 
 
 		<h2 class="spoil-link">Experience</h2>
-		<div class="spoil-content hidden">
-		<ul class="list">
-			<li>
-				<h3 class="subtitle">Sr. Front-end Developer <span class="badge">2015&nbsp;&ndash; Present</span></h3>
-				<div class="work-name">Bkstg.com</div>
-			</li>
-			<li>
-				<h3 class="subtitle">Front-end Developer <span class="badge">2013&nbsp;&ndash; 2015</span></h3>
-				<div class="work-name">TravelTipz.ru</div>
-			</li>
-			<li>
-				<h3 class="subtitle">Content manager <span class="badge">2008&nbsp;&ndash; 2013</span></h3>
-				<div class="work-name">LLC "FIBO Ukraine"</div>
-			</li>
-			<li>
-				<h3 class="subtitle">Content manager <span class="badge">1998&nbsp;&ndash; 2008</span></h3>
-				<div class="work-name">JSC "Melitopol Compressor"</div>
-			</li>
-			<li>
-				<h3 class="subtitle">Personal projects <span class="badge">2008&nbsp;&ndash; 2014</span></h3>
-				<div class="work-name">websites I worked under in my free time</div>
-				<ul>
-					<li>Designers chat&nbsp;&mdash; <a href="http://www.designchat.ru/">designchat.ru</a></li>
-					<li>Flower shop&nbsp;&mdash; <a href="http://rassada.net/">rassada.net</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div>
+		<div class="spoil-content" hidden>
+			<ul class="list show-more-off">
+				<li>
+					<h3 class="subtitle">Frontend Lead <span class="badge">2019&nbsp;&ndash; Present</span></h3>
+					<div class="work-name">Trinetix</div>
+				</li>
+				<li>
+					<h3 class="subtitle">Sr. Front-end Developer <span class="badge">2017&nbsp;&ndash; 2019</span></h3>
+					<div class="work-name">Trinetix</div>
+				</li>
+				<li>
+					<h3 class="subtitle">Sr. Front-end Developer <span class="badge">2015&nbsp;&ndash; 2017</span></h3>
+					<div class="work-name">Bkstg.com</div>
+				</li>
+				<li>
+					<h3 class="subtitle">Front-end Developer <span class="badge">2013&nbsp;&ndash; 2015</span></h3>
+					<div class="work-name">TravelTipz.ru</div>
+				</li>
+				<li>
+					<h3 class="subtitle">Content manager <span class="badge">2008&nbsp;&ndash; 2013</span></h3>
+					<div class="work-name">LLC "FIBO Ukraine"</div>
+				</li>
+				<li>
+					<h3 class="subtitle">Content manager <span class="badge">1998&nbsp;&ndash; 2008</span></h3>
+					<div class="work-name">JSC "Melitopol Compressor"</div>
+				</li>
+				<li>
+					<h3 class="subtitle">Personal projects <span class="badge">2008&nbsp;&ndash; 2014</span></h3>
+					<div class="work-name">websites I worked under in my free time</div>
+					<ul>
+						<li>Designers chat&nbsp;&mdash; <a href="http://www.designchat.ru/">designchat.ru</a></li>
+						<li>Flower shop&nbsp;&mdash; <a href="http://rassada.net/">rassada.net</a></li>
+					</ul>
+				</li>
+			</ul>
+			<button class="show-more__btn" data-max-li="3" hidden>Show more</button>
+		</div>
 
  		<h2 class="spoil-link">Personal data</h2>
-		<div class="spoil-content hidden">
+		<div class="spoil-content" hidden>
 			<p>Born: March 24, 1975</p>
 			<p>Marital status: married with 2 sons</p>
 			<p>Qualities: careful, sociable, inclined to self-education, well-bred speech</p>
@@ -305,5 +319,6 @@
 	</div>
 
 </div>
+<script src="./dist/bundle.min.js"></script>
 </body>
 </html>
