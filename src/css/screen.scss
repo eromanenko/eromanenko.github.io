@@ -1,0 +1,47 @@
+
+@media screen and (max-width: 560px) {
+    .cv-screen {
+        float: none;
+    }
+}
+
+
+
+@media screen and (max-width: 940px) {
+    ul.list {
+        margin-left: 0;
+    }
+}
+@media screen and (max-width: 760px) {
+    .container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 10px;
+        border-radius: 0;
+    }
+}
+@media screen and (max-width: 560px) {
+    .photo {
+        position: static;
+    }
+    .header {
+        padding-left: 0;
+    }
+    .name,
+    .position,
+    .top-description,
+    .contacts {
+        margin-left: 0;
+    }
+    .contacts {
+        position: absolute;
+        top: 80px;
+        left: 250px;
+    }
+}
+@media screen and (max-width: 440px) {
+    .contacts {
+        position: static;
+    }
+}
