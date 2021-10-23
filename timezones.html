@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" /><title>html5</title>
+	<style>article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section { display: block; }</style>
+    <style>
+        td,
+        th {
+            border: 1px solid rgb(190, 190, 190);
+            padding: 10px;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #eee;
+        }
+
+        th[scope="col"] {
+            background-color: #696969;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        th[scope="row"] {
+            background-color: #d7d9f2;
+        }
+
+        caption {
+            padding: 10px;
+            caption-side: bottom;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 2px solid rgb(200, 200, 200);
+            letter-spacing: 1px;
+            font-family: sans-serif;
+            font-size: .8rem;
+            width: 100%;
+        }
+
+        table.hidden tbody {
+            display: none;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-around;
+            margin: 10px;
+            flex-wrap: wrap;
+        }
+        .label {
+            font-family: sans-serif;
+            font-weight: 700;
+        }
+
+    </style>
+</head>
+<body>
+    <form>
+        <div class="label">User Settings:</div>
+        <div class="form-group">
+            <div>
+                <select name="dateFormat">
+                    <option value="0">MM/DD/YYYY</option>
+                    <option value="1">DD/MM/YYYY</option>
+                    <option value="2" selected>DD.MM.YYYY</option>
+                    <option value="3">YYYY-MM-DD</option>
+                    <option value="4">YYYY/MM/DD</option>
+                    <option value="5">YYYY.MM.DD</option>
+                    <option value="6">DD-MM-YYYY</option>
+                </select>
+            </div>
+            <div>
+                <input type="checkbox" id="hour12" name="hour12">
+                <label for="hour12">12 hour (AM/PM)</label>
+            </div>
+            <div class="time-zone-picker"></div>
+            <div>
+                <span>Time: </span>
+                <input type="radio" id="timeFormatChoice3" name="timeFormat" value="hms">
+                <label for="timeFormatChoice3">hms</label>
+                <input type="radio" id="timeFormatChoice2" name="timeFormat" value="hm" checked>
+                <label for="timeFormatChoice2">hm</label>
+                <input type="radio" id="timeFormatChoice1" name="timeFormat" value="none">
+                <label for="timeFormatChoice1">none</label>
+            </div>
+        </div>
+        <div class="label">Dates:</div>
+        <div class="form-group">
+            <div>
+                <label for="date1">Date1 (UTC):</label>
+                <input type="date" id="date1" name="date1" value="2021-06-30">
+                <input type="time" id="time1" name="time1" value="00:00">
+            </div>
+            <div>
+                <label for="date2">Date2 (UTC):</label>
+                <input type="date" id="date2" name="date2" value="2021-12-30">
+                <input type="time" id="time2" name="time2" value="00:00">
+            </div>
+            <div>
+                <label for="date3">Date3 (UTC):</label>
+                <input type="date" id="date3" name="date3" value="2021-10-31">
+            </div>
+        </div>
+        <div class="label">Presets Date3 + Timezone:</div>
+        <div class="form-group presets"></div>
+
+        <table class="table2"></table>
+        <table class="table1"></table>
+        <table class="table3"></table>
+    </form>
+	<script>
+		const TIME_ZONES = [
+            'Europe/Kiev',
+            'America/Caracas', 
+            'Asia/Hong_Kong', 
+            'Asia/Irkutsk', 
+            'Africa/Algiers', 
+            'Atlantic/Azores', 
+            'America/Guatemala', 
+            'Asia/Tehran', 
+            'Asia/Damascus', 
+            'America/Managua', 
+            'Asia/Baghdad', 
+            'Asia/Magadan', 
+            'America/Costa_Rica', 
+            'Asia/Jerusalem', 
+            'Africa/Tunis', 
+            'America/Montevideo', 
+            'Asia/Amman', 
+            'SST', 
+            'Australia/Sydney', 
+            'America/Denver', 
+            'Pacific/Noumea', 
+            'Asia/Kathmandu', 
+            'Asia/Kuala_Lumpur', 
+            'Asia/Qatar', 
+            'America/Halifax', 
+            'Asia/Kamchatka', 
+            'Europe/Lisbon', 
+            'America/La_Paz', 
+            'Africa/Nouakchott', 
+            'Asia/Yakutsk', 
+            'America/Argentina/Buenos_Aires', 
+            'Europe/Berlin', 
+            'America/Juneau', 
+            'Atlantic/Reykjavik', 
+            'Asia/Beirut', 
+            'America/Guyana', 
+            'America/St_Johns', 
+            'Africa/Johannesburg', 
+            'Etc/Greenwich', 
+            'America/Indianapolis', 
+            'UTC', 
+            'America/Bogota', 
+            'Pacific/Port_Moresby', 
+            'America/Regina', 
+            'Europe/Paris', 
+            'Pacific/Midway', 
+            'Asia/Bahrain', 
+            'Europe/Copenhagen', 
+            'Africa/Mogadishu', 
+            'Australia/Adelaide', 
+            'Europe/Prague', 
+            'Asia/Saigon', 
+            'Australia/Hobart', 
+            'Asia/Krasnoyarsk', 
+            'Asia/Nicosia', 
+            'America/Anchorage', 
+            'Africa/Tripoli', 
+            'Asia/Tokyo', 
+            'Europe/Amsterdam', 
+            'America/Winnipeg', 
+            'Europe/London', 
+            'Europe/Stockholm', 
+            'America/Santiago', 
+            'America/Panama', 
+            'Europe/Istanbul', 
+            'Asia/Tashkent', 
+            'Africa/Khartoum', 
+            'America/Puerto_Rico', 
+            'Asia/Jakarta', 
+            'Pacific/Pago_Pago', 
+            'Atlantic/Cape_Verde', 
+            'America/Chicago', 
+            'Europe/Oslo', 
+            'Europe/Zurich', 
+            'Europe/Luxembourg', 
+            'Australia/Darwin', 
+            'Pacific/Auckland', 
+            'Asia/Calcutta', 
+            'Europe/Bucharest', 
+            'America/Sao_Paulo', 
+            'America/Monterrey', 
+            'America/Los_Angeles', 
+            'Africa/Bangui', 
+            'America/Chihuahua', 
+            'America/Tijuana', 
+            'Africa/Cairo', 
+            'America/Vancouver', 
+            'Pacific/Fiji', 
+            'Asia/Taipei', 
+            'Europe/Warsaw', 
+            'Asia/Kuwait', 
+            'Africa/Nairobi', 
+            'Asia/Dhaka', 
+            'Asia/Novosibirsk', 
+            'America/Araguaina', 
+            'Asia/Rangoon', 
+            'CET', 
+            'Europe/Rome', 
+            'America/Edmonton', 
+            'America/Godthab', 
+            'Europe/Moscow', 
+            'Europe/Vienna', 
+            'Africa/Djibouti', 
+            'Europe/Helsinki', 
+            'Europe/Sofia', 
+            'Europe/Minsk', 
+            'Asia/Baku', 
+            'Canada/Atlantic', 
+            'Asia/Vladivostok', 
+            'America/El_Salvador', 
+            'Asia/Dacca', 
+            'Europe/Athens', 
+            'Asia/Shanghai', 
+            'America/Lima', 
+            'Pacific/Apia', 
+            'Asia/Riyadh', 
+            'America/Phoenix', 
+            'Asia/Aden', 
+            'Asia/Yekaterinburg', 
+            'Australia/Brisbane', 
+            'Europe/Dublin', 
+            'Asia/Singapore', 
+            'Australia/Perth', 
+            'Asia/Kabul', 
+            'Africa/Casablanca', 
+            'Europe/Brussels', 
+            'Pacific/Honolulu', 
+            'Asia/Bangkok', 
+            'Asia/Dubai', 
+            'America/Mazatlan', 
+            'Europe/Madrid', 
+            'America/Montreal', 
+            'Europe/Belgrade', 
+            'Asia/Almaty', 
+            'America/Tegucigalpa', 
+            'America/New_York', 
+            'Europe/Budapest', 
+            'Asia/Seoul', 
+            'Asia/Muscat', 
+            'America/Mexico_City', 
+            'Asia/Kolkata', 
+            'Africa/Harare',
+            'KAS (incorrect)',
+        ];
+        const LANGUAGE_BY_LOCALE = {
+            af_NA: "Afrikaans (Namibia)",
+            af_ZA: "Afrikaans (South Africa)",
+            af: "Afrikaans",
+            ak_GH: "Akan (Ghana)",
+            ak: "Akan",
+            sq_AL: "Albanian (Albania)",
+            sq: "Albanian",
+            am_ET: "Amharic (Ethiopia)",
+            am: "Amharic",
+            ar_DZ: "Arabic (Algeria)",
+            ar_BH: "Arabic (Bahrain)",
+            ar_EG: "Arabic (Egypt)",
+            ar_IQ: "Arabic (Iraq)",
+            ar_JO: "Arabic (Jordan)",
+            ar_KW: "Arabic (Kuwait)",
+            ar_LB: "Arabic (Lebanon)",
+            ar_LY: "Arabic (Libya)",
+            ar_MA: "Arabic (Morocco)",
+            ar_OM: "Arabic (Oman)",
+            ar_QA: "Arabic (Qatar)",
+            ar_SA: "Arabic (Saudi Arabia)",
+            ar_SD: "Arabic (Sudan)",
+            ar_SY: "Arabic (Syria)",
+            ar_TN: "Arabic (Tunisia)",
+            ar_AE: "Arabic (United Arab Emirates)",
+            ar_YE: "Arabic (Yemen)",
+            ar: "Arabic",
+            hy_AM: "Armenian (Armenia)",
+            hy: "Armenian",
+            as_IN: "Assamese (India)",
+            as: "Assamese",
+            asa_TZ: "Asu (Tanzania)",
+            asa: "Asu",
+            az_Cyrl: "Azerbaijani (Cyrillic)",
+            az_Cyrl_AZ: "Azerbaijani (Cyrillic, Azerbaijan)",
+            az_Latn: "Azerbaijani (Latin)",
+            az_Latn_AZ: "Azerbaijani (Latin, Azerbaijan)",
+            az: "Azerbaijani",
+            bm_ML: "Bambara (Mali)",
+            bm: "Bambara",
+            eu_ES: "Basque (Spain)",
+            eu: "Basque",
+            be_BY: "Belarusian (Belarus)",
+            be: "Belarusian",
+            bem_ZM: "Bemba (Zambia)",
+            bem: "Bemba",
+            bez_TZ: "Bena (Tanzania)",
+            bez: "Bena",
+            bn_BD: "Bengali (Bangladesh)",
+            bn_IN: "Bengali (India)",
+            bn: "Bengali",
+            bs_BA: "Bosnian (Bosnia and Herzegovina)",
+            bs: "Bosnian",
+            bg_BG: "Bulgarian (Bulgaria)",
+            bg: "Bulgarian",
+            my_MM: "Burmese (Myanmar [Burma])",
+            my: "Burmese",
+            yue_Hant_HK: "Cantonese (Traditional, Hong Kong SAR China)",
+            ca_ES: "Catalan (Spain)",
+            ca: "Catalan",
+            tzm_Latn: "Central Morocco Tamazight (Latin)",
+            tzm_Latn_MA: "Central Morocco Tamazight (Latin, Morocco)",
+            tzm: "Central Morocco Tamazight",
+            chr_US: "Cherokee (United States)",
+            chr: "Cherokee",
+            cgg_UG: "Chiga (Uganda)",
+            cgg: "Chiga",
+            zh_Hans: "Chinese (Simplified Han)",
+            zh_Hans_CN: "Chinese (Simplified Han, China)",
+            zh_Hans_HK: "Chinese (Simplified Han, Hong Kong SAR China)",
+            zh_Hans_MO: "Chinese (Simplified Han, Macau SAR China)",
+            zh_Hans_SG: "Chinese (Simplified Han, Singapore)",
+            zh_Hant: "Chinese (Traditional Han)",
+            zh_Hant_HK: "Chinese (Traditional Han, Hong Kong SAR China)",
+            zh_Hant_MO: "Chinese (Traditional Han, Macau SAR China)",
+            zh_Hant_TW: "Chinese (Traditional Han, Taiwan)",
+            zh: "Chinese",
+            kw_GB: "Cornish (United Kingdom)",
+            kw: "Cornish",
+            hr_HR: "Croatian (Croatia)",
+            hr: "Croatian",
+            cs_CZ: "Czech (Czech Republic)",
+            cs: "Czech",
+            da_DK: "Danish (Denmark)",
+            da: "Danish",
+            nl_BE: "Dutch (Belgium)",
+            nl_NL: "Dutch (Netherlands)",
+            nl: "Dutch",
+            ebu_KE: "Embu (Kenya)",
+            ebu: "Embu",
+            en_AS: "English (American Samoa)",
+            en_AU: "English (Australia)",
+            en_BE: "English (Belgium)",
+            en_BZ: "English (Belize)",
+            en_BW: "English (Botswana)",
+            en_CA: "English (Canada)",
+            en_GU: "English (Guam)",
+            en_HK: "English (Hong Kong SAR China)",
+            en_IN: "English (India)",
+            en_IE: "English (Ireland)",
+            en_IL: "English (Israel)",
+            en_JM: "English (Jamaica)",
+            en_MT: "English (Malta)",
+            en_MH: "English (Marshall Islands)",
+            en_MU: "English (Mauritius)",
+            en_NA: "English (Namibia)",
+            en_NZ: "English (New Zealand)",
+            en_MP: "English (Northern Mariana Islands)",
+            en_PK: "English (Pakistan)",
+            en_PH: "English (Philippines)",
+            en_SG: "English (Singapore)",
+            en_ZA: "English (South Africa)",
+            en_TT: "English (Trinidad and Tobago)",
+            en_UM: "English (U.S. Minor Outlying Islands)",
+            en_VI: "English (U.S. Virgin Islands)",
+            en_GB: "English (United Kingdom)",
+            en_US: "English (United States)",
+            en_ZW: "English (Zimbabwe)",
+            en: "English",
+            eo: "Esperanto",
+            et_EE: "Estonian (Estonia)",
+            et: "Estonian",
+            ee_GH: "Ewe (Ghana)",
+            ee_TG: "Ewe (Togo)",
+            ee: "Ewe",
+            fo_FO: "Faroese (Faroe Islands)",
+            fo: "Faroese",
+            fil_PH: "Filipino (Philippines)",
+            fil: "Filipino",
+            fi_FI: "Finnish (Finland)",
+            fi: "Finnish",
+            fr_BE: "French (Belgium)",
+            fr_BJ: "French (Benin)",
+            fr_BF: "French (Burkina Faso)",
+            fr_BI: "French (Burundi)",
+            fr_CM: "French (Cameroon)",
+            fr_CA: "French (Canada)",
+            fr_CF: "French (Central African Republic)",
+            fr_TD: "French (Chad)",
+            fr_KM: "French (Comoros)",
+            fr_CG: "French (Congo - Brazzaville)",
+            fr_CD: "French (Congo - Kinshasa)",
+            fr_CI: "French (Côte d’Ivoire)",
+            fr_DJ: "French (Djibouti)",
+            fr_GQ: "French (Equatorial Guinea)",
+            fr_FR: "French (France)",
+            fr_GA: "French (Gabon)",
+            fr_GP: "French (Guadeloupe)",
+            fr_GN: "French (Guinea)",
+            fr_LU: "French (Luxembourg)",
+            fr_MG: "French (Madagascar)",
+            fr_ML: "French (Mali)",
+            fr_MQ: "French (Martinique)",
+            fr_MC: "French (Monaco)",
+            fr_NE: "French (Niger)",
+            fr_RW: "French (Rwanda)",
+            fr_RE: "French (Réunion)",
+            fr_BL: "French (Saint Barthélemy)",
+            fr_MF: "French (Saint Martin)",
+            fr_SN: "French (Senegal)",
+            fr_CH: "French (Switzerland)",
+            fr_TG: "French (Togo)",
+            fr: "French",
+            ff_SN: "Fulah (Senegal)",
+            ff: "Fulah",
+            gl_ES: "Galician (Spain)",
+            gl: "Galician",
+            lg_UG: "Ganda (Uganda)",
+            lg: "Ganda",
+            ka_GE: "Georgian (Georgia)",
+            ka: "Georgian",
+            de_AT: "German (Austria)",
+            de_BE: "German (Belgium)",
+            de_DE: "German (Germany)",
+            de_LI: "German (Liechtenstein)",
+            de_LU: "German (Luxembourg)",
+            de_CH: "German (Switzerland)",
+            de: "German",
+            el_CY: "Greek (Cyprus)",
+            el_GR: "Greek (Greece)",
+            el: "Greek",
+            gu_IN: "Gujarati (India)",
+            gu: "Gujarati",
+            guz_KE: "Gusii (Kenya)",
+            guz: "Gusii",
+            ha_Latn: "Hausa (Latin)",
+            ha_Latn_GH: "Hausa (Latin, Ghana)",
+            ha_Latn_NE: "Hausa (Latin, Niger)",
+            ha_Latn_NG: "Hausa (Latin, Nigeria)",
+            ha: "Hausa",
+            haw_US: "Hawaiian (United States)",
+            haw: "Hawaiian",
+            he_IL: "Hebrew (Israel)",
+            he: "Hebrew",
+            hi_IN: "Hindi (India)",
+            hi: "Hindi",
+            hu_HU: "Hungarian (Hungary)",
+            hu: "Hungarian",
+            is_IS: "Icelandic (Iceland)",
+            is: "Icelandic",
+            ig_NG: "Igbo (Nigeria)",
+            ig: "Igbo",
+            id_ID: "Indonesian (Indonesia)",
+            id: "Indonesian",
+            ga_IE: "Irish (Ireland)",
+            ga: "Irish",
+            it_IT: "Italian (Italy)",
+            it_CH: "Italian (Switzerland)",
+            it: "Italian",
+            ja_JP: "Japanese (Japan)",
+            ja: "Japanese",
+            kea_CV: "Kabuverdianu (Cape Verde)",
+            kea: "Kabuverdianu",
+            kab_DZ: "Kabyle (Algeria)",
+            kab: "Kabyle",
+            kl_GL: "Kalaallisut (Greenland)",
+            kl: "Kalaallisut",
+            kln_KE: "Kalenjin (Kenya)",
+            kln: "Kalenjin",
+            kam_KE: "Kamba (Kenya)",
+            kam: "Kamba",
+            kn_IN: "Kannada (India)",
+            kn: "Kannada",
+            kk_Cyrl: "Kazakh (Cyrillic)",
+            kk_Cyrl_KZ: "Kazakh (Cyrillic, Kazakhstan)",
+            kk: "Kazakh",
+            km_KH: "Khmer (Cambodia)",
+            km: "Khmer",
+            ki_KE: "Kikuyu (Kenya)",
+            ki: "Kikuyu",
+            rw_RW: "Kinyarwanda (Rwanda)",
+            rw: "Kinyarwanda",
+            kok_IN: "Konkani (India)",
+            kok: "Konkani",
+            ko_KR: "Korean (South Korea)",
+            ko: "Korean",
+            khq_ML: "Koyra Chiini (Mali)",
+            khq: "Koyra Chiini",
+            ses_ML: "Koyraboro Senni (Mali)",
+            ses: "Koyraboro Senni",
+            lag_TZ: "Langi (Tanzania)",
+            lag: "Langi",
+            lv_LV: "Latvian (Latvia)",
+            lv: "Latvian",
+            lt_LT: "Lithuanian (Lithuania)",
+            lt: "Lithuanian",
+            luo_KE: "Luo (Kenya)",
+            luo: "Luo",
+            luy_KE: "Luyia (Kenya)",
+            luy: "Luyia",
+            mk_MK: "Macedonian (Macedonia)",
+            mk: "Macedonian",
+            jmc_TZ: "Machame (Tanzania)",
+            jmc: "Machame",
+            kde_TZ: "Makonde (Tanzania)",
+            kde: "Makonde",
+            mg_MG: "Malagasy (Madagascar)",
+            mg: "Malagasy",
+            ms_BN: "Malay (Brunei)",
+            ms_MY: "Malay (Malaysia)",
+            ms: "Malay",
+            ml_IN: "Malayalam (India)",
+            ml: "Malayalam",
+            mt_MT: "Maltese (Malta)",
+            mt: "Maltese",
+            gv_GB: "Manx (United Kingdom)",
+            gv: "Manx",
+            mr_IN: "Marathi (India)",
+            mr: "Marathi",
+            mas_KE: "Masai (Kenya)",
+            mas_TZ: "Masai (Tanzania)",
+            mas: "Masai",
+            mer_KE: "Meru (Kenya)",
+            mer: "Meru",
+            mfe_MU: "Morisyen (Mauritius)",
+            mfe: "Morisyen",
+            naq_NA: "Nama (Namibia)",
+            naq: "Nama",
+            ne_IN: "Nepali (India)",
+            ne_NP: "Nepali (Nepal)",
+            ne: "Nepali",
+            nd_ZW: "North Ndebele (Zimbabwe)",
+            nd: "North Ndebele",
+            nb_NO: "Norwegian Bokmål (Norway)",
+            nb: "Norwegian Bokmål",
+            nn_NO: "Norwegian Nynorsk (Norway)",
+            nn: "Norwegian Nynorsk",
+            nyn_UG: "Nyankole (Uganda)",
+            nyn: "Nyankole",
+            or_IN: "Oriya (India)",
+            or: "Oriya",
+            om_ET: "Oromo (Ethiopia)",
+            om_KE: "Oromo (Kenya)",
+            om: "Oromo",
+            ps_AF: "Pashto (Afghanistan)",
+            ps: "Pashto",
+            fa_AF: "Persian (Afghanistan)",
+            fa_IR: "Persian (Iran)",
+            fa: "Persian",
+            pl_PL: "Polish (Poland)",
+            pl: "Polish",
+            pt_BR: "Portuguese (Brazil)",
+            pt_GW: "Portuguese (Guinea-Bissau)",
+            pt_MZ: "Portuguese (Mozambique)",
+            pt_PT: "Portuguese (Portugal)",
+            pt: "Portuguese",
+            pa_Arab: "Punjabi (Arabic)",
+            pa_Arab_PK: "Punjabi (Arabic, Pakistan)",
+            pa_Guru: "Punjabi (Gurmukhi)",
+            pa_Guru_IN: "Punjabi (Gurmukhi, India)",
+            pa: "Punjabi",
+            ro_MD: "Romanian (Moldova)",
+            ro_RO: "Romanian (Romania)",
+            ro: "Romanian",
+            rm_CH: "Romansh (Switzerland)",
+            rm: "Romansh",
+            rof_TZ: "Rombo (Tanzania)",
+            rof: "Rombo",
+            ru_MD: "Russian (Moldova)",
+            ru_RU: "Russian (Russia)",
+            ru_UA: "Russian (Ukraine)",
+            ru: "Russian",
+            rwk_TZ: "Rwa (Tanzania)",
+            rwk: "Rwa",
+            saq_KE: "Samburu (Kenya)",
+            saq: "Samburu",
+            sg_CF: "Sango (Central African Republic)",
+            sg: "Sango",
+            seh_MZ: "Sena (Mozambique)",
+            seh: "Sena",
+            sr_Cyrl: "Serbian (Cyrillic)",
+            sr_Cyrl_BA: "Serbian (Cyrillic, Bosnia and Herzegovina)",
+            sr_Cyrl_ME: "Serbian (Cyrillic, Montenegro)",
+            sr_Cyrl_RS: "Serbian (Cyrillic, Serbia)",
+            sr_Latn: "Serbian (Latin)",
+            sr_Latn_BA: "Serbian (Latin, Bosnia and Herzegovina)",
+            sr_Latn_ME: "Serbian (Latin, Montenegro)",
+            sr_Latn_RS: "Serbian (Latin, Serbia)",
+            sr: "Serbian",
+            sn_ZW: "Shona (Zimbabwe)",
+            sn: "Shona",
+            ii_CN: "Sichuan Yi (China)",
+            ii: "Sichuan Yi",
+            si_LK: "Sinhala (Sri Lanka)",
+            si: "Sinhala",
+            sk_SK: "Slovak (Slovakia)",
+            sk: "Slovak",
+            sl_SI: "Slovenian (Slovenia)",
+            sl: "Slovenian",
+            xog_UG: "Soga (Uganda)",
+            xog: "Soga",
+            so_DJ: "Somali (Djibouti)",
+            so_ET: "Somali (Ethiopia)",
+            so_KE: "Somali (Kenya)",
+            so_SO: "Somali (Somalia)",
+            so: "Somali",
+            es_AR: "Spanish (Argentina)",
+            es_BO: "Spanish (Bolivia)",
+            es_CL: "Spanish (Chile)",
+            es_CO: "Spanish (Colombia)",
+            es_CR: "Spanish (Costa Rica)",
+            es_DO: "Spanish (Dominican Republic)",
+            es_EC: "Spanish (Ecuador)",
+            es_SV: "Spanish (El Salvador)",
+            es_GQ: "Spanish (Equatorial Guinea)",
+            es_GT: "Spanish (Guatemala)",
+            es_HN: "Spanish (Honduras)",
+            es_419: "Spanish (Latin America)",
+            es_MX: "Spanish (Mexico)",
+            es_NI: "Spanish (Nicaragua)",
+            es_PA: "Spanish (Panama)",
+            es_PY: "Spanish (Paraguay)",
+            es_PE: "Spanish (Peru)",
+            es_PR: "Spanish (Puerto Rico)",
+            es_ES: "Spanish (Spain)",
+            es_US: "Spanish (United States)",
+            es_UY: "Spanish (Uruguay)",
+            es_VE: "Spanish (Venezuela)",
+            es: "Spanish",
+            sw_KE: "Swahili (Kenya)",
+            sw_TZ: "Swahili (Tanzania)",
+            sw: "Swahili",
+            sv_FI: "Swedish (Finland)",
+            sv_SE: "Swedish (Sweden)",
+            sv: "Swedish",
+            gsw_CH: "Swiss German (Switzerland)",
+            gsw: "Swiss German",
+            shi_Latn: "Tachelhit (Latin)",
+            shi_Latn_MA: "Tachelhit (Latin, Morocco)",
+            shi_Tfng: "Tachelhit (Tifinagh)",
+            shi_Tfng_MA: "Tachelhit (Tifinagh, Morocco)",
+            shi: "Tachelhit",
+            dav_KE: "Taita (Kenya)",
+            dav: "Taita",
+            ta_IN: "Tamil (India)",
+            ta_LK: "Tamil (Sri Lanka)",
+            ta: "Tamil",
+            te_IN: "Telugu (India)",
+            te: "Telugu",
+            teo_KE: "Teso (Kenya)",
+            teo_UG: "Teso (Uganda)",
+            teo: "Teso",
+            th_TH: "Thai (Thailand)",
+            th: "Thai",
+            bo_CN: "Tibetan (China)",
+            bo_IN: "Tibetan (India)",
+            bo: "Tibetan",
+            ti_ER: "Tigrinya (Eritrea)",
+            ti_ET: "Tigrinya (Ethiopia)",
+            ti: "Tigrinya",
+            to_TO: "Tonga (Tonga)",
+            to: "Tonga",
+            tr_TR: "Turkish (Turkey)",
+            tr: "Turkish",
+            uk_UA: "Ukrainian (Ukraine)",
+            uk: "Ukrainian",
+            ur_IN: "Urdu (India)",
+            ur_PK: "Urdu (Pakistan)",
+            ur: "Urdu",
+            uz_Arab: "Uzbek (Arabic)",
+            uz_Arab_AF: "Uzbek (Arabic, Afghanistan)",
+            uz_Cyrl: "Uzbek (Cyrillic)",
+            uz_Cyrl_UZ: "Uzbek (Cyrillic, Uzbekistan)",
+            uz_Latn: "Uzbek (Latin)",
+            uz_Latn_UZ: "Uzbek (Latin, Uzbekistan)",
+            uz: "Uzbek",
+            vi_VN: "Vietnamese (Vietnam)",
+            vi: "Vietnamese",
+            vun_TZ: "Vunjo (Tanzania)",
+            vun: "Vunjo",
+            cy_GB: "Welsh (United Kingdom)",
+            cy: "Welsh",
+            yo_NG: "Yoruba (Nigeria)",
+            yo: "Yoruba",
+            zu_ZA: "Zulu (South Africa)",
+            zu: "Zulu"
+        };
+
+        const presets = [
+            {
+                id: 'set1',
+                name: 'Kyiv DST',
+                date: '2021-03-28',
+                timeZone: 'Europe/Kiev',
+                description: '3 -> 4',
+            }, {
+                id: 'set2',
+                name: 'Kyiv standard',
+                date: '2021-10-31',
+                timeZone: 'Europe/Kiev',
+                description: '4 -> 3',
+            }, {
+                id: 'set3',
+                name: 'LA DST',
+                date: '2021-03-14',
+                timeZone: 'America/Los_Angeles',
+                description: '2 -> 3',
+            }, {
+                id: 'set4',
+                name: 'LA standard',
+                date: '2021-11-07',
+                timeZone: 'America/Los_Angeles',
+                description: '2 -> 1',
+            }, {
+                id: 'set5',
+                name: 'NY DST',
+                date: '2021-03-14',
+                timeZone: 'America/New_York',
+                description: '2 -> 3',
+            }, {
+                id: 'set6',
+                name: 'NY standard',
+                date: '2021-11-07',
+                timeZone: 'America/New_York',
+                description: '2 -> 1',
+            }, {
+                id: 'set7',
+                name: 'FR DST',
+                date: '2021-03-28',
+                timeZone: 'Europe/Paris',
+                description: '2 -> 3',
+            }, {
+                id: 'set8',
+                name: 'FR standard',
+                date: '2021-10-31',
+                timeZone: 'Europe/Paris',
+                description: '3 -> 2',
+            }, {
+                id: 'set9',
+                name: 'RU DST (last)',
+                date: '2011-03-27',
+                timeZone: 'Europe/Moscow',
+                description: '2 --> 3',
+            }, {
+                id: 'set10',
+                name: 'RU standard (last)',
+                date: '2014-10-26',
+                timeZone: 'Asia/Novosibirsk',
+                description: '2 --> 1',
+            }, {
+                id: 'set11',
+                name: 'RU standard (none)',
+                date: '2021-10-31',
+                timeZone: 'Europe/Moscow',
+                description: 'none',
+            }
+        ]
+
+        const cultureInfoArray = [
+            'MM/DD/YYYY', 
+            'DD/MM/YYYY',
+            'DD.MM.YYYY',
+            'YYYY-MM-DD',
+            'YYYY/MM/DD',
+            'YYYY.MM.DD',
+            'DD-MM-YYYY',
+        ];
+
+		const cultureInfoDic = {
+            'MM/DD/YYYY': 'en-US',
+            'DD/MM/YYYY': 'fr-FR',
+            'DD.MM.YYYY': 'ru-RU',
+            'YYYY-MM-DD': 'en-CA',
+            'YYYY/MM/DD': 'ja-JP',
+            'YYYY.MM.DD': 'lv-LV',
+            'DD-MM-YYYY': 'es-CL',
+        };
+
+        function getOffset(timeZone, date) {
+            try {
+                date = date || new Date();
+                const string = new Intl.DateTimeFormat('en-US', {timeZone, timeZoneName: 'longOffset'}).format(date);
+                const stringParts = string.split(' ');
+                const offset = stringParts[stringParts.length - 1].replace('GMT', '').replace('+0', '+').replace('-0', '-');
+                return offset;
+            } catch(e) {
+                console.warn('Invalid time zone specified: ', timeZone);
+                return '';
+            }
+        }
+
+        function getOffsetInMinutes(timeZone, date) {
+            const offset = getOffset(timeZone, date);
+            if (!offset) return 0;
+            const [hh, mm] = offset.replace(/[-+]/mig, '').split(':');
+            const minutes = hh * 60 + Number(mm);
+            return offset.charAt(0) === '-' ? -minutes : minutes;
+        }
+
+		function intlCase(formControls, date, timeZone) {
+            const options = {
+                year: 'numeric', month: 'numeric', day: 'numeric',
+                timeZone,
+            };
+            switch (formControls.timeFormat) {
+                case 'hm':
+                    options.hour12 = formControls.hour12;
+                    options.hour = 'numeric';
+                    options.minute = 'numeric';
+                    break;
+
+                case 'hms':
+                    options.hour12 = formControls.hour12;
+                    options.hour = 'numeric';
+                    options.minute = 'numeric';
+                    options.second = 'numeric';
+                    break;
+
+                default:
+            }
+            try {
+                return new Intl.DateTimeFormat(cultureInfoDic[formControls.dateFormat], options).format(date);
+            } catch(e) {
+                console.warn('Incorrect timeZone: ', timeZone);
+                return new Intl.DateTimeFormat(cultureInfoDic[formControls.dateFormat], {...options, timeZone: 'UTC'}).format(date)
+            }
+		}
+
+		function localesCase(formControls, date, locale) {
+            const options = { 
+                year: 'numeric', month: 'numeric', day: 'numeric',
+                timeZone: formControls.timeZone,
+                timeZoneName: 'short'
+            }
+            switch (formControls.timeFormat) {
+                case 'hm':
+                    options.hour12 = formControls.hour12;
+                    options.hour = 'numeric';
+                    options.minute = 'numeric';
+                    break;
+
+                case 'hms':
+                    options.hour12 = formControls.hour12;
+                    options.hour = 'numeric';
+                    options.minute = 'numeric';
+                    options.second = 'numeric';
+                    break;
+
+                default:
+            }
+            try {
+                return date.toLocaleString(locale, options);
+                //return date.toLocaleDateString(locale, options);
+            } catch(e) {
+                console.warn('Incorrect locale information: ', locale, ' or timeZone: ', options.timeZone);
+                return date.toLocaleString(locale, {...options, timeZone: 'UTC'});
+            }
+		}
+
+        function getTimeZonesTableContent(formControls) {
+            const timeZones = TIME_ZONES;
+            const locale = cultureInfoDic[formControls.dateFormat];
+            const head = `<thead><tr>
+                <th scope="col">Code</th>
+                <th scope="col">Current offset</th>
+                <th scope="col">Date1</th>
+                <th scope="col">Date1 offset</th>
+                <th scope="col">Date2</th>
+                <th scope="col">Date2 offset</th>
+            </tr></thead>`;
+            let body = '';
+            timeZones.forEach(code => {
+                body += `<tr>
+                    <th scope="row">${code}</th>
+                    <td>UTC${getOffset(code)} (${getOffsetInMinutes(code)})</td>
+                    <td>${intlCase(formControls, formControls.date1, code, locale)}</td>
+                    <td>UTC${getOffset(code, formControls.date1)}</td>
+                    <td>${intlCase(formControls, formControls.date2, code, locale)}</td>
+                    <td>UTC${getOffset(code, formControls.date2)}</th>
+                </tr>`
+            })
+            return `${head}<tbody>${body}</tbody>`;
+        }
+
+        function getLocalesTableContent(formControls) {
+            const localesDict = LANGUAGE_BY_LOCALE;
+            const head = `<thead><tr>
+                <th scope="col">locale</th>
+                <th scope="col">language</th>
+                <th scope="col">Date3</th>
+            </tr></thead>`;
+            let body = '';
+            Object.keys(localesDict).forEach(localeKey => {
+                const locale = localeKey.replace(/_/mig, '-');
+                body += `<tr>
+                    <th scope="row">${locale}</th>
+                    <td>${localesDict[localeKey]}</td>
+                    <td>${localesCase(formControls, formControls.date3, locale)}</td>
+                </tr>`
+            })
+            return `${head}<tbody>${body}</tbody>`;
+        }
+
+        function getDayTimesTableContent(formControls) {
+            const date = formControls.date3;
+            const locale = cultureInfoDic[formControls.dateFormat];
+            const yyyy = date.getUTCFullYear();
+            const mm = date.getUTCMonth();
+            const day = date.getUTCDate();
+            const head = `<thead><tr>
+                <th scope="col">UTC</th>
+                <th scope="col">Date3 - 1</th>
+                <th scope="col">Date3</th>
+                <th scope="col">Date3 + 1</th>
+            </tr></thead>`;
+            let body = '';
+            for (let i = 0; i < 24; i++) {
+                const datePrev = new Date(Date.UTC(yyyy, mm, day - 1, i, 0, 0, 0))
+                const date = new Date(Date.UTC(yyyy, mm, day, i, 0, 0, 0))
+                const dateNext = new Date(Date.UTC(yyyy, mm, day + 1, i, 0, 0, 0))
+                const dateStringPrev = `${intlCase(formControls, datePrev, formControls.timeZone, locale)} (${formControls.timeZone}${formControls.timeZone === 'UTC' ? '' : ' UTC' + getOffset(formControls.timeZone, datePrev)})`;
+                const dateString = `${intlCase(formControls, date, formControls.timeZone, locale)} (${formControls.timeZone}${formControls.timeZone === 'UTC' ? '' : ' UTC' + getOffset(formControls.timeZone, date)})`;
+                const dateStringNext = `${intlCase(formControls, dateNext, formControls.timeZone, locale)} (${formControls.timeZone}${formControls.timeZone === 'UTC' ? '' : ' UTC' + getOffset(formControls.timeZone, dateNext)})`;
+                body += `<tr>
+                    <th scope="row">${i < 10 ? '0' + i : i}:00</th>
+                    <td>${dateStringPrev}</td>
+                    <td>${dateString}</td>
+                    <td>${dateStringNext}</td>
+                </tr>`;
+            }
+            return `${head}<tbody>${body}</tbody>`;
+        }
+
+        function getTimeZonesSelectContent(timeZones) {
+            return timeZones.map(timeZone => `<option value="${timeZone}">${timeZone} (UTC${getOffset(timeZone)})</option>`);
+        }
+
+        function getPresetButtonsContent(presets) {
+            return presets.map((buttonData) => `<button type="button" class="preset" id="${buttonData.id}" title="${buttonData.description}">${buttonData.name}</button>`).join('')
+        }
+
+        function initialControls() {
+            const form = document.querySelector('form');
+
+            document.querySelector('.time-zone-picker').innerHTML = `<select id="timeZone" name="timeZone">${getTimeZonesSelectContent(TIME_ZONES)}</select>`;
+            form.timeZone.value = 'UTC'
+
+            document.querySelector('.presets').innerHTML = getPresetButtonsContent(presets);
+        }
+		
+        function initialForm() {
+            const form = document.querySelector('form');
+
+            const getDate = (dateInput) => {
+                const [yyyy, mm, dd] = dateInput.value.split('-');
+                return new Date(Date.UTC(yyyy, mm - 1, dd, 0, 0, 0, 0));
+            }
+
+            const getDateTime = (dateInput, timeInput) => {
+                const [yyyy, mm, dd] = dateInput.value.split('-');
+                const [h, m] = timeInput.value.split(':');
+                return new Date(Date.UTC(yyyy, mm - 1, dd, h, m, 0, 0));
+            }
+
+            const formControls = {
+                timeFormat: form.timeFormat.value,
+                hour12: form.hour12.checked,
+                dateFormat: cultureInfoArray[form.dateFormat.value],
+                date1: getDateTime(form.date1, form.time1),
+                date2: getDateTime(form.date2, form.time2),
+                date3: getDate(form.date3),
+                timeZone: form.timeZone.value,
+            };
+
+            form.hour12.addEventListener('change', (event) => {
+                formControls.hour12 = event.target.checked;
+                renderTables(formControls);
+            })
+
+            form.dateFormat.addEventListener('change', (event) => {
+                formControls.dateFormat = cultureInfoArray[event.target.value];
+                renderTables(formControls);
+            })
+
+            form.date1.addEventListener('change', (event) => {
+                formControls.date1 = getDateTime(form.date1, form.time1);
+                renderTables(formControls);
+            })
+
+            form.date2.addEventListener('change', (event) => {
+                formControls.date2 = getDateTime(form.date2, form.time2);
+                renderTables(formControls);
+            })
+
+            form.date3.addEventListener('change', (event) => {
+                formControls.date3 = getDate(form.date3);
+                renderTables(formControls);
+            })
+
+            form.time1.addEventListener('change', (event) => {
+                formControls.date1 = getDateTime(form.date1, form.time1);
+                renderTables(formControls);
+            })
+
+            form.time2.addEventListener('change', (event) => {
+                formControls.date2 = getDateTime(form.date2, form.time2);
+                renderTables(formControls);
+            })
+
+            form.timeZone.addEventListener('change', (event) => {
+                formControls.timeZone = event.target.value;
+                renderTables(formControls);
+            })
+
+            const radioButtons = form.timeFormat;
+            for (let i = 0; i < radioButtons.length; i++) {
+                radioButtons[i].addEventListener('change', (event) => {
+                    formControls.timeFormat = event.target.value;
+                    renderTables(formControls);
+                });
+            }
+
+            document.querySelector('.presets').addEventListener('click', (event) => {
+                console.log(event.target.id);
+                presetData = presets.find(set => set.id === event.target.id);
+                if (presetData) {
+                    form.date3.value = presetData.date;
+                    formControls.date3 = getDate(form.date3);
+                    form.timeZone = presetData.timeZone;
+                    formControls.timeZone = presetData.timeZone;
+                    renderTables(formControls);
+                }
+            })
+
+            renderTables(formControls);
+        }
+
+        function renderTables(formControls) {
+            document.querySelector('.table1').innerHTML = getTimeZonesTableContent(formControls);
+            document.querySelector('.table2').innerHTML = getDayTimesTableContent(formControls);
+            document.querySelector('.table3').innerHTML = getLocalesTableContent(formControls);
+        }
+        
+		function toLocaleStringSupportsLocales() {
+            try {
+                new Date().toLocaleString('i');
+            } catch (e) {
+                return e.name === 'RangeError';
+            }
+            return false;
+		}
+
+        (function onInit() {
+            console.log('toLocaleString supports: ', toLocaleStringSupportsLocales())
+            initialControls();
+            initialForm();
+            const tables = document.querySelectorAll('table');
+            for (let i = 0; i < tables.length; i++) {
+                tables[i].addEventListener('click', (event) => {
+                    if (event.target.getAttribute('scope') === 'col') {
+                        tables[i].classList.toggle('hidden');
+                    }
+                })
+            }
+        })()
+	</script>
+</body>
+</html>
