@@ -40,6 +40,7 @@
             font-family: sans-serif;
             font-size: .8rem;
             width: 100%;
+            margin-bottom: 10px;
         }
 
         table.hidden tbody {
@@ -51,15 +52,44 @@
             justify-content: space-around;
             margin: 10px;
             flex-wrap: wrap;
+            border-bottom: 1px solid rgb(200, 200, 200);
+            padding-bottom: 20px;
         }
         .label {
             font-family: sans-serif;
             font-weight: 700;
         }
-
+        .presets {
+            justify-content: flex-start;
+        }
+        .preset {
+            margin: 4px;
+        }
+        .flags {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+        }
+        .flag {
+            background-color: crimson;
+            padding: 4px 8px;
+            margin: 4px;
+            border-radius: 4px;
+            color: white;
+            font-size: .7rem;
+        }
+        .flag.supports {
+            background-color: olive;
+        }
     </style>
 </head>
 <body>
+    <div class="flags">
+        <div class="flag locale">toLocaleString</div>
+        <div class="flag intl">Intl.DateTimeFormat</div>
+        <div class="flag long-offset">Intl.DateTimeFormat longOffset</div>
+    </div>
     <form>
         <div class="label">User Settings:</div>
         <div class="form-group">
@@ -788,28 +818,61 @@
             'DD-MM-YYYY': 'es-CL',
         };
 
-        function getOffset(timeZone, date) {
-            try {
-                date = date || new Date();
-                const string = new Intl.DateTimeFormat('en-US', {timeZone, timeZoneName: 'longOffset'}).format(date);
-                const stringParts = string.split(' ');
-                const offset = stringParts[stringParts.length - 1].replace('GMT', '').replace('+0', '+').replace('-0', '-');
-                return offset;
-            } catch(e) {
-                console.warn('Invalid time zone specified: ', timeZone);
-                return '';
+        function getOffset(prefix, support, timeZone, date) {
+            if (support.intl) return getOffsetIntl(prefix, support.longOffset, timeZone, date);
+            return '';
+        }
+
+        function getOffsetIntl(prefix, isLongOffsetSupported, timeZone, date) {
+            if (isLongOffsetSupported) {
+                try {
+                    date = date || new Date();
+                    const string = new Intl.DateTimeFormat('en-US', {timeZone, timeZoneName: 'longOffset'}).format(date);
+                    const stringParts = string.split(' ');
+                    const offset = stringParts[stringParts.length - 1].replace('GMT', '').replace('+0', '+').replace('-0', '-');
+                    return `${prefix ? prefix : ''}${offset}`;
+                } catch(e) {
+                    console.warn('Invalid time zone specified: ', timeZone);
+                    return prefix ? prefix : '';
+                }
+            } else {
+                try {
+                    date = date || new Date();
+                    const string = new Intl.DateTimeFormat('en-US', {timeZone, timeZoneName: 'short'}).format(date);
+                    const stringParts = string.split(' ');
+                    let offset = stringParts[stringParts.length - 1].replace('GMT', '');
+                    if (!offset) {//UTC
+                        return prefix ? prefix : '';
+                    }
+                    if (Number.isNaN(Number(offset)) && !offset.includes(':')) {//named timezone offset
+                        return offset;
+                    }
+                    if (!offset.includes(':')) {
+                        offset += ':00';
+                    }
+                    return `${prefix ? prefix : ''}${offset}`;
+                } catch(e) {
+                    console.warn('Invalid time zone specified: ', timeZone);
+                    return prefix ? prefix : '';
+                }
             }
         }
 
-        function getOffsetInMinutes(timeZone, date) {
-            const offset = getOffset(timeZone, date);
+        function getOffsetInMinutes(support, timeZone, date) {
+            const offset = getOffset('', support, timeZone, date);
             if (!offset) return 0;
             const [hh, mm] = offset.replace(/[-+]/mig, '').split(':');
-            const minutes = hh * 60 + Number(mm);
+            if (Number.isNaN(Number(hh))) {
+                console.warn('Imposible to calculate minutes of offset for timeZone: ', timeZone, offset);
+            }
+            let minutes = Number(hh) * 60;
+            if (!Number.isNaN(Number(mm))) {
+                minutes +=  Number(mm);
+            }
             return offset.charAt(0) === '-' ? -minutes : minutes;
         }
 
-		function intlCase(formControls, date, timeZone) {
+		function intlCase(support, formControls, date, timeZone) {
             const options = {
                 year: 'numeric', month: 'numeric', day: 'numeric',
                 timeZone,
@@ -838,7 +901,7 @@
             }
 		}
 
-		function localesCase(formControls, date, locale) {
+		function localesCase(support, formControls, date, locale) {
             const options = { 
                 year: 'numeric', month: 'numeric', day: 'numeric',
                 timeZone: formControls.timeZone,
@@ -869,7 +932,7 @@
             }
 		}
 
-        function getTimeZonesTableContent(formControls) {
+        function getTimeZonesTableContent(support, formControls) {
             const timeZones = TIME_ZONES;
             const locale = cultureInfoDic[formControls.dateFormat];
             const head = `<thead><tr>
@@ -884,17 +947,17 @@
             timeZones.forEach(code => {
                 body += `<tr>
                     <th scope="row">${code}</th>
-                    <td>UTC${getOffset(code)} (${getOffsetInMinutes(code)})</td>
-                    <td>${intlCase(formControls, formControls.date1, code, locale)}</td>
-                    <td>UTC${getOffset(code, formControls.date1)}</td>
-                    <td>${intlCase(formControls, formControls.date2, code, locale)}</td>
-                    <td>UTC${getOffset(code, formControls.date2)}</th>
+                    <td>${getOffset('UTC', support, code)} (${getOffsetInMinutes(support, code)})</td>
+                    <td>${intlCase(support, formControls, formControls.date1, code, locale)}</td>
+                    <td>${getOffset('UTC', support, code, formControls.date1)}</td>
+                    <td>${intlCase(support, formControls, formControls.date2, code, locale)}</td>
+                    <td>${getOffset('UTC', support, code, formControls.date2)}</th>
                 </tr>`
             })
             return `${head}<tbody>${body}</tbody>`;
         }
 
-        function getLocalesTableContent(formControls) {
+        function getLocalesTableContent(support, formControls) {
             const localesDict = LANGUAGE_BY_LOCALE;
             const head = `<thead><tr>
                 <th scope="col">locale</th>
@@ -907,13 +970,13 @@
                 body += `<tr>
                     <th scope="row">${locale}</th>
                     <td>${localesDict[localeKey]}</td>
-                    <td>${localesCase(formControls, formControls.date3, locale)}</td>
+                    <td>${localesCase(support, formControls, formControls.date3, locale)}</td>
                 </tr>`
             })
             return `${head}<tbody>${body}</tbody>`;
         }
 
-        function getDayTimesTableContent(formControls) {
+        function getDayTimesTableContent(support, formControls) {
             const date = formControls.date3;
             const locale = cultureInfoDic[formControls.dateFormat];
             const yyyy = date.getUTCFullYear();
@@ -930,9 +993,9 @@
                 const datePrev = new Date(Date.UTC(yyyy, mm, day - 1, i, 0, 0, 0))
                 const date = new Date(Date.UTC(yyyy, mm, day, i, 0, 0, 0))
                 const dateNext = new Date(Date.UTC(yyyy, mm, day + 1, i, 0, 0, 0))
-                const dateStringPrev = `${intlCase(formControls, datePrev, formControls.timeZone, locale)} (${formControls.timeZone}${formControls.timeZone === 'UTC' ? '' : ' UTC' + getOffset(formControls.timeZone, datePrev)})`;
-                const dateString = `${intlCase(formControls, date, formControls.timeZone, locale)} (${formControls.timeZone}${formControls.timeZone === 'UTC' ? '' : ' UTC' + getOffset(formControls.timeZone, date)})`;
-                const dateStringNext = `${intlCase(formControls, dateNext, formControls.timeZone, locale)} (${formControls.timeZone}${formControls.timeZone === 'UTC' ? '' : ' UTC' + getOffset(formControls.timeZone, dateNext)})`;
+                const dateStringPrev = `${intlCase(support, formControls, datePrev, formControls.timeZone, locale)} (${formControls.timeZone === 'UTC' ? 'UTC' : getOffset('UTC', support, formControls.timeZone, datePrev)})`;
+                const dateString = `${intlCase(support, formControls, date, formControls.timeZone, locale)} (${formControls.timeZone === 'UTC' ? 'UTC' : getOffset('UTC', support, formControls.timeZone, date)})`;
+                const dateStringNext = `${intlCase(support, formControls, dateNext, formControls.timeZone, locale)} (${formControls.timeZone === 'UTC' ? 'UTC' : getOffset('UTC', support, formControls.timeZone, dateNext)})`;
                 body += `<tr>
                     <th scope="row">${i < 10 ? '0' + i : i}:00</th>
                     <td>${dateStringPrev}</td>
@@ -943,24 +1006,24 @@
             return `${head}<tbody>${body}</tbody>`;
         }
 
-        function getTimeZonesSelectContent(timeZones) {
-            return timeZones.map(timeZone => `<option value="${timeZone}">${timeZone} (UTC${getOffset(timeZone)})</option>`);
+        function getTimeZonesSelectContent(timeZones, support) {
+            return timeZones.map(timeZone => `<option value="${timeZone}">${timeZone === 'UTC' ? 'UTC' : timeZone + ' (' + getOffset('UTC', support, timeZone) + ')'}</option>`);
         }
 
         function getPresetButtonsContent(presets) {
             return presets.map((buttonData) => `<button type="button" class="preset" id="${buttonData.id}" title="${buttonData.description}">${buttonData.name}</button>`).join('')
         }
 
-        function initialControls() {
+        function initialControls(support) {
             const form = document.querySelector('form');
 
-            document.querySelector('.time-zone-picker').innerHTML = `<select id="timeZone" name="timeZone">${getTimeZonesSelectContent(TIME_ZONES)}</select>`;
+            document.querySelector('.time-zone-picker').innerHTML = `<select id="timeZone" name="timeZone">${getTimeZonesSelectContent(TIME_ZONES, support)}</select>`;
             form.timeZone.value = 'UTC'
 
             document.querySelector('.presets').innerHTML = getPresetButtonsContent(presets);
         }
 		
-        function initialForm() {
+        function initialForm(support) {
             const form = document.querySelector('form');
 
             const getDate = (dateInput) => {
@@ -986,49 +1049,49 @@
 
             form.hour12.addEventListener('change', (event) => {
                 formControls.hour12 = event.target.checked;
-                renderTables(formControls);
+                renderTables(support, formControls);
             })
 
             form.dateFormat.addEventListener('change', (event) => {
                 formControls.dateFormat = cultureInfoArray[event.target.value];
-                renderTables(formControls);
+                renderTables(support, formControls);
             })
 
             form.date1.addEventListener('change', (event) => {
                 formControls.date1 = getDateTime(form.date1, form.time1);
-                renderTables(formControls);
+                renderTables(support, formControls);
             })
 
             form.date2.addEventListener('change', (event) => {
                 formControls.date2 = getDateTime(form.date2, form.time2);
-                renderTables(formControls);
+                renderTables(support, formControls);
             })
 
             form.date3.addEventListener('change', (event) => {
                 formControls.date3 = getDate(form.date3);
-                renderTables(formControls);
+                renderTables(support, formControls);
             })
 
             form.time1.addEventListener('change', (event) => {
                 formControls.date1 = getDateTime(form.date1, form.time1);
-                renderTables(formControls);
+                renderTables(support, formControls);
             })
 
             form.time2.addEventListener('change', (event) => {
                 formControls.date2 = getDateTime(form.date2, form.time2);
-                renderTables(formControls);
+                renderTables(support, formControls);
             })
 
             form.timeZone.addEventListener('change', (event) => {
                 formControls.timeZone = event.target.value;
-                renderTables(formControls);
+                renderTables(support, formControls);
             })
 
             const radioButtons = form.timeFormat;
             for (let i = 0; i < radioButtons.length; i++) {
                 radioButtons[i].addEventListener('change', (event) => {
                     formControls.timeFormat = event.target.value;
-                    renderTables(formControls);
+                    renderTables(support, formControls);
                 });
             }
 
@@ -1040,17 +1103,17 @@
                     formControls.date3 = getDate(form.date3);
                     form.timeZone = presetData.timeZone;
                     formControls.timeZone = presetData.timeZone;
-                    renderTables(formControls);
+                    renderTables(support, formControls);
                 }
             })
 
-            renderTables(formControls);
+            renderTables(support, formControls);
         }
 
-        function renderTables(formControls) {
-            document.querySelector('.table1').innerHTML = getTimeZonesTableContent(formControls);
-            document.querySelector('.table2').innerHTML = getDayTimesTableContent(formControls);
-            document.querySelector('.table3').innerHTML = getLocalesTableContent(formControls);
+        function renderTables(support, formControls) {
+            document.querySelector('.table1').innerHTML = getTimeZonesTableContent(support, formControls);
+            document.querySelector('.table2').innerHTML = getDayTimesTableContent(support, formControls);
+            document.querySelector('.table3').innerHTML = getLocalesTableContent(support, formControls);
         }
         
 		function toLocaleStringSupportsLocales() {
@@ -1062,10 +1125,47 @@
             return false;
 		}
 
+        function intlDateTimeFormatSupports() {
+            try {
+                new Intl.DateTimeFormat('en-US', {timeZone: 'i'});
+            } catch (e) {
+                return e.name === 'RangeError';
+            }
+            return false;
+        }
+
+        function intlDateTimeFormatSupportsLongOffset() {
+            try {
+                new Intl.DateTimeFormat('en-US', {timeZone: 'America/New_York', timeZoneName: 'longOffset'});
+                return true
+            } catch (e) {
+                return false;
+            }
+            return false;
+        }
+
+        function checkSupport() {
+            const support = {
+                locale: toLocaleStringSupportsLocales(),
+                intl: intlDateTimeFormatSupports(),
+                longOffset: intlDateTimeFormatSupportsLongOffset()
+            }
+            if (support.locale) {
+                document.querySelector('.flag.locale').classList.add('supports');
+            }
+            if (support.intl) {
+                document.querySelector('.flag.intl').classList.add('supports');
+            }
+            if (support.longOffset) {
+                document.querySelector('.flag.long-offset').classList.add('supports');
+            }
+            return support;
+        }
+
         (function onInit() {
-            console.log('toLocaleString supports: ', toLocaleStringSupportsLocales())
-            initialControls();
-            initialForm();
+            const support = checkSupport();
+            initialControls(support);
+            initialForm(support);
             const tables = document.querySelectorAll('table');
             for (let i = 0; i < tables.length; i++) {
                 tables[i].addEventListener('click', (event) => {
