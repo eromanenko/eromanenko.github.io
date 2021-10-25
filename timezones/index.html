@@ -205,8 +205,8 @@
                 hour12: false
             };
             try {
-                const timeZoneString = this.getLocaledString(date, 'az', options);
-                const utcString = this.getLocaledString(date, 'az', {...options, timeZone: 'UTC'});
+                const timeZoneString = this.getLocaledString(date, 'en-US', options);
+                const utcString = this.getLocaledString(date, 'en-US', {...options, timeZone: 'UTC'});
                 const utcTime = dateStringToUtcTime(utcString);
                 const tzTime = dateStringToUtcTime(timeZoneString);
         
@@ -217,14 +217,14 @@
         }
 
         function dateStringToUtcTime(dateString) {
-            const regExp = /^(?<YYYY>\d+)-(?<MM>\d+)-(?<DD>\d+).+?(?<hh>\d+):(?<mm>\d+)/;//for az
+            const regExp = /^(?<MM>\d+)\/(?<DD>\d+)\/(?<YYYY>\d+).+?(?<hh>\d+):(?<mm>\d+)/;
             const matches = dateString.match(regExp);
             if (!matches) {
                 console.warn('Incorrect datestring: ', dateString);
                 return 0;
             }
             const parts = matches.groups;
-            return Date.UTC(Number(parts.YYYY), Number(parts.MM) - 1, Number(parts.DD), Number(parts.hh), Number(parts.mm));
+            return Date.UTC(Number(parts.YYYY), Number(parts.MM) - 1, Number(parts.DD), Number(parts.hh === '24' ? 0 : parts.hh), Number(parts.mm));
         }
 
         function getLocaledString(date, locale, options) {
