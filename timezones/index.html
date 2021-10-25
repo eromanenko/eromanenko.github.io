@@ -183,39 +183,48 @@
         }
 
         function getOffset(prefix, timeZone, date) {
-            const isLongOffsetSupported = intlDateTimeFormatSupportsLongOffset();
-            if (isLongOffsetSupported) { // Chrome, Edge
-                try {
-                    date = date || new Date();
-                    const string = getLocaledString(date, 'en-US', {timeZone, timeZoneName: 'longOffset'});
-                    const stringParts = string.split(' ');
-                    const offset = stringParts[stringParts.length - 1].replace('GMT', '').replace('+0', '+').replace('-0', '-');
-                    return `${prefix ? prefix : ''}${offset}`;
-                } catch(e) {
-                    console.warn('Invalid time zone specified: ', timeZone);
-                    return prefix ? prefix : '';
-                }
-            } else { // Safari, Firefox
-                try {
-                    date = date || new Date();
-                    const string = getLocaledString(date, 'en-US', {timeZone, timeZoneName: 'short'});
-                    const stringParts = string.split(' ');
-                    let offset = stringParts[stringParts.length - 1].replace('GMT', '');
-                    if (!offset) {//UTC
-                        return prefix ? prefix : '';
-                    }
-                    if (Number.isNaN(Number(offset)) && !offset.includes(':')) {//named timezone offset
-                        return offset;
-                    }
-                    if (!offset.includes(':')) {
-                        offset += ':00';
-                    }
-                    return `${prefix ? prefix : ''}${offset}`;
-                } catch(e) {
-                    console.warn('Invalid time zone specified: ', timeZone);
-                    return prefix ? prefix : '';
-                }
+            const minutes = getOffsetInMinutes(timeZone, date);
+            const offsetString = minutesToOffsetDisplayName(minutes);
+            return `${prefix ? prefix : ''}${offsetString}`;
+        }
+
+        function minutesToOffsetDisplayName(minutes) {// returns "+6:00", "-00:30"
+            if (minutes === 0) return '';
+            const sign = minutes < 0 ? '-' : '+';
+            minutes = Math.abs(minutes);
+            const hours = Math.floor(minutes / 60);
+            minutes = minutes - hours * 60;
+            return `${sign}${hours}:${minutes < 10 ? '0' + minutes : minutes}`;
+        }
+
+        function getOffsetInMinutes(timeZone, date = new Date()) {
+            const options = {
+                timeZone, 
+                year: 'numeric', month: 'numeric', day: 'numeric', 
+                hour: 'numeric', minute: 'numeric', 
+                hour12: false
+            };
+            try {
+                const timeZoneString = this.getLocaledString(date, 'az', options);
+                const utcString = this.getLocaledString(date, 'az', {...options, timeZone: 'UTC'});
+                const utcTime = dateStringToUtcTime(utcString);
+                const tzTime = dateStringToUtcTime(timeZoneString);
+        
+                return Math.floor((tzTime - utcTime) / 60000);
+            } catch(e) {
+                return 0;
             }
+        }
+
+        function dateStringToUtcTime(dateString) {
+            const regExp = /^(?<YYYY>\d+)-(?<MM>\d+)-(?<DD>\d+).+?(?<hh>\d+):(?<mm>\d+)/;//for az
+            const matches = dateString.match(regExp);
+            if (!matches) {
+                console.warn('Incorrect datestring: ', dateString);
+                return 0;
+            }
+            const parts = matches.groups;
+            return Date.UTC(Number(parts.YYYY), Number(parts.MM) - 1, Number(parts.DD), Number(parts.hh), Number(parts.mm));
         }
 
         function getLocaledString(date, locale, options) {
@@ -226,20 +235,6 @@
             if (intlDateTimeFormatSupports()) {
                 return new Intl.DateTimeFormat(locale, options).format(date);
             };
-        }
-
-        function getOffsetInMinutes(timeZone, date) {
-            const offset = getOffset('', timeZone, date);
-            if (!offset) return 0;
-            const [hh, mm] = offset.replace(/[-+]/mig, '').split(':');
-            if (Number.isNaN(Number(hh))) {
-                console.warn('Imposible to calculate minutes of offset for timeZone: ', timeZone, offset);
-            }
-            let minutes = Number(hh) * 60;
-            if (!Number.isNaN(Number(mm))) {
-                minutes +=  Number(mm);
-            }
-            return offset.charAt(0) === '-' ? -minutes : minutes;
         }
 
 		function getDateString(formControls, date, locale, timeZone) {
